@@ -53,17 +53,11 @@ export default class IngredientScreen extends React.Component {
         <View style={{ borderBottomWidth: 0.4, marginBottom: 10, borderBottomColor: 'grey' }}>
           <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
         </View>
-        <Text style={styles.ingredientInfo}> ESTO NO DEBERIA IR {ingredientName}:</Text>
-        <View>
-          <FlatList
-            vertical
-            showsVerticalScrollIndicator={false}
-            numColumns={2}
-            data={getRecipesByIngredient(ingredientId)}
-            renderItem={this.renderRecipes}
-            keyExtractor={item => `${item.recipeId}`}
-          />
-        </View>
+        <Text style={styles.titleIngredient}>Descripción</Text>
+        <Text style={styles.ingredientInfo}>Marca:</Text>
+        <Text style={styles.ingredientInfo}>Modelo:</Text>
+        <Text style={styles.ingredientInfo}>Estado:</Text>
+        <Text style={styles.ingredientInfo}>Otros:</Text>
       </ScrollView>
     );
   }

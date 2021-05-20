@@ -74,13 +74,14 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   modalInput: {
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'left',
     borderRadius: 15,
-    height: 20,
+    height: 22,
     width: 200,
-    marginBottom: 10,
+    marginBottom: 8,
     backgroundColor: '#B0D4F7',
+    paddingHorizontal: 5
   },
   modalButton: {
     color: '#4BA9FF',

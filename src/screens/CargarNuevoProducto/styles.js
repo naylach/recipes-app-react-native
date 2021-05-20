@@ -49,13 +49,20 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textAlign: 'left',
 },
-
   editIcon: {
     marginTop: 10,
     width: 40,
     height: 40,
     alignSelf: 'center'
-  }
+  },
+  buttonLogin: {
+    borderRadius: 20,
+    textAlign: 'center',
+    width: 180,
+    alignSelf: 'center',
+    bottom: -50,
+    margin: 10
+  },
 });
 
 export default styles;

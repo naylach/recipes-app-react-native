@@ -14,7 +14,6 @@ import MediosPagoScreen from '../screens/MediosPago/MediosPago';
 import LoginScreen from '../screens/Login/Login';
 import RegistroScreen from '../screens/Login/Registro';
 import HistorialTransaccionesScreen from '../screens/HistorialTransacciones/HistorialTransacciones';
-import MisFavoritosScreen from '../screens/MisFavoritos/MisFavoritos';
 import CargarNuevoProductoScreen from '../screens/CargarNuevoProducto/CargarNuevoProducto';
 import MisPublicacionesScreen from '../screens/MisPublicaciones/MisPublicaciones';
 
@@ -32,7 +31,6 @@ const MainNavigator = createStackNavigator(
     Login: LoginScreen,
     Registro: RegistroScreen,
     HistorialTransacciones: HistorialTransaccionesScreen,
-   // MisFavoritos: MisFavoritosScreen,
     CargarNuevoProducto: CargarNuevoProductoScreen,
     MisPublicaciones:MisPublicacionesScreen
   },

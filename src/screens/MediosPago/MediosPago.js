@@ -21,6 +21,9 @@ export default class MediosPago extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      tipo: "", nombre: "", numero: "", vencimiento: "", cvv: ""
+    }
   }
   state = {
     modalVisible: false,
@@ -33,6 +36,7 @@ export default class MediosPago extends React.Component {
   // closeOverlay = () => this.setState({overlayVisible: false});
   render() {
     const { navigation } = this.props;
+    let tipo, nombre, numero, vencimiento, cvv;
     const { modalVisible, overlayVisible } = this.state;
     const Separator = () => (
         <View style={styles.separator} />
@@ -78,11 +82,11 @@ export default class MediosPago extends React.Component {
                       <Text style={styles.modalLabel}>CVV:</Text>
                     </View>
                     <View style={styles.column}>
-                      <TextInput style={styles.modalInput}></TextInput>
-                      <TextInput style={styles.modalInput}></TextInput>
-                      <TextInput style={styles.modalInput}></TextInput>
-                      <TextInput style={styles.modalInput}></TextInput>
-                      <TextInput style={styles.modalInput}></TextInput>                    
+                      <TextInput style={styles.modalInput} onChangeText={this.setState(tipo)} value={tipo} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={this.setState(nombre)} value={nombre} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={this.setState(numero)} value={numero} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={this.setState(vencimiento)} value={vencimiento} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={this.setState(cvv)} value={cvv} ></TextInput>                    
                     </View>
                   </View>
                   <View style={styles.columns}>
@@ -95,41 +99,6 @@ export default class MediosPago extends React.Component {
               {/* <Overlay visible={overlayVisible} onClose={this.closeOverlay} closeOnTouchOutside>
                 <Text>Hello from Overlay!</Text>
               </Overlay> */}
-              <Modal
-                animationType='fade'
-                transparent={false}
-                presentationStyle='formSheet'
-                visible={modalVisible}
-                onRequestClose={() => {
-                  Alert.alert("Modal has been closed.");
-                  this.closeModal;
-                }}
-              >
-                <View>
-                  <Text style={styles.modalTitle}>Editar medio de pago</Text>
-                  <View style={styles.modal}>
-                    <View style={styles.column}>
-                      <Text style={styles.modalLabel}>Tipo:</Text>
-                      <Text style={styles.modalLabel}>Nombre:</Text>
-                      <Text style={styles.modalLabel}>Número:</Text>
-                      <Text style={styles.modalLabel}>Vencimiento:</Text>
-                      <Text style={styles.modalLabel}>CVV:</Text>
-                    </View>
-                    <View style={styles.column}>
-                      <TextInput style={styles.modalInput}></TextInput>
-                      <TextInput style={styles.modalInput}></TextInput>
-                      <TextInput style={styles.modalInput}></TextInput>
-                      <TextInput style={styles.modalInput}></TextInput>
-                      <TextInput style={styles.modalInput}></TextInput>                    
-                    </View>
-                  </View>
-                  <View style={styles.columns}>
-                    <Button style={styles.modalButton} title='Agregar' type='solid' onPress={this.closeModal}/>
-                    <Button style={styles.modalButton} title='Cerrar' type='solid' onPress={this.closeModal}/>
-                  </View>
-                </View>
-              </Modal>
-              <Button style={styles.button} title='Editar' type='solid' onPress={this.openModal}/>
               <Button style={styles.button} title='Borrar' type='solid' />
             </View>
         </View>

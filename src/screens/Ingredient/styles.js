@@ -4,7 +4,8 @@ import { RecipeCard } from '../../AppStyles';
 const styles = StyleSheet.create({
   titleIngredient: {
     fontWeight: 'bold',
-    fontSize: 20
+    fontSize: 22,
+    textAlign: 'center'
   },
   photoIngredient: {
     width: '100%',
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
   ingredientInfo: {
     color: 'black',
     margin: 10,
-    fontSize: 19,
+    fontSize: 18,
     textAlign: 'left',
     fontWeight: 'bold'
   },

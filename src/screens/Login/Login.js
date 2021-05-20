@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import styles from './styles';
+import { DataContext } from "../../context";
+import { Alert } from 'react-native';
 
 export default class Login extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -18,37 +20,51 @@ export default class Login extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      email: "", password: ""
+    }
   }
 
   render() {
+    // const { currentUser, setCurrentUser, propiedadesList } = useContext(
+    //   DataContext
+    // );
+    
+    const handleLoginClick = (e) => {
+      //if (){ -> existe el usuario y eso
+        navigation.navigate('Home');
+      //setCurrentUser(usuario);
+      //}else -> modal que indique que los datos ingresados son incorrectos
+    };
+    const handleContinueClick = (e) => {
+        navigation.navigate('Home');
+    };
+    const handleRegisterClick = (e) => {
+        navigation.navigate('Registro');
+    };
     const { navigation } = this.props;
+    let email, password;
     return (
       <ScrollView style={styles.mainContainer}  scrollEnabled='false'>
         <View>
             <Text style={styles.title}>Usuario</Text>
-            <TextInput style={styles.input}></TextInput>
+            <TextInput style={styles.input} onChangeText={this.setState(email)} value={email}></TextInput>
             <Text style={styles.title}>Contraseña</Text>
-            <TextInput style={styles.input}></TextInput>
+            <TextInput style={styles.input} onChangeText={this.setState(password)} value={password}></TextInput>
             <Button 
               style={styles.buttonLogin} 
               title='Iniciar sesión'
-              onPress={() => {
-                  navigation.navigate('Home');
-                }}
+              onPress={handleLoginClick}
             />
             <Button 
               style={styles.button} 
               title='Continuar como invitado'
-              onPress={() => {
-                  navigation.navigate('Home');
-                }}
+              onPress={handleContinueClick}
             />
             <Button 
               style={styles.button} 
               title='Registrarse'
-              onPress={() => {
-                navigation.navigate('Registro');
-              }}
+              onPress={handleRegisterClick}
             />
         </View>
       </ScrollView>

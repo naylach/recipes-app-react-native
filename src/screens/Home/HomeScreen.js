@@ -4,8 +4,6 @@ import styles from './styles';
 import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
 import ProfileButton from '../../components/ProfileButton/ProfileButton';
-import MiPerfilScreen from '../MiPerfil/MiPerfil';
-import DrawerActions from 'react-navigation';
 import { getCategoryName } from '../../data/MockDataAPI';
 
 export default class HomeScreen extends React.Component {
@@ -33,8 +31,8 @@ export default class HomeScreen extends React.Component {
     this.props.navigation.navigate('Recipe', { item });
   };
 
-  renderRecipes = ({ item }) => (
-    <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => this.onPressRecipe(item)}>
+  renderCatalogs = ({ item }) => (
+    <TouchableHighlight underlayColor='#f0f8ff' onPress={() => this.onPressRecipe(item)}>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
         <Text style={styles.title}>{item.title}</Text>
@@ -51,7 +49,7 @@ export default class HomeScreen extends React.Component {
           showsVerticalScrollIndicator={false}
           numColumns={2}
           data={recipes}
-          renderItem={this.renderRecipes}
+          renderItem={this.renderCatalogs}
           keyExtractor={item => `${item.recipeId}`}
         />
       </View>

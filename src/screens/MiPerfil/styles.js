@@ -45,7 +45,15 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     alignSelf: 'center'
-  }
+  },
+  buttonLogin: {
+    borderRadius: 20,
+    textAlign: 'center',
+    width: 180,
+    alignSelf: 'center',
+    bottom: -10,
+    margin: 10
+  },
 });
 
 export default styles;
