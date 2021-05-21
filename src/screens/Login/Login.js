@@ -14,7 +14,7 @@ import { Alert } from 'react-native';
 export default class Login extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: 'Inicio de sesión'
+      title: 'Volver'
     };
   };
 
@@ -58,14 +58,15 @@ export default class Login extends React.Component {
             />
             <Button 
               style={styles.button} 
-              title='Continuar como invitado'
-              onPress={handleContinueClick}
-            />
-            <Button 
-              style={styles.button} 
               title='Registrarse'
               onPress={handleRegisterClick}
             />
+            <Button 
+              style={styles.button} 
+              title='Continuar como invitado'
+              onPress={handleContinueClick}
+            />
+
         </View>
       </ScrollView>
     );

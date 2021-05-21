@@ -63,6 +63,15 @@ const styles = StyleSheet.create({
     bottom: -50,
     margin: 10
   },
+  buttonAdd: {
+    borderRadius: 20,
+    textAlign: 'center',
+    width: 50,
+    alignSelf: 'center',
+    bottom: -50,
+    margin: 10
+    
+  }
 });
 
 export default styles;

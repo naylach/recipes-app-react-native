@@ -1,4 +1,4 @@
-/* esta es la pantalla que hace relacionar con "otros lugares donde está este producto. habria que eliminarlo" */
+/* esta screen sirve? */
 
 import React from 'react';
 import {

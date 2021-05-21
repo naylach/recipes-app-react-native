@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from \"./data\";","map":{"version":3,"sources":["E:/Users/Nayla/Escritorio/UADEE/Distribuidas desk/codigoAPP/src/context/index.js"],"names":[],"mappings":"AAAA","sourcesContent":["export * from \"./data\";\r\n"]},"metadata":{},"sourceType":"module"}

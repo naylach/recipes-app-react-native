@@ -66,21 +66,26 @@ export default class CargarNuevoProducto extends React.Component {
             <Text style={styles.title}>Categoria</Text>
             <TextInput style={styles.input} onChangeText={this.setState(categoria)} value={categoria} ></TextInput>           
            
-            <Text style={styles.title}>Imagen</Text>
-            <Image source={{ uri: 'https://static.thenounproject.com/png/1156518-200.png', }}style={styles.image}/>
+            <Text style={styles.title}>Imagen  </Text>
+
+            
+            <Image source={{ uri: 'https://static.thenounproject.com/png/1156518-200.png' }}style={styles.image}/>
+            <Button 
+                title='+'
+                style={styles.buttonAdd} 
+                //onPress={}
+                />
 
             <Text style={styles.title}>Precio base ($AR)</Text>
             <TextInput style={styles.input} onChangeText={this.setState(precioBase)} value={precioBase} > </TextInput>
-
             <Text style={styles.title}>Descripcion</Text>
             <TextInput style={styles.description} onChangeText={this.setState(marca)} value={marca} >Marca:  </TextInput>
             <TextInput style={styles.description} onChangeText={this.setState(modelo)} value={modelo} >Modelo:  </TextInput>
             <TextInput style={styles.description} onChangeText={this.setState(estado)} value={estado} >Estado:  </TextInput>
             <TextInput style={styles.description} onChangeText={this.setState(otros)} value={otros} >Otros:  </TextInput>
-
-            <Button 
-              style={styles.buttonLogin} 
+            <Button
               title='Agregar'
+              style={styles.buttonLogin}      
               onPress={handleButtonClick}
             />
 

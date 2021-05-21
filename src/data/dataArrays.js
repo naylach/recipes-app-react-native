@@ -1,3 +1,23 @@
+export const misproductos = [
+  {
+    id: 3344,
+    titulo: 'Barbies',
+    categoria:'plata',
+    imagen:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcnnespanol.cnn.com%2F2015%2F06%2F06%2Fla-barbie-es-cada-vez-mas-real%2F&psig=AOvVaw2_1seOYeSvUPtXlWUPJgIZ&ust=1621653593941000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOD83sXo2fACFQAAAAAdAAAAABAD',
+    descripcion:'Barbies coleccionables del año 1980',
+    
+  },
+  {
+    id: 3349,
+    titulo: 'Autos',
+    categoria:'bronce',
+    imagen:'https://images-na.ssl-images-amazon.com/images/I/61Y%2B7L4Kp-L._AC_SX425_.jpg',
+    descripcion:'Autitos de juguete',
+    
+  },
+
+];
+
 export const categories = [
   {
     id: 3,
@@ -60,9 +80,9 @@ export const recipes = [
     ],
     time: '10/04/2021',
     ingredients: [
-      [59, '1'],
-      [60, '1/2 lbs'],
-      [61, '1/2 liters'],
+      [59, '$300000'],
+      [60, '$55500'],
+      [61, '$908675'],
     ],
     description: 'Galería de cuadros famosos'
   },
@@ -73,22 +93,17 @@ export const recipes = [
     photo_url: 'https://images-na.ssl-images-amazon.com/images/I/71KXAhzy-tL._AC_SX466_.jpg',
     photosArray: [
       'https://images-na.ssl-images-amazon.com/images/I/71KXAhzy-tL._AC_SX466_.jpg',
-      'https://ichef.bbci.co.uk/news/660/cpsprodpb/B2C0/production/_106106754_vegnuggets976.jpg',
-      'https://pixel.nymag.com/imgs/daily/grub/2017/11/22/22-mcds-chicken-tenders.w330.h330.jpg',
-      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fcdn-img.health.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Flarge_16_9%2Fpublic%2Fstyles%2Fmain%2Fpublic%2Fgettyimages-508510211.jpg%3Fitok%3Dh-Uryi8r&w=400&c=sc&poi=face&q=85'
+      'https://i.pinimg.com/originals/41/4c/11/414c1104e8ca941fbee93082ae132090.jpg',
+      'https://images-na.ssl-images-amazon.com/images/I/71ui6PdjpHL._AC_SX466_.jpg',
+      'https://images-na.ssl-images-amazon.com/images/I/71-Eb7aNk9L._AC_SX522_.jpg',
+      
     ],
-    time: '30',
+    time: '20/10/2021',
     ingredients: [
-      [0, '2 quarts'],
-      [16, '1'],
-      [12, '1 cup'],
-      [18, '1 cup'],
-      [19, '1 teaspoon'],
-      [1, '2 teaspoons'],
-      [4, '1/4 teaspoons'],
-      [7, '1/8 teaspoons'],
-      [20, '1/2 teaspoons'],
-      [21, '4']
+      [7, '$675'],
+      [8, '$1675'],
+      [9, '$29675']
+      
     ],
     description:
       'Vajilla de colección de los años 1910. Mucha variedad de tazas, teteras y más!'
@@ -101,25 +116,16 @@ export const recipes = [
       'https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/hogartotal/T/Tips-para-organizar-una-venta-de-garaje-1.JPG',
     photosArray: [
       'https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/hogartotal/T/Tips-para-organizar-una-venta-de-garaje-1.JPG',
-      'https://i.pinimg.com/originals/3e/41/d4/3e41d4713e5fcb513a3c1cac14b4597f.jpg',
-      'https://http2.mlstatic.com/D_NQ_NP_800586-MLA32504246911_102019-O.jpg',
-      'https://http2.mlstatic.com/D_NQ_NP_887576-MLA31606013562_072019-V.jpg'
+      'https://www.espacity.com/web/sites/default/files/publico/styles/jpg_ampliada_blanca/public/Muebles/01476001000020_1.png?itok=L-kQu91w',
+      'https://assets.tramontina.com.br/upload/tramon/imagens/BEL/10835076ANM001G.png',
+      'https://http2.mlstatic.com/D_NQ_NP_774433-MLA44971440130_022021-O.jpg'
     ],
-    time: '45',
+    time: '05/08/2021',
     ingredients: [
-      [0, '2 tablespoons'],
-      [22, '1/2'],
-      [23, '2 tablespoons'],
-      [7, '2 cloves'],
-      [3, '1 teaspoon'],
-      [24, '1 tablespoon'],
-      [25, '1 lb'],
-      [1, '2 teaspoons'],
-      [4, '2 teaspoons'],
-      [26, '15 oz'],
-      [27, '8'],
-      [28, '2'],
-      [29, '1 cup']
+      [3, '$975'],
+      [4, '$975'],
+      [5, '$975']
+    
     ],
     description: 
       'Venta de garage por todo el contenido de una casa'
@@ -128,130 +134,87 @@ export const recipes = [
   {
     recipeId: 1,
     categoryId: 3,
-    title: 'Brownies',
-    photo_url: 'https://www.texanerin.com/content/uploads/2018/01/coconut-flour-brownies-1-650x975.jpg',
+    title: 'Juguetes',
+    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/716nOd2GWkL._AC_SY355_.jpg',
     photosArray: [
-      'https://www.texanerin.com/content/uploads/2018/01/coconut-flour-brownies-1-650x975.jpg',
-      'https://images-gmi-pmc.edge-generalmills.com/6fbc6859-e2b1-499d-b0fa-ada600c9cc3f.jpg',
-      'http://www.recipe4living.com/assets/itemimages/400/400/3/83c29ac7418067c2e74f31c8abdd5a43_477607049.jpg',
-      'https://www.franchisechatter.com/wp-content/uploads/2014/08/KFC-Photo-by-James.jpg'
+      'https://images-na.ssl-images-amazon.com/images/I/716nOd2GWkL._AC_SY355_.jpg',
+      'https://m.media-amazon.com/images/I/51t6KO9aWGL._AC_SS350_.jpg'
+      
     ],
-    time: '30',
+    time: '30/11/2021',
     ingredients: [
-      [1, '2 tablespoons'],
-      [3, '1 tablespoon'],
-      [4, '1 teaspoon'],
-      [5, '1/2 teaspoons'],
-      [6, '1/2 teaspoons'],
-      [7, '1/2 teaspoons'],
-      [8, '1/2 teaspoons'],
-      [9, '1/2 teaspoons'],
-      [10, '1/2 teaspoons'],
-      [11, '1/2 teaspoons'],
-      [12, '1/2 cups'],
-      [13, '1 tablespoon'],
-      [14, '1 tablespoon'],
-      [15, '2 breasts, 2 thighs, 2 drumsticks, 2 wings'],
-      [16, '1'],
-      [17, '2 quarts']
+      [11, '$5000'],
+      [12, '$6000']
+     
     ],
     description:
-      '-- Preheat fryer to 350°F. Thoroughly mix together all spices. Combine spices with flour, brown sugar and salt. Dip chicken pieces in egg white to lightly coat them, then transfer to flour mixture. Turn a few times and make sure the flour mix is really stuck to the chicken.\n\n -- Repeat with all the chicken pieces. Let chicken pieces rest for 5 minutes so crust has a chance to dry a bit. Fry chicken in batches. Breasts and wings should take 12-14 minutes, and legs and thighs will need a few more minutes. Chicken pieces are done when a meat thermometer inserted into the thickest part reads 165°F. Let chicken drain on a few paper towels when it comes out of the fryer. Serve hot.'
+      'Muñecos Funko de colección'
   },
   {
     recipeId: 4,
     categoryId: 1,
-    title: 'Perfect Fish Tacos',
-    photo_url: 'https://hips.hearstapps.com/hmg-prod/images/190307-fish-tacos-112-1553283299.jpg',
+    title: 'Comix de colección',
+    photo_url: 'https://c8.alamy.com/comp/MC76D1/collection-of-the-invincible-iron-man-vintage-marvel-comic-books-MC76D1.jpg',
     photosArray: [
-      'http://d2814mmsvlryp1.cloudfront.net/wp-content/uploads/2014/04/WGC-Fish-Tacos-copy-2.jpg',
-      'https://thecozyapron.com/wp-content/uploads/2018/03/baja-fish-tacos_thecozyapron_1.jpg',
-      'https://www.simplyrecipes.com/wp-content/uploads/2017/06/2017-07-22-FishTacos-6.jpg'
+      'https://c8.alamy.com/comp/MC76D1/collection-of-the-invincible-iron-man-vintage-marvel-comic-books-MC76D1.jpg',
+      'https://http2.mlstatic.com/D_NQ_NP_845109-MLA41364173678_042020-V.jpg',
+      'https://i.pinimg.com/originals/a3/fc/0e/a3fc0ebeac6708abc60d808ea44c4a51.png'
     ],
-    time: '35',
+    time: '19/11/2021',
     ingredients: [
-      [30, 'jucie of 1 '],
-      [24, '2 teaspoons'],
-      [0, '3 tablespoons'],
-      [3, '1 teaspoon'],
-      [31, '1/2 teaspoons'],
-      [32, '1/2 teaspoons'],
-      [4, '2 teaspoons'],
-      [33, '1/2 lb'],
-      [27, '8'],
-      [14, '2 teasponns'],
-      [34, '1']
+      [13, '$7000'],
+      [14, '$5000']
+      
     ],
     description:
-      '-- In a medium shallow bowl, whisk together olive oil, lime juice, paprika, chili powder, cumin, and cayenne. Add cod, tossing until evenly coated. Let marinate 15 minutes. Meanwhile, make slaw: In a large bowl, whisk together mayonnaise, lime juice, cilantro, and honey. Stir in cabbage, corn, and jalapeño. Season with salt and pepper.\n\n -- In a large nonstick skillet over medium-high heat, heat vegetable oil. Remove cod from marinade and season both sides of each filet with salt and pepper. Add fish flesh side-down. Cook until opaque and cooked through, 3 to 5 minutes per side.\n\n -- Let rest 5 minutes before flaking with a fork. Assemble tacos: Serve fish over grilled tortillas with corn slaw and avocado. Squeeze lime juice on top and garnish with sour cream. '
+      'Historietas/Comix coleccionables'
   },
   {
     recipeId: 5,
     categoryId: 1,
-    title: 'Chicken Fajitas',
+    title: 'Joyas de la familia Stephen',
     photo_url:
-      'https://tmbidigitalassetsazure.blob.core.windows.net/secure/RMS/attachments/37/1200x1200/Flavorful-Chicken-Fajitas_EXPS_GHBZ18_12540_B08_15_8b.jpg',
+      'https://estaticos-cdn.prensaiberica.es/clip/10139f5f-4677-44bb-8172-a6bcfaa10edc_16-9-aspect-ratio_default_0.jpg',
     photosArray: [
       'https://dadwithapan.com/wp-content/uploads/2015/07/Spicy-Chicken-Fajitas-22-1200x480.jpg',
       'https://3.bp.blogspot.com/-X-dHj7ORF9Q/XH4ssgTuSZI/AAAAAAAAEig/E46HP9wCfdsvyJFcMTX30cw-ICep8lF9ACHMYCw/s1600/chicken-fajitas-mexican-food-id-149559-buzzerg.jpg',
       'https://cdn-image.foodandwine.com/sites/default/files/styles/medium_2x/public/201403-xl-chipotle-chicken-fajitas.jpg?itok=ghVcI5SQ'
     ],
-    time: 35,
+    time: 13/12/2021,
     ingredients: [
-      [9, '1/2 teaspoons'],
-      [0, '4 tablespoons'],
-      [1, '1/2 teaspoons'],
-      [30, '2 tablespoons'],
-      [31, '1 teaspoon'],
-      [7, '1 teaspoon'],
-      [24, '1/2 teaspoons'],
-      [3, '1/2 teaspoons'],
-      [21, '1 pound'],
-      [22, '1/2 cup'],
-      [27, '6'],
-      [36, '4'],
-      [37, '1/2'],
-      [38, '1/2']
+      [33, '1/2 teaspoons'],
+      [32, '4 tablespoons']
+      
     ],
     description:
-      '-- In a large bowl, combine 2 tablespoons oil, lemon juice and seasonings; add the chicken. Turn to coat; cover. Refrigerate for 1-4 hours In a large skillet, saute peppers and onions in remaining oil until crisp-tender. Remove and keep warm. Drain chicken, discarding marinade. In the same skillet, cook chicken over medium-high heat for 5-6 minutes or until no longer pink.\n\n -- Return pepper mixture to pan; heat through. Spoon filling down the center of tortillas; fold in half. Serve with toppings as desired.'
+      '...'
   },
   {
     recipeId: 6,
     categoryId: 2,
-    title: 'Buffalo Pizza',
+    title: 'Cuadros galería Jaime',
     photo_url:
-      'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+      'https://m.media-amazon.com/images/I/61W36IjPwwL._AC_SS450_.jpg',
     photosArray: [
       'https://www.tablefortwoblog.com/wp-content/uploads/2019/01/buffalo-chicken-pizza-recipe-photos-tablefortwoblog-3-500x500.jpg',
       'http://pizzachoicema.com/wp-content/uploads/2018/08/Buffalo-Chicken-Pizza.jpg',
       'https://static1.squarespace.com/static/565bb41ae4b0509ba9fdf769/t/5b9a8e80aa4a998b0be0fcf4/1536855690622/pizza.gif'
     ],
-    time: 50,
+    time: 5/8/2022,
     ingredients: [
-      [39, '$3335'],
-      [40, '$3335'],
-      [41, '$3335'],
-      [42, '$3335'],
-      [43, '$3335'],
-      [44, '$3335'],
-      [7, '$3335'],
-      [5, '$3335'],
       [30, '$3335'],
-      [45, '$3335'],
-      [12, '$3335'],
-      [4, '$3335'],
-      [47, '$3335'],
-      [46, '$3335']
+      [31, '$3335'],
+      [32, '$3335'],
+      [33, '$3335']
     ],
     description:
-      '-- Place a rack in upper third of oven. Place a large cast-iron skillet on rack and preheat oven to 500° (or as high as your oven will go). Place pizza dough in a large bowl, pour a little oil over, and turn to coat. Cover bowl with plastic and let dough proof at room temperature while pan and oven heat up.\n\n -- Meanwhile, cook hot sauce, marinara sauce, and butter in a medium saucepan over medium heat, stirring occasionally, until butter is melted. Stir in cream, reduce heat to low, and simmer, stirring occasionally, until slightly thickened and warmed through, about 10 minutes. Heat 1 Tbsp. oil in a large skillet over medium-high. Add chicken, toss to coat, then add ¼ cup Buffalo sauce.\n\n -- Cook chicken, tossing occasionally, until heated through, about 2 minutes. Reduce heat and simmer, stirring often, until chicken is well coated and sauce is slightly thickened, about 5 minutes. Meanwhile, whisk yogurt, lemon juice, celery salt, garlic powder, ¼ cup blue cheese, ½ tsp. pepper, and 2 Tbsp. water in a small bowl, adding more water if sauce seems too thick (it should be pourable); set aside.\n\n -- Turn out dough onto a lightly floured work surface. Shape with your hands into a round that’s slightly larger than the cast-iron skillet you’re using. Take hot skillet out of oven (watch that handle!) and place on a heatproof surface. Add a little flour to pan. Lay dough in skillet, then work edges of dough up sides of skillet with your fingertips (use a rubber spatula or wooden spoon if you’re nervous about touching the hot pan). Drizzle a little oil around inside edge of pan so that it trickles behind and underneath dough, which will encourage browning and help it release.\n\n -- Spread about ⅓ cup Buffalo sauce over dough. Arrange mozzarella over, then top with remaining ¼ cup blue cheese. Arrange chicken mixture on top. Bake pizza on top rack until crust and cheese are nicely browned, 15–20 minutes. Transfer skillet to stovetop (again, watch that handle!) and let pizza rest a few minutes. Using a spatula, slide pizza onto a cutting board or platter. Arrange celery over, then top with reserved blue cheese dressing. Season with pepper, then drizzle with oil.'
+      '...'
   },
   {
     recipeId: 0,
     categoryId: 0,
-    title: 'Classic Lasagna',
-    photo_url: 'https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg',
+    title: 'Inmuebles Familia Gomez',
+    photo_url: 'https://i.blogs.es/8e8f64/lo-de-que-comprar-una-casa-es-la-mejor-inversion-hay-generaciones-que-ya-no-lo-ven-ni-de-lejos---1/450_1000.jpg',
     photosArray: [
       "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
       'https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg',
@@ -261,13 +224,13 @@ export const recipes = [
     time: '15',
     ingredients: [[0, '200ml'], [1, '5g'], [2, '300g']],
     description:
-      '-- Start with cleaned and peeled russet potatoes that you have cut into 3/8-inch match sticks. Place in bowl of very cold water: keep rinsing and changing the water until the water is clear; drain thoroughly and dry with paper towels or a clean lint-free kitchen towel.\n\n -- Meanwhile, you preheat your hot oil to 350 degrees F. Place prepared taters in oil and cook about 5 minutes. They will have that blond-tone color to them. \n\n -- Note: Once you add cold potatoes to the hot oil, the temperature of your oil is going to drop - you want it to be somewhere between 330 - 325 degrees F. \n\n -- Remove from oil; drain and cool. Now - either refrigerate until ready to finish cooking, or cool completely and freeze up to 3 months. To freeze properly - place completely cooled fries in single layer on tray and place in freezer until frozen. Then bag them.\n\n -- To finish cooking - preheat your oil to 400* F. Add your cold fries (which will drop the oil temp - which is fine because you want it near the 375 degrees F. temp) and cook a few minutes until done. Lightly salt them and shake well so that the salt distributes well and they are not salty.'
+      '...'
   },
   {
     recipeId: 7,
     categoryId: 2,
-    title: 'Spaghetti Carbonara',
-    photo_url: 'https://truffle-assets.imgix.net/655ce202-862-butternutsquashcarbonara-land.jpg',
+    title: 'Autos viejos',
+    photo_url: 'https://d3po9jkuwb69jo.cloudfront.net/media/uploads/2018/12/18/como-asegurar-auto-viejo.png',
     photosArray: [
       'https://ak3.picdn.net/shutterstock/videos/10431533/thumb/10.jpg',
       'https://www.kcet.org/sites/kl/files/styles/kl_image_large/public/thumbnails/image/square_hero_desktop_2x_sfs_spaghetti_carbonara_clr-3.jpg?itok=T-rsBDIZ',
@@ -275,23 +238,18 @@ export const recipes = [
     ],
     time: 15,
     ingredients: [
-      [48, '50g'],
-      [49, '100g'],
-      [50, '350g'],
-      [51, '2 plump'],
-      [42, '50g'],
-      [16, '3'],
-      [1, '2 teaspoons'],
+      [35, '50g'],
+      [35, '100g'],
       [4, '2 teaspoons']
     ],
     description:
-      '-- Put the egg yolks into a bowl, finely grate in the Parmesan, season with pepper, then mix well with a fork and put to one side. Cut any hard skin off the pancetta and set aside, then chop the meat. Cook the spaghetti in a large pan of boiling salted water until al dente.\n\n -- Meanwhile, rub the pancetta skin, if you have any, all over the base of a medium frying pan (this will add fantastic flavour, or use 1 tablespoon of oil instead), then place over a medium-high heat. Peel the garlic, then crush with the palm of your hand, add it to the pan and leave it to flavour the fat for 1 minute. Stir in the pancetta, then cook for 4 minutes, or until it starts to crisp up. Pick out and discard the garlic from the pan, then, reserving some of the cooking water, drain and add the spaghetti.\n\n -- Toss well over the heat so it really soaks up all that lovely flavour, then remove the pan from the heat. Add a splash of the cooking water and toss well, season with pepper, then pour in the egg mixture – the pan will help to cook the egg gently, rather than scrambling it. Toss well, adding more cooking water until it’s lovely and glossy. Serve with a grating of Parmesan and an extra twist of pepper.'
+      '...'
   },
   {
     recipeId: 8,
     categoryId: 2,
-    title: 'Lazania',
-    photo_url: 'https://images8.alphacoders.com/817/817353.jpg',
+    title: 'Ropa de Messi firmada',
+    photo_url: 'http://cdn.shopify.com/s/files/1/0015/7011/1535/products/iclmbs78_lionel-messi-official-back-signed-barcelona-2017-18-home-shirt_1200x1200.png?v=1535896037',
     photosArray: [
       'https://previews.123rf.com/images/somegirl/somegirl1509/somegirl150900048/46103208-top-view-of-a-delicious-traditional-italian-lasagna-made-with-minced-beef-bolognese-sauce-topped-wit.jpg',
       'https://truffle-assets.imgix.net/87f324e4-YOUTUBE-NO-TXT.00_03_19_14.Imagen_fija001.jpg',
@@ -299,26 +257,12 @@ export const recipes = [
     ],
     time: 60,
     ingredients: [
-      [36, '1 large'],
-      [25, '1 pound'],
-      [51, '5 cloves'],
-      [52, '1 pound'],
-      [53, '1 pound'],
-      [54, '1 28 ounce can'],
-      [23, '2 6 ounce can'],
-      [55, '2 tablespoons'],
-      [56, '1/4 cup'],
-      [10, '1/2 cup'],
-      [1, '1/2 teaspoons'],
-      [58, '1 teaspoon'],
-      [4, '1/4 teaspoons'],
-      [16, '1 large'],
-      [46, '1 pound'],
-      [48, '1 cup'],
-      [57, '30 ounces']
+      [30, '1 large'],
+      [25, '1 pound']
+     
     ],
     description:
-      '-- Cook noodles according to package directions; drain. Meanwhile, in a Dutch oven, cook sausage, beef and onion over medium heat 8-10 minutes or until meat is no longer pink, breaking up meat into crumbles. Add garlic; cook 1 minute. Drain. Stir in tomatoes, tomato paste, water, sugar, 3 tablespoons parsley, basil, fennel, 1/2 teaspoon salt and pepper; bring to a boil. Reduce heat; simmer, uncovered, 30 minutes, stirring occasionally. In a small bowl, mix egg, ricotta cheese, and remaining parsley and salt. Preheat oven to 375°. Spread 2 cups meat sauce into an ungreased 13x9-in. baking dish. Layer with 3 noodles and a third of the ricotta mixture. Sprinkle with 1 cup mozzarella cheese and 2 tablespoons Parmesan cheese.\n\n -- Repeat layers twice. Top with remaining meat sauce and cheeses (dish will be full). Bake, covered, 25 minutes. Bake, uncovered, 25 minutes longer or until bubbly. Let stand 15 minutes before serving.'
+      '...'
   }
 ];
 
@@ -341,70 +285,72 @@ export const ingredients = [
   },
   {
     ingredientId: 3,
-    name: 'Paprika',
+    name: 'Mesa 1',
     photo_url:
-      'https://image.freepik.com/free-photo/red-chilli-pepper-powder-isolated-white-background_55610-28.jpg'
+      'https://www.espacity.com/web/sites/default/files/publico/styles/jpg_ampliada_blanca/public/Muebles/01476001000020_1.png?itok=L-kQu91w'
   },
   {
     ingredientId: 4,
-    name: 'Black Pepper',
-    photo_url: 'https://ak0.picdn.net/shutterstock/videos/26741680/thumb/1.jpg'
+    name: 'Mesa redonda',
+    photo_url: 'https://assets.tramontina.com.br/upload/tramon/imagens/BEL/10835076ANM001G.png'
   },
   {
     ingredientId: 5,
-    name: 'Celery salt',
-    photo_url: 'https://www.hasiroglugurme.com/images/urunler/Koftelik-Esmer-Bulgur-resim-297.jpg'
+    name: 'Mesa 2',
+    photo_url: 'https://http2.mlstatic.com/D_NQ_NP_774433-MLA44971440130_022021-O.jpg'
   },
   {
     ingredientId: 6,
-    name: 'Dried sage',
+    name: 'Mesa 3',
     photo_url:
-      'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Esxjvv7/super-slow-motion-dried-sage-falling-on-white-background_n1xg2gxzg__F0000.png'
+      'https://image.architonic.com/img_pro2-4/144/1958/mesa-159071-b.jpg'
   },
   {
     ingredientId: 7,
-    name: 'Garlic powder',
+    name: 'taza 1',
     photo_url:
-      'https://us.123rf.com/450wm/belchonock/belchonock1808/belchonock180818180/106007144-bowl-of-dry-garlic-powder-on-white-background.jpg?ver=6'
+      'https://i.pinimg.com/originals/41/4c/11/414c1104e8ca941fbee93082ae132090.jpg'
   },
   {
     ingredientId: 8,
-    name: 'Ground allspice',
+    name: 'taza 2',
     photo_url:
-      'https://www.savoryspiceshop.com/content/mercury_modules/cart/items/2/6/9/2695/allspice-berries-jamaican-ground-1.jpg'
+      'https://images-na.ssl-images-amazon.com/images/I/71ui6PdjpHL._AC_SX466_.jpg'
   },
   {
     ingredientId: 9,
-    name: 'Dried oregano',
-    photo_url: 'https://frutascharito.es/886-large_default/oregano.jpg'
+    name: 'taza 3',
+    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/71-Eb7aNk9L._AC_SX522_.jpg'
   },
   {
     ingredientId: 10,
-    name: 'Dried basil',
-    photo_url: 'https://www.honeychop.com/wp-content/uploads/2015/09/Dried-Mint.png'
+    name: 'garage 1',
+    photo_url: 'https://i.pinimg.com/originals/3e/41/d4/3e41d4713e5fcb513a3c1cac14b4597f.jpg'
   },
   {
     ingredientId: 11,
-    name: 'Dried marjoram',
-    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/71YATIBqBYL._SX355_.jpg'
+    name: 'Ron',
+    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/716nOd2GWkL._AC_SY355_.jpg'
   },
   {
     ingredientId: 12,
-    name: 'All-purpose flour',
+    name: 'Harry',
     photo_url:
-      'https://images.assetsdelivery.com/compings_v2/seregam/seregam1309/seregam130900036.jpg'
+      'https://m.media-amazon.com/images/I/51t6KO9aWGL._AC_SS350_.jpg'
   },
   {
     ingredientId: 13,
-    name: 'Brown sugar',
+    name: 'Marvel',
     photo_url:
-      'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/BALQTtekliuc6iu4u/rotating-brown-sugar-in-a-white-container-on-white-background_sis0xtbyl_thumbnail-full01.png'
+      
+      'https://http2.mlstatic.com/D_NQ_NP_845109-MLA41364173678_042020-V.jpg'
+      
   },
   {
     ingredientId: 14,
-    name: 'Kosher salt',
+    name: 'Batman',
     photo_url:
-      'https://d1yn1kh78jj1rr.cloudfront.net/image/preview/r64-6MxPQjlatyfjp/storyblocks-top-view-of-ceramic-salt-cellar-with-coarse-grained-sea-salt-isolated-on-white-background_SPzKionPuV_SB_PM.jpg'
+    'https://i.pinimg.com/originals/a3/fc/0e/a3fc0ebeac6708abc60d808ea44c4a51.png'
   },
   {
     ingredientId: 15,
@@ -527,156 +473,8 @@ export const ingredients = [
     name: 'Red Pepper Flakes',
     photo_url:
       'https://as1.ftcdn.net/jpg/02/06/55/10/500_F_206551074_mVczUrAWOSMaw8kR48FQDQBqDw47jCtL.jpg'
-  },
-  {
-    ingredientId: 36,
-    name: 'Onions',
-    photo_url: 'http://www.allwhitebackground.com/images/2/2650.jpg'
-  },
-  {
-    ingredientId: 37,
-    name: 'Green Pepper',
-    photo_url: 'https://ak9.picdn.net/shutterstock/videos/4055509/thumb/1.jpg'
-  },
-  {
-    ingredientId: 38,
-    name: 'Red Pepper',
-    photo_url: 'https://ak9.picdn.net/shutterstock/videos/10314179/thumb/1.jpg'
-  },
-  {
-    ingredientId: 39,
-    name: 'Pizza dough',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/fresh-raw-dough-pizza-bread-260nw-518950903.jpg'
-  },
-  {
-    ingredientId: 40,
-    name: 'Ketchup sauce',
-    photo_url:
-      'https://st2.depositphotos.com/5262887/11050/i/950/depositphotos_110501208-stock-photo-ketchup-bowl-isolated-on-white.jpg'
-  },
-  {
-    ingredientId: 41,
-    name: 'Hot Sauce',
-    photo_url:
-      'https://media.istockphoto.com/photos/opened-can-of-spaghetti-sauce-on-a-white-background-picture-id497704752?k=6&m=497704752&s=612x612&w=0&h=JnL54buYu1Z3fGtd8uNdjFxiAKwlxoDluD6jbIfSaZI='
-  },
-  {
-    ingredientId: 42,
-    name: 'Butter',
-    photo_url: 'https://redrockstoffee.com/media/2016/11/AdobeStock_76417550.jpeg'
-  },
-  {
-    ingredientId: 43,
-    name: 'Heavy Cream',
-    photo_url:
-      'https://media.istockphoto.com/photos/mayonnaise-in-bowl-isolated-on-white-background-picture-id614981116?k=6&m=614981116&s=612x612&w=0&h=LtbsI2HQXOTERYuP9YJ2PJfRF3W6DcyZ798fxMcQWC0='
-  },
-  {
-    ingredientId: 44,
-    name: 'whole-milk plain yogurt',
-    photo_url:
-      'https://st.depositphotos.com/2757384/3317/i/950/depositphotos_33170129-stock-photo-pouring-a-glass-of-milk.jpg'
-  },
-  {
-    ingredientId: 45,
-    name: 'Chesse',
-    photo_url: 'https://ak7.picdn.net/shutterstock/videos/3619997/thumb/1.jpg'
-  },
-  {
-    ingredientId: 46,
-    name: 'Mozzarella',
-    photo_url:
-      'https://t3.ftcdn.net/jpg/02/06/73/98/500_F_206739841_suPu6qDPHlowFqx9qo8fLqV8sNevL2g3.jpg'
-  },
-  {
-    ingredientId: 47,
-    name: 'celery stalks',
-    photo_url:
-      'https://cdn4.eyeem.com/thumb/6d1b3957c7caa9b73c3e0f820ef854b931808139-1538043742765/w/750'
-  },
-  {
-    ingredientId: 48,
-    name: 'Parmesan Chesse',
-    photo_url: 'https://ak7.picdn.net/shutterstock/videos/3721877/thumb/1.jpg'
-  },
-  {
-    ingredientId: 49,
-    name: 'pancetta',
-    photo_url:
-      'https://previews.123rf.com/images/onlyfabrizio/onlyfabrizio1606/onlyfabrizio160600002/60198502-raw-stripes-of-pancetta-stesa-on-a-white-background.jpg'
-  },
-  {
-    ingredientId: 50,
-    name: 'Spaghetti',
-    photo_url:
-      'https://previews.123rf.com/images/mfron/mfron1204/mfron120400098/13306773-bunch-of-spaghetti-nudeln-isoliert-auf-wei%C3%9Fem-hintergrund.jpg'
-  },
-  {
-    ingredientId: 51,
-    name: 'Garlic',
-    photo_url: 'https://image.freepik.com/free-photo/fresh-garlic-white-background_1339-17012.jpg'
-  },
-  {
-    ingredientId: 52,
-    name: 'Lasagna noodles',
-    photo_url:
-      'https://previews.123rf.com/images/velkol/velkol1110/velkol111000004/11083085-an-image-of-raw-lasagna-on-white-background.jpg'
-  },
-  {
-    ingredientId: 53,
-    name: 'Italian sauce',
-    photo_url:
-      'https://previews.123rf.com/images/arinahabich/arinahabich1504/arinahabich150400858/38827029-raw-italian-sausage-on-a-white-background-.jpg'
-  },
-  {
-    ingredientId: 54,
-    name: 'Crushed Tomatoes',
-    photo_url:
-      'https://previews.123rf.com/images/merkulovnik/merkulovnik1406/merkulovnik140600100/28751626-crushed-tomato-isolated-on-white-background.jpg'
-  },
-  {
-    ingredientId: 55,
-    name: 'Sugar',
-    photo_url:
-      'https://previews.123rf.com/images/sommai/sommai1411/sommai141100034/33199985-sugar-cubes-in-a-bowl-isolated-on-white-background.jpg'
-  },
-  {
-    ingredientId: 56,
-    name: 'minced fresh parsley',
-    photo_url:
-      'https://t4.ftcdn.net/jpg/02/15/78/05/240_F_215780551_Eid0xpP1M2fokvuEcvJj8uqhROLJkb3p.jpg'
-  },
-  {
-    ingredientId: 57,
-    name: 'ricotta cheese',
-    photo_url:
-      'https://previews.123rf.com/images/barkstudio/barkstudio1608/barkstudio160800351/61418602-ricotta-cheese-into-a-bowl-in-white-background.jpg'
-  },
-  {
-    ingredientId: 58,
-    name: ' fennel seed',
-    photo_url:
-      'https://previews.123rf.com/images/pinkomelet/pinkomelet1710/pinkomelet171000227/88851299-close-up-the-fennel-seed-on-white-background.jpg'
-  },
-  {
-    ingredientId: 59,
-    name: 'Cuadro Abstracto',
-    photo_url:
-      'https://www.reprodart.com/images/template-pics/lemonslider/impressionismus-kunstkopie-slider.jpg'
-  },
-  {
-    ingredientId: 60,
-    name: 'Cuadros Paisaje',
-    photo_url:
-      'https://artenet.es/media/reviews/photos/thumbnail/550x550s/64/9b/e5/18706-cuadros-pequenos-y-unicos-56-1560267223.jpg'
-  },
-  {
-    ingredientId: 61,
-    name: 'Cuadros en conjunto',
-    photo_url:
-      'https://images-na.ssl-images-amazon.com/images/I/61N%2BvTmkVjL._AC_SX522_.jpg'
-  },
+  }
+  
 ];
 
 export const tarjetas = [

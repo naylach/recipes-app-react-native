@@ -44,6 +44,7 @@ export default class HistorialTransacciones extends React.Component {
             </View>
         </View>
       </ScrollView>
+
     );
   }
 }

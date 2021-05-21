@@ -42,6 +42,7 @@ export default class MediosPago extends React.Component {
         <View style={styles.separator} />
       );
     return (
+
       <ScrollView style={styles.mainContainer}>
         <View>
             <View style={styles.header}>
@@ -103,6 +104,7 @@ export default class MediosPago extends React.Component {
             </View>
         </View>
       </ScrollView>
+
     );
   }
 }
