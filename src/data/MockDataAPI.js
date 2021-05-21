@@ -1,6 +1,6 @@
 import { Text } from 'react-native';
 import React, { Component } from 'react';
-import { recipes, categories, ingredients } from './dataArrays';
+import { recipes, categories, ingredients,misproductos } from './dataArrays';
 
 export function getCategoryById(categoryId) {
   let category;
@@ -128,4 +128,15 @@ export function getRecipesByRecipeName(recipeName) {
     }
   });
   return recipesArray;
+}
+
+//MIS PRODUCTOS
+export function getProductos(productosName) {
+  let name;
+  misproductos.map((data) => {
+    if (data.id == productosName) {
+      name = data.titulo;
+    }
+  });
+  return name;
 }

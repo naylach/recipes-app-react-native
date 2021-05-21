@@ -1,20 +1,24 @@
-import React from 'react';
+import React from "react";
+
+import { SafeAreaView } from "react-native-safe-area-context";
+import { getProductos } from "../../data/MockDataAPI";
+
 import {
-  ScrollView,
+  StyleSheet,
+  FlatList,
   Text,
   View,
+  TouchableHighlight,
   Image,
-  Button,
-} from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+} from "react-native";
+import { misproductos } from "../../data/dataArrays";
 
-
-import styles from './styles';
+import styles from "./styles";
 
 export default class MisPublicaciones extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: 'Mis Publicaciones'
+      title: "Mis Publicaciones",
     };
   };
 
@@ -22,35 +26,32 @@ export default class MisPublicaciones extends React.Component {
     super(props);
   }
 
+  // onPressRecipe = (item) => {
+  //   this.props.navigation.navigate("Recipe", { item });
+  // };
 
-
-  
+  renderItems = ({ item }) => (
+    <TouchableHighlight>
+      <View style={styles.container}>
+        <Image style={styles.photo} source={{ uri: item.imagen }} />
+        <Text style={styles.title}>{item.titulo}</Text>
+        <Text style={styles.category}>{getProductos(item.id)}</Text>
+      </View>
+    </TouchableHighlight>
+  );
 
   render() {
-    const { navigation } = this.props;
-
-
-
-    
     return (
-      <ScrollView style={styles.mainContainer}>
-        <View>
-  
-            <Text style={styles.title}> Para esta pantalla podriamos usar el componente de home y ponerle las imagenes 
-            de los productos que subio este usuario. Para eso deberían estar 
-            asociadas por backend al id del usuario y agregando el "estado" de la compra (activo/vendido) abajo de cada foto :)</Text>
-
-            <Text></Text>
-            <Button
-              title='test'
-            />          
-
-
-
-        </View>
-      </ScrollView>
+      <SafeAreaView>
+        <FlatList
+          vertical
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          data={misproductos}
+          renderItem={this.renderItems}
+          keyExtractor={(item) => `${item.id}`}
+        />
+      </SafeAreaView>
     );
   }
 }
-
-

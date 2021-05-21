@@ -14,7 +14,7 @@ import { Alert } from 'react-native';
 export default class Login extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: 'Volver'
+      title: 'Iniciar sesión'
     };
   };
 

@@ -70,11 +70,7 @@ export default class CargarNuevoProducto extends React.Component {
 
             
             <Image source={{ uri: 'https://static.thenounproject.com/png/1156518-200.png' }}style={styles.image}/>
-            <Button 
-                title='+'
-                style={styles.buttonAdd} 
-                //onPress={}
-                />
+         
 
             <Text style={styles.title}>Precio base ($AR)</Text>
             <TextInput style={styles.input} onChangeText={this.setState(precioBase)} value={precioBase} > </TextInput>

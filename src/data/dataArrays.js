@@ -1,9 +1,10 @@
+//MIS PRODUCTOS
 export const misproductos = [
   {
     id: 3344,
     titulo: 'Barbies',
     categoria:'plata',
-    imagen:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcnnespanol.cnn.com%2F2015%2F06%2F06%2Fla-barbie-es-cada-vez-mas-real%2F&psig=AOvVaw2_1seOYeSvUPtXlWUPJgIZ&ust=1621653593941000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOD83sXo2fACFQAAAAAdAAAAABAD',
+    imagen:'https://cnnespanol.cnn.com/wp-content/uploads/2015/06/barbies.jpeg',
     descripcion:'Barbies coleccionables del año 1980',
     
   },
