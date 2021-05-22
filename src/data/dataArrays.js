@@ -81,9 +81,9 @@ export const recipes = [
     ],
     time: '10/04/2021',
     ingredients: [
-      [59, '$300000'],
-      [60, '$55500'],
-      [61, '$908675'],
+      [15, '$300000'],
+      [16, '$55500'],
+      
     ],
     description: 'Galería de cuadros famosos'
   },
@@ -355,15 +355,17 @@ export const ingredients = [
   },
   {
     ingredientId: 15,
-    name: 'Whole chicken',
+    name: 'cuadro 1',
     photo_url:
-      'https://image.shutterstock.com/image-photo/two-raw-chicken-drumsticks-isolated-260nw-632125991.jpg'
+    'https://artenet.es/media/reviews/photos/thumbnail/550x550s/64/9b/e5/18706-cuadros-pequenos-y-unicos-56-1560267223.jpg',
+    
+    
   },
   {
     ingredientId: 16,
-    name: 'Eggs',
+    name: 'cuadro 2',
     photo_url:
-      'https://image.shutterstock.com/image-photo/egg-whites-yolk-cup-isolated-260nw-1072453787.jpg'
+    'https://images-na.ssl-images-amazon.com/images/I/61N%2BvTmkVjL._AC_SX522_.jpg'
   },
   {
     ingredientId: 17,
