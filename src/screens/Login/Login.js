@@ -56,6 +56,7 @@ export default class Login extends React.Component {
               title='Iniciar sesión'
               onPress={handleLoginClick}
             />
+
             <Button 
               style={styles.button} 
               title='Registrarse'

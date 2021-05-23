@@ -1,4 +1,4 @@
-/* esta screen sirve? */
+//Información del producto específico en el catálogo
 
 import React from 'react';
 import {
@@ -16,7 +16,7 @@ import {
   getCategoryName
 } from '../../data/MockDataAPI';
 
-export default class IngredientScreen extends React.Component {
+export default class EspecificacionProductoScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('name')
@@ -45,19 +45,18 @@ export default class IngredientScreen extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    const ingredientId = navigation.getParam('ingredient');
-    const ingredientUrl = getIngredientUrl(ingredientId);
+    const productoid = navigation.getParam('ingredient');
+    const ingredientUrl = getIngredientUrl(productoid);
     const ingredientName = navigation.getParam('name');
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={{ borderBottomWidth: 0.4, marginBottom: 10, borderBottomColor: 'grey' }}>
           <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
         </View>
-        <Text style={styles.titleIngredient}>Descripción</Text>
-        <Text style={styles.ingredientInfo}>Marca:</Text>
-        <Text style={styles.ingredientInfo}>Modelo:</Text>
-        <Text style={styles.ingredientInfo}>Estado:</Text>
-        <Text style={styles.ingredientInfo}>Otros:</Text>
+        <Text style={styles.titleIngredient}>Información</Text>
+        <Text style={styles.ingredientInfo}>Nombre:</Text> 
+        <Text style={styles.ingredientInfo}>Categoría:</Text>
+        <Text style={styles.ingredientInfo}>Descripción:</Text>
       </ScrollView>
     );
   }

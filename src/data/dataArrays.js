@@ -19,6 +19,9 @@ export const misproductos = [
 
 ];
 
+
+
+//CATALOGO
 export const categories = [
   {
     id: 3,
@@ -267,219 +270,232 @@ export const recipes = [
   }
 ];
 
-export const ingredients = [
+
+//productos del catalogo
+export const detalleproducto = [
   {
-    ingredientId: 0,
+    productoid: 0,
     name: 'Auto 1',
-    photo_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8q6ImUoL5oUjug_oJLgcHtT8fibnJkxJOkTXLP4U-ZmpdUy-N56O9sWzvMI9DTIqtMwM&usqp=CAU'
+    photo_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8q6ImUoL5oUjug_oJLgcHtT8fibnJkxJOkTXLP4U-ZmpdUy-N56O9sWzvMI9DTIqtMwM&usqp=CAU',
+    description:'blabla'
   },
   {
-    ingredientId: 1,
+    productoid: 1,
     name: 'Auto 2',
-    photo_url:
-    'https://img.autocosmos.com/noticias/fotos/preview/NAZ_701d8a1d6dc24d948e4adbc1c959b0ac.jpg'
+    photo_url: 'https://img.autocosmos.com/noticias/fotos/preview/NAZ_701d8a1d6dc24d948e4adbc1c959b0ac.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 2,
+    productoid: 2,
     name: 'Auto 3',
-    photo_url: 'https://www.rentarlowcost.com/images/notas/alquiler%20de%20autos%20en%20argentina%20buenos%20aires%20salta.jpg'
+    photo_url: 'https://www.rentarlowcost.com/images/notas/alquiler%20de%20autos%20en%20argentina%20buenos%20aires%20salta.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 3,
+    productoid: 3,
     name: 'Mesa 1',
-    photo_url:
-      'https://www.espacity.com/web/sites/default/files/publico/styles/jpg_ampliada_blanca/public/Muebles/01476001000020_1.png?itok=L-kQu91w'
+    photo_url: 'https://www.espacity.com/web/sites/default/files/publico/styles/jpg_ampliada_blanca/public/Muebles/01476001000020_1.png?itok=L-kQu91w',
+    description:'blabla'
+
   },
   {
-    ingredientId: 4,
+    productoid: 4,
     name: 'Mesa redonda',
-    photo_url: 'https://assets.tramontina.com.br/upload/tramon/imagens/BEL/10835076ANM001G.png'
+    photo_url: 'https://assets.tramontina.com.br/upload/tramon/imagens/BEL/10835076ANM001G.png',
+    description:'blabla'
   },
   {
-    ingredientId: 5,
+    productoid: 5,
     name: 'Mesa 2',
-    photo_url: 'https://http2.mlstatic.com/D_NQ_NP_774433-MLA44971440130_022021-O.jpg'
+    photo_url: 'https://assets.tramontina.com.br/upload/tramon/imagens/BEL/10835076ANM001G.png',
+    description:'blabla'
+
   },
   {
-    ingredientId: 6,
+    productoid: 6,
     name: 'Mesa 3',
-    photo_url:
-      'https://image.architonic.com/img_pro2-4/144/1958/mesa-159071-b.jpg'
+    photo_url: 'https://image.architonic.com/img_pro2-4/144/1958/mesa-159071-b.jpg',
+    description:'blabla'
+  
   },
   {
-    ingredientId: 7,
+    productoid: 7,
     name: 'taza 1',
-    photo_url:
-      'https://i.pinimg.com/originals/41/4c/11/414c1104e8ca941fbee93082ae132090.jpg'
+    photo_url:'https://i.pinimg.com/originals/41/4c/11/414c1104e8ca941fbee93082ae132090.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 8,
+    productoid: 8,
     name: 'taza 2',
-    photo_url:
-      'https://images-na.ssl-images-amazon.com/images/I/71ui6PdjpHL._AC_SX466_.jpg'
+    photo_url:'https://images-na.ssl-images-amazon.com/images/I/71ui6PdjpHL._AC_SX466_.jpg',
+    description:'blabla'      
   },
   {
-    ingredientId: 9,
+    productoid: 9,
     name: 'taza 3',
-    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/71-Eb7aNk9L._AC_SX522_.jpg'
+    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/71-Eb7aNk9L._AC_SX522_.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 10,
+    productoid: 10,
     name: 'garage 1',
-    photo_url: 'https://i.pinimg.com/originals/3e/41/d4/3e41d4713e5fcb513a3c1cac14b4597f.jpg'
+    photo_url: 'https://i.pinimg.com/originals/3e/41/d4/3e41d4713e5fcb513a3c1cac14b4597f.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 11,
+    productoid: 11,
     name: 'Ron',
-    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/716nOd2GWkL._AC_SY355_.jpg'
+    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/716nOd2GWkL._AC_SY355_.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 12,
+    productoid: 12,
     name: 'Harry',
-    photo_url:
-      'https://m.media-amazon.com/images/I/51t6KO9aWGL._AC_SS350_.jpg'
+    photo_url: 'https://m.media-amazon.com/images/I/51t6KO9aWGL._AC_SS350_.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 13,
+    productoid: 13,
     name: 'Marvel',
-    photo_url:
-      
-      'https://http2.mlstatic.com/D_NQ_NP_845109-MLA41364173678_042020-V.jpg'
-      
+    photo_url: 'https://http2.mlstatic.com/D_NQ_NP_845109-MLA41364173678_042020-V.jpg',
+    description:'blabla'    
   },
   {
-    ingredientId: 14,
+    productoid: 14,
     name: 'Batman',
-    photo_url:
-    'https://i.pinimg.com/originals/a3/fc/0e/a3fc0ebeac6708abc60d808ea44c4a51.png'
+    photo_url: 'https://i.pinimg.com/originals/a3/fc/0e/a3fc0ebeac6708abc60d808ea44c4a51.png',
+    description:'blabla'
   },
   {
-    ingredientId: 15,
+    productoid: 15,
     name: 'cuadro 1',
-    photo_url:
-    'https://artenet.es/media/reviews/photos/thumbnail/550x550s/64/9b/e5/18706-cuadros-pequenos-y-unicos-56-1560267223.jpg',
-    
-    
+    photo_url: 'https://artenet.es/media/reviews/photos/thumbnail/550x550s/64/9b/e5/18706-cuadros-pequenos-y-unicos-56-1560267223.jpg',
+    description:'blabla'    
   },
   {
-    ingredientId: 16,
+    productoid: 16,
     name: 'cuadro 2',
-    photo_url:
-    'https://images-na.ssl-images-amazon.com/images/I/61N%2BvTmkVjL._AC_SX522_.jpg'
+    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/61N%2BvTmkVjL._AC_SX522_.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 17,
+    productoid: 17,
     name: 'Quarts neutral oil',
-    photo_url:
-      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimg1.cookinglight.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F4_3_horizontal_-_1200x900%2Fpublic%2Fgettyimages-464433694_0.jpg%3Fitok%3DK42YR2GV&w=400&c=sc&poi=face&q=85'
+    photo_url: 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimg1.cookinglight.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F4_3_horizontal_-_1200x900%2Fpublic%2Fgettyimages-464433694_0.jpg%3Fitok%3DK42YR2GV&w=400&c=sc&poi=face&q=85'
   },
   {
-    ingredientId: 18,
+    productoid: 18,
     name: 'Water',
-    photo_url: 'https://ak1.picdn.net/shutterstock/videos/829561/thumb/11.jpg'
+    photo_url: 'https://ak1.picdn.net/shutterstock/videos/829561/thumb/11.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 19,
+    productoid: 19,
     name: 'Onion Powder',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/mixed-spices-isolated-on-white-260nw-662383828.jpg'
+    photo_url: 'https://image.shutterstock.com/image-photo/mixed-spices-isolated-on-white-260nw-662383828.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 20,
+    productoid: 20,
     name: 'MSG',
-    photo_url:
-      'https://img.freepik.com/free-photo/monosodium-glutamate-wood-spoon-white-background_55883-399.jpg?size=626&ext=jpg'
+    photo_url: 'https://img.freepik.com/free-photo/monosodium-glutamate-wood-spoon-white-background_55883-399.jpg?size=626&ext=jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 21,
+    productoid: 21,
     name: 'Chicken Breast',
-    photo_url:
-      'https://us.123rf.com/450wm/utima/utima1602/utima160200063/53405187-raw-chicken-breast-fillets.jpg?ver=6'
+    photo_url:'https://us.123rf.com/450wm/utima/utima1602/utima160200063/53405187-raw-chicken-breast-fillets.jpg?ver=6',
+    description:'blabla'
   },
   {
-    ingredientId: 22,
+    productoid: 22,
     name: 'Onion chopped',
-    photo_url: 'https://s3.envato.com/files/246703499/IMG_1752_5.jpg'
+    photo_url: 'https://s3.envato.com/files/246703499/IMG_1752_5.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 23,
+    productoid: 23,
     name: 'Tomato paste',
-    photo_url:
-      'http://d3e1m60ptf1oym.cloudfront.net/45bab59a-363c-11e1-ab4e-bf4c2e0bb026/PANELA_xgaplus.jpg'
+    photo_url: 'http://d3e1m60ptf1oym.cloudfront.net/45bab59a-363c-11e1-ab4e-bf4c2e0bb026/PANELA_xgaplus.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 24,
+    productoid: 24,
     name: 'Chilli Powder',
-    photo_url:
-      'https://us.123rf.com/450wm/nuttapong/nuttapong1505/nuttapong150500009/40458002-paprika-powder-isolated-on-white-background.jpg?ver=6'
+    photo_url: 'https://us.123rf.com/450wm/nuttapong/nuttapong1505/nuttapong150500009/40458002-paprika-powder-isolated-on-white-background.jpg?ver=6',
+    description:'blabla'
   },
   {
-    ingredientId: 25,
+    productoid: 25,
     name: 'Ground Beef',
-    photo_url:
-      'https://images.radio.com/kmoxam/s3fs-public/styles/nts_image_cover_tall_775x425/public/dreamstime_s_39607998.jpg?XCM.w1UGOp9sVKkWGQZe7_JIsRddxoIK&itok=3M6KcFLH&c=73fb6497175b4c1a5c79e3ede816656a'
+    photo_url: 'https://images.radio.com/kmoxam/s3fs-public/styles/nts_image_cover_tall_775x425/public/dreamstime_s_39607998.jpg?XCM.w1UGOp9sVKkWGQZe7_JIsRddxoIK&itok=3M6KcFLH&c=73fb6497175b4c1a5c79e3ede816656a',
+    description:'blabla'
   },
   {
-    ingredientId: 26,
+    productoid: 26,
     name: 'Can kidney beans, rinsed and drained ',
-    photo_url:
-      'https://www.seriouseats.com/images/2014/04/20140414-pile-of-beans-primary-1500x1125.jpg'
+    photo_url: 'https://www.seriouseats.com/images/2014/04/20140414-pile-of-beans-primary-1500x1125.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 27,
+    productoid: 27,
     name: 'Large Tortillas',
-    photo_url: 'https://upload.wikimedia.org/wikipedia/commons/5/56/NCI_flour_tortillas.jpg'
+    photo_url: 'https://upload.wikimedia.org/wikipedia/commons/5/56/NCI_flour_tortillas.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 28,
+    productoid: 28,
     name: 'Firtos',
-    photo_url:
-      'https://previews.123rf.com/images/ksena32/ksena321510/ksena32151000090/45863494-fried-fish-on-a-white-background.jpg'
+    photo_url: 'https://previews.123rf.com/images/ksena32/ksena321510/ksena32151000090/45863494-fried-fish-on-a-white-background.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 29,
+    productoid: 29,
     name: 'Shredded cheddar',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/top-view-small-bowl-filled-260nw-284460308.jpg'
+    photo_url: 'https://image.shutterstock.com/image-z/top-view-small-bowl-filled-260nw-284460308.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 30,
+    productoid: 30,
     name: 'Lime',
-    photo_url: 'https://ak8.picdn.net/shutterstock/videos/23271748/thumb/1.jpg'
+    photo_url: 'https://ak8.picdn.net/shutterstock/videos/23271748/thumb/1.jpg',
+    description:'blabla'
   },
 
   {
-    ingredientId: 31,
+    productoid: 31,
     name: 'Ground cumin',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/pile-cumin-powder-isolated-on-260nw-1193262853.jpg'
+    photo_url:'https://image.shutterstock.com/image-photo/pile-cumin-powder-isolated-on-260nw-1193262853.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 32,
+    productoid: 32,
     name: 'Cayenne pepper',
-    photo_url: 'https://ak7.picdn.net/shutterstock/videos/11461337/thumb/1.jpg'
+    photo_url: 'https://ak7.picdn.net/shutterstock/videos/11461337/thumb/1.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 33,
+    productoid: 33,
     name: 'Flaky white fish',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/roach-river-fish-isolated-on-260nw-277764143.jpg'
+    photo_url: 'https://image.shutterstock.com/image-photo/roach-river-fish-isolated-on-260nw-277764143.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 34,
+    productoid: 34,
     name: 'Avocado',
-    photo_url:
-      'https://www.redwallpapers.com/public/redwallpapers-large-thumb/avocado-cut-stone-leaves-white-background-free-stock-photos-images-hd-wallpaper.jpg'
+    photo_url: 'https://www.redwallpapers.com/public/redwallpapers-large-thumb/avocado-cut-stone-leaves-white-background-free-stock-photos-images-hd-wallpaper.jpg',
+    description:'blabla'
   },
   {
-    ingredientId: 35,
+    productoid: 35,
     name: 'Red Pepper Flakes',
-    photo_url:
-      'https://as1.ftcdn.net/jpg/02/06/55/10/500_F_206551074_mVczUrAWOSMaw8kR48FQDQBqDw47jCtL.jpg'
+    photo_url: 'https://as1.ftcdn.net/jpg/02/06/55/10/500_F_206551074_mVczUrAWOSMaw8kR48FQDQBqDw47jCtL.jpg',
+    description:'blabla'
   }
   
 ];
 
+//MEDIOS DE PAGO: TARJETAS
 export const tarjetas = [
   {
     id: 1,
@@ -498,6 +514,8 @@ export const tarjetas = [
   },
 ];
 
+
+//MEDIOS DE PAGO: CUENTAS
 export const cuentas = [
   {
     id: 1,

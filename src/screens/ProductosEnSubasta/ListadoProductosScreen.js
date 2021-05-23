@@ -12,7 +12,7 @@ import {
   getAllIngredients,
 } from '../../data/MockDataAPI';
 
-export default class IngredientsDetailsScreen extends React.Component {
+export default class ListadoProductosScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('title'),
@@ -27,11 +27,12 @@ export default class IngredientsDetailsScreen extends React.Component {
   }
 
   onPressIngredient = item => {
-    let name = getIngredientName(item.ingredientId);
-    let ingredient = item.ingredientId;
-    this.props.navigation.navigate('Ingredient', { ingredient, name });
+    let name = getIngredientName(item.productoid);
+    let ingredient = item.productoid;
+    this.props.navigation.navigate('EspecificacionProducto', { ingredient, name });
   };
 
+  //texto de la imagen redondita
   renderIngredient = ({ item }) => (
     <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => this.onPressIngredient(item[0])}>
       <View style={styles.container}>

@@ -6,9 +6,9 @@ import CategoriesScreen from '../screens/Categories/CategoriesScreen';
 import RecipeScreen from '../screens/Recipe/RecipeScreen';
 import RecipesListScreen from '../screens/RecipesList/RecipesListScreen';
 import DrawerContainer from '../screens/DrawerContainer/DrawerContainer';
-import IngredientScreen from '../screens/Ingredient/IngredientScreen';
+import EspecificacionProductoScreen from '../screens/ProductoEspecifico/EspecificacionProductoScreen';
 import SearchScreen from '../screens/Search/SearchScreen';
-import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
+import ListadoProductosScreen from '../screens/ProductosEnSubasta/ListadoProductosScreen';
 import MiPerfilScreen from '../screens/MiPerfil/MiPerfil';
 import MediosPagoScreen from '../screens/MediosPago/MediosPago';
 import LoginScreen from '../screens/Login/Login';
@@ -23,9 +23,9 @@ const MainNavigator = createStackNavigator(
     Categories: CategoriesScreen,
     Recipe: RecipeScreen,
     RecipesList: RecipesListScreen,
-    Ingredient: IngredientScreen,
+    EspecificacionProducto: EspecificacionProductoScreen,
     Search: SearchScreen,
-    IngredientsDetails: IngredientsDetailsScreen,
+    ListadoProductos: ListadoProductosScreen,
     MiPerfil: MiPerfilScreen,
     MediosPago: MediosPagoScreen,
     Login: LoginScreen,

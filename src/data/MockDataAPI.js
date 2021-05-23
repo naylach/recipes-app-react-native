@@ -1,6 +1,6 @@
 import { Text } from 'react-native';
 import React, { Component } from 'react';
-import { recipes, categories, ingredients,misproductos } from './dataArrays';
+import { recipes, categories, detalleproducto,misproductos } from './dataArrays';
 
 export function getCategoryById(categoryId) {
   let category;
@@ -12,20 +12,20 @@ export function getCategoryById(categoryId) {
   return category;
 }
 
-export function getIngredientName(ingredientID) {
+export function getIngredientName(productoid) {
   let name;
-  ingredients.map(data => {
-    if (data.ingredientId == ingredientID) {
+  detalleproducto.map(data => {
+    if (data.productoid == productoid) {
       name = data.name;
     }
   });
   return name;
 }
 
-export function getIngredientUrl(ingredientID) {
+export function getIngredientUrl(productoid) {
   let url;
-  ingredients.map(data => {
-    if (data.ingredientId == ingredientID) {
+  detalleproducto.map(data => {
+    if (data.productoid == productoid) {
       url = data.photo_url;
     }
   });
@@ -53,11 +53,11 @@ export function getRecipes(categoryId) {
 }
 
 // modifica
-export function getRecipesByIngredient(ingredientId) {
+export function getRecipesByIngredient(productoid) {
   const recipesArray = [];
   recipes.map(data => {
-    data.ingredients.map(index => {
-      if (index[0] == ingredientId) {
+    data.detalleproducto.map(index => {
+      if (index[0] == productoid) {
         recipesArray.push(data);
       }
     });
@@ -78,8 +78,8 @@ export function getNumberOfRecipes(categoryId) {
 export function getAllIngredients(idArray) {
   const ingredientsArray = [];
   idArray.map(index => {
-    ingredients.map(data => {
-      if (data.ingredientId == index[0]) {
+    detalleproducto.map(data => {
+      if (data.productoid == index[0]) {
         ingredientsArray.push([data, index[1]]);
       }
     });
@@ -91,10 +91,10 @@ export function getAllIngredients(idArray) {
 export function getRecipesByIngredientName(ingredientName) {
   const nameUpper = ingredientName.toUpperCase();
   const recipesArray = [];
-  ingredients.map(data => {
+  detalleproducto.map(data => {
     if (data.name.toUpperCase().includes(nameUpper)) {
       // data.name.yoUpperCase() == nameUpper
-      const recipes = getRecipesByIngredient(data.ingredientId);
+      const recipes = getRecipesByIngredient(data.productoid);
       const unique = [...new Set(recipes)];
       unique.map(item => {
         recipesArray.push(item);
