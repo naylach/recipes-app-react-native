@@ -50,7 +50,7 @@ export default class Login extends React.Component {
             <Text style={styles.title}>Usuario</Text>
             <TextInput style={styles.input} onChangeText={this.setState(email)} value={email}></TextInput>
             <Text style={styles.title}>Contraseña</Text>
-            <TextInput style={styles.input} onChangeText={this.setState(password)} value={password}></TextInput>
+            <TextInput secureTextEntry={true} style={styles.input} onChangeText={this.setState(password)} value={password}></TextInput>
             <Button 
               style={styles.buttonLogin} 
               title='Iniciar sesión'

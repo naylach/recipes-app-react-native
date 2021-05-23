@@ -42,9 +42,9 @@ export default class Registro extends React.Component {
             <Text style={styles.titleRegisterScreen}>Teléfono</Text>
             <TextInput style={styles.inputRegisterScreen} onChangeText={this.setState(telefono)} value={telefono}></TextInput>
             <Text style={styles.titleRegisterScreen}>Contraseña</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={this.setState(password)} value={password}></TextInput>
+            <TextInput secureTextEntry={true} style={styles.inputRegisterScreen} onChangeText={this.setState(password)} value={password}></TextInput>
             <Text style={styles.titleRegisterScreen}>Confirmar contraseña</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={this.setState(password2)} value={password2}></TextInput>
+            <TextInput secureTextEntry={true} style={styles.inputRegisterScreen} onChangeText={this.setState(password2)} value={password2}></TextInput>
             <Button 
                 style={styles.buttonRegisterScreen} 
                 title='Registrarse'
