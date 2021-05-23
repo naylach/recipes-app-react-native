@@ -10,6 +10,9 @@ import {
   TouchableHighlight
 } from 'react-native';
 import styles from './styles';
+import { Button } from 'react-native-elements'
+
+import productosDetails from '../../data/MockDataAPI';
 import {
   getIngredientUrl,
   getRecipesByIngredient,
@@ -54,15 +57,21 @@ export default class EspecificacionProductoScreen extends React.Component {
           <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
         </View>
         <Text style={styles.titleIngredient}>Información</Text>
-        <Text style={styles.ingredientInfo}>Nombre:</Text> 
+        {/* <Text style={styles.ingredientInfo}>Nombre: {productosDetails.getEspecificacionProductos(1)}  </Text>  */}
         <Text style={styles.ingredientInfo}>Precio base:</Text>
-        <Text style={styles.ingredientInfo}>Categoría:</Text>
-        <Text>(arte, autos, etc. Según haya puesto el dueño cuando cargo el producto)</Text>
-        <Text>(si la categoría es de arte u objetos de diseñador se muestran campos distintos) </Text>
+        <Text style={styles.ingredientInfo}>Tipo de producto:</Text>
+        <Text style={styles.nayla}>(arte, autos, etc. Según haya puesto el dueño cuando cargo el producto)</Text>
+        <Text style={styles.nayla}>(si la categoría es de arte u objetos de diseñador se muestran campos distintos) </Text>
         <Text style={styles.ingredientInfo}>Dueño Actual:</Text>
         <Text style={styles.ingredientInfo}>Descripción:</Text>
         <Text style={styles.ingredientInfo}>Número de pieza:</Text> 
-        <Text>(lo asignan en el catalogo)</Text>
+        <Text style={styles.nayla}>(lo asignan en el catalogo)</Text>
+        
+        <Button
+              title='Pujar'
+              style={styles.buttonLogin}      
+            />
+
       </ScrollView>
     );
   }

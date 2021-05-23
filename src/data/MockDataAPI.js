@@ -130,12 +130,23 @@ export function getRecipesByRecipeName(recipeName) {
   return recipesArray;
 }
 
-//MIS PRODUCTOS
+//MIS PUBLICACIONES
 export function getProductos(productosName) {
   let name;
   misproductos.map((data) => {
     if (data.id == productosName) {
       name = data.titulo;
+    }
+  });
+  return name;
+}
+
+//Especificacion de un producto
+export function getEspecificacionProductos(productosDetails) {
+  let name;
+  detalles.map((data)=>{
+    if (data.productoid==productosDetails){
+        name=data.name;
     }
   });
   return name;

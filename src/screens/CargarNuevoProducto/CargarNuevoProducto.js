@@ -60,27 +60,19 @@ export default class CargarNuevoProducto extends React.Component {
       <ScrollView style={styles.mainContainer}>
         <View>
             
-            <Text style={styles.title}>Nombre del producto</Text>
+            <Text style={styles.title}>Nombre del producto:</Text>
             <TextInput style={styles.input} onChangeText={this.setState(nombre)} value={nombre} ></TextInput>
-
-            <Text style={styles.title}>Categoria</Text>
+            <Text style={styles.title}>Tipo de producto:</Text>
             <TextInput style={styles.input} onChangeText={this.setState(categoria)} value={categoria} ></TextInput>           
-           
-            <Text style={styles.title}>Imagen  </Text>
-
-            
+            <Text style={styles.title}>Imagen  </Text>            
             <Image source={{ uri: 'https://static.thenounproject.com/png/1156518-200.png' }}style={styles.image}/>
-         
-
-            <Text style={styles.title}>Precio base ($AR)</Text>
+            <Text style={styles.title}>Precio base:</Text>
             <TextInput style={styles.input} onChangeText={this.setState(precioBase)} value={precioBase} > </TextInput>
-            <Text style={styles.title}>Descripcion</Text>
-            <TextInput style={styles.description} onChangeText={this.setState(marca)} value={marca} >Marca:  </TextInput>
-            <TextInput style={styles.description} onChangeText={this.setState(modelo)} value={modelo} >Modelo:  </TextInput>
-            <TextInput style={styles.description} onChangeText={this.setState(estado)} value={estado} >Estado:  </TextInput>
-            <TextInput style={styles.description} onChangeText={this.setState(otros)} value={otros} >Otros:  </TextInput>
+            <Text style={styles.title}>Descripción:</Text>
+            <TextInput style={styles.description} onChangeText={this.setState(marca)} value={marca} >  </TextInput>
+  
             <Button
-              title='Agregar'
+              title='Aceptar'
               style={styles.buttonLogin}      
               onPress={handleButtonClick}
             />

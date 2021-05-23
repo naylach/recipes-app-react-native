@@ -33,6 +33,8 @@ export const categories = [
   },
 ];
 
+
+
 export const recipes = [
   {
     catalogoId: 122,
@@ -257,13 +259,13 @@ export const detalleproducto = [
     productoid: 0,
     name: 'Auto 1',
     photo_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8q6ImUoL5oUjug_oJLgcHtT8fibnJkxJOkTXLP4U-ZmpdUy-N56O9sWzvMI9DTIqtMwM&usqp=CAU',
-    description:'blabla'
+    description:'Año 2019, impecable'
   },
   {
     productoid: 1,
     name: 'Auto 2',
     photo_url: 'https://img.autocosmos.com/noticias/fotos/preview/NAZ_701d8a1d6dc24d948e4adbc1c959b0ac.jpg',
-    description:'blabla'
+    description:'Año 2020, como nuevo'
   },
   {
     productoid: 2,

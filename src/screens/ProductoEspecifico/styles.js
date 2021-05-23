@@ -15,10 +15,28 @@ const styles = StyleSheet.create({
   ingredientInfo: {
     color: 'black',
     margin: 10,
-    fontSize: 18,
+    fontSize: 15,
     textAlign: 'left',
     fontWeight: 'bold'
   },
+
+  //eliminar este texto despues
+  nayla:{
+    fontSize: 8,
+    textAlign: 'left',
+    margin: 2
+
+  },
+
+  buttonLogin: {
+    borderRadius: 20,
+    textAlign: 'center',
+    width: 100,
+    alignSelf: 'center',
+    bottom: -50,
+    margin: 10
+  },
+
   container: RecipeCard.container,
   photo: RecipeCard.photo,
   title: RecipeCard.title,

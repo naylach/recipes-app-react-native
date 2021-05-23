@@ -24,18 +24,18 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 5,
     color: 'black',
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'center'
   },
   image: {
-      width: 120,
-      height: 120,
+      width: 90,
+      height: 90,
       alignSelf: 'center',
       borderRadius: 0
   },
   input: {
       borderRadius: 20,
-      backgroundColor: '#E7F3FF',
+      backgroundColor: '#B0D4F7',
       width: 220,
       fontSize: 18,
       alignSelf: 'center',
@@ -43,8 +43,9 @@ const styles = StyleSheet.create({
   },
   description: {
     borderRadius: 20,
-    backgroundColor: '#E7F3FF',
+    backgroundColor: '#B0D4F7',
     width: 300,
+    height:80,
     fontSize: 15,
     alignSelf: 'center',
     textAlign: 'left',
