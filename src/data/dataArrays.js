@@ -73,7 +73,7 @@ export const recipes = [
   {
     catalogoId: 2,
     categoryId: 3,
-    title: 'Vajillas antinguas',
+    title: 'Vajillas antiguas',
     photo_url: 'https://images-na.ssl-images-amazon.com/images/I/71KXAhzy-tL._AC_SX466_.jpg',
     photosArray: [
       'https://images-na.ssl-images-amazon.com/images/I/71KXAhzy-tL._AC_SX466_.jpg',

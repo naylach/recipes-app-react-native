@@ -30,14 +30,18 @@ const styles = StyleSheet.create({
       height: 35,
       flex: 0.1
   },
+  imageModal: {
+      width: 60,
+      height: 60,
+      alignSelf: 'center'
+  },
   header:{
     margin: 10,
     flexDirection: 'row'
   },
   cards: {
     fontSize: 16,
-    margin: 10,
-    marginLeft: 30
+    margin: 15
   },
   button: {
     color: '#4BA9FF',
@@ -49,13 +53,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     color: '#4BA9FF',
     alignSelf: 'center',
-    bottom: -225,
+    bottom: -125,
   },
   separator: {
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
     width: 390,
     marginLeft: 10
+  },
+  mainModal: { 
+    borderRadius: 15, 
+    height: 350, 
+    alignSelf: 'center', 
+    width: 400, 
+    backgroundColor: 'white', 
+    margin: -100 
+  },
+  confirmationModal: { 
+    borderRadius: 15, 
+    height: 200, 
+    alignSelf: 'center', 
+    width: 400, 
+    backgroundColor: 'white', 
+    margin: -100 
   },
   modal: {
     flexDirection: 'row',
@@ -96,7 +116,15 @@ const styles = StyleSheet.create({
   },
   column: {
     margin: 15
-  }
+  },
+  checkboxContainer: {
+    flexDirection: "row"
+  }, 
+  checkbox: {
+    alignSelf: "center",
+    width: 16,
+    height: 16
+  },
 });
 
 export default styles;
