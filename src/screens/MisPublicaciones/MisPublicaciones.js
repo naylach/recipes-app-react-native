@@ -35,7 +35,7 @@ export default class MisPublicaciones extends React.Component {
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.imagen }} />
         <Text style={styles.title}>{item.titulo}</Text>
-        <Text style={styles.category}>{getProductos(item.id)}</Text>
+        <Text style={styles.category}>{item.estado}</Text>
       </View>
     </TouchableHighlight>
   );

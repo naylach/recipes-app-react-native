@@ -1,3 +1,6 @@
+//CATALOGO PARTE 2 
+//Aca está el titulo del catalogo (ex recipie que no encontrabamos)
+
 import React from 'react';
 import {
   FlatList,
@@ -21,7 +24,7 @@ export default class RecipesListScreen extends React.Component {
   }
 
   onPressRecipe = item => {
-    this.props.navigation.navigate('Recipe', { item });
+    this.props.navigation.navigate('Catalogo', { item });
   };
 
   renderRecipes = ({ item }) => (
@@ -31,6 +34,7 @@ export default class RecipesListScreen extends React.Component {
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
       </View>
+        <Text>holaaa</Text>
     </TouchableHighlight>
   );
 

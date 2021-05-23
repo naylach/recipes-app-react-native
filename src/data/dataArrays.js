@@ -1,23 +1,3 @@
-//MIS PRODUCTOS
-export const misproductos = [
-  {
-    id: 3344,
-    titulo: 'Barbies',
-    categoria:'plata',
-    imagen:'https://cnnespanol.cnn.com/wp-content/uploads/2015/06/barbies.jpeg',
-    descripcion:'Barbies coleccionables del año 1980',
-    
-  },
-  {
-    id: 3349,
-    titulo: 'Autos',
-    categoria:'bronce',
-    imagen:'https://images-na.ssl-images-amazon.com/images/I/61Y%2B7L4Kp-L._AC_SX425_.jpg',
-    descripcion:'Autitos de juguete',
-    
-  },
-
-];
 
 
 
@@ -55,7 +35,7 @@ export const categories = [
 
 export const recipes = [
   {
-    recipeId: 122,
+    catalogoId: 122,
     categoryId: 3,
     title: 'Autos de Perez',
     photo_url: 'https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/12/05153908/Autos-mas-vendidos-Argentina.jpg',
@@ -66,12 +46,12 @@ export const recipes = [
       'https://www.rentarlowcost.com/images/notas/alquiler%20de%20autos%20en%20argentina%20buenos%20aires%20salta.jpg'
       
     ],
-    time: '15/04/2021',
+    time: 'En curso',
     ingredients: [[0, '$200000'], [1, '$494395'], [2, '$42423']],
     description: 'Autos del año 2019 en adelante con poco uso. Excelente estado.'
   },
   {
-    recipeId: 3,
+    catalogoId: 3,
     categoryId: 4,
     title: 'Galería de Sophie',
     photo_url:
@@ -82,7 +62,7 @@ export const recipes = [
       'https://images-na.ssl-images-amazon.com/images/I/61N%2BvTmkVjL._AC_SX522_.jpg'
       
     ],
-    time: '10/04/2021',
+    time: '10/06/2021',
     ingredients: [
       [15, '$300000'],
       [16, '$55500'],
@@ -91,7 +71,7 @@ export const recipes = [
     description: 'Galería de cuadros famosos'
   },
   {
-    recipeId: 2,
+    catalogoId: 2,
     categoryId: 3,
     title: 'Vajillas antinguas',
     photo_url: 'https://images-na.ssl-images-amazon.com/images/I/71KXAhzy-tL._AC_SX466_.jpg',
@@ -113,7 +93,7 @@ export const recipes = [
       'Vajilla de colección de los años 1910. Mucha variedad de tazas, teteras y más!'
   },
   {
-    recipeId: 3,
+    catalogoId: 3,
     categoryId: 3,
     title: 'Venta de garage',
     photo_url:
@@ -136,7 +116,7 @@ export const recipes = [
       
   },
   {
-    recipeId: 1,
+    catalogoId: 1,
     categoryId: 3,
     title: 'Juguetes',
     photo_url: 'https://images-na.ssl-images-amazon.com/images/I/716nOd2GWkL._AC_SY355_.jpg',
@@ -155,7 +135,7 @@ export const recipes = [
       'Muñecos Funko de colección'
   },
   {
-    recipeId: 4,
+    catalogoId: 4,
     categoryId: 1,
     title: 'Comix de colección',
     photo_url: 'https://c8.alamy.com/comp/MC76D1/collection-of-the-invincible-iron-man-vintage-marvel-comic-books-MC76D1.jpg',
@@ -174,7 +154,7 @@ export const recipes = [
       'Historietas/Comix coleccionables'
   },
   {
-    recipeId: 5,
+    catalogoId: 5,
     categoryId: 1,
     title: 'Joyas de la familia Stephen',
     photo_url:
@@ -194,7 +174,7 @@ export const recipes = [
       '...'
   },
   {
-    recipeId: 6,
+    catalogoId: 6,
     categoryId: 2,
     title: 'Cuadros galería Jaime',
     photo_url:
@@ -215,7 +195,7 @@ export const recipes = [
       '...'
   },
   {
-    recipeId: 0,
+    catalogoId: 0,
     categoryId: 0,
     title: 'Inmuebles Familia Gomez',
     photo_url: 'https://i.blogs.es/8e8f64/lo-de-que-comprar-una-casa-es-la-mejor-inversion-hay-generaciones-que-ya-no-lo-ven-ni-de-lejos---1/450_1000.jpg',
@@ -231,7 +211,7 @@ export const recipes = [
       '...'
   },
   {
-    recipeId: 7,
+    catalogoId: 7,
     categoryId: 2,
     title: 'Autos viejos',
     photo_url: 'https://d3po9jkuwb69jo.cloudfront.net/media/uploads/2018/12/18/como-asegurar-auto-viejo.png',
@@ -250,7 +230,7 @@ export const recipes = [
       '...'
   },
   {
-    recipeId: 8,
+    catalogoId: 8,
     categoryId: 2,
     title: 'Ropa de Messi firmada',
     photo_url: 'http://cdn.shopify.com/s/files/1/0015/7011/1535/products/iclmbs78_lionel-messi-official-back-signed-barcelona-2017-18-home-shirt_1200x1200.png?v=1535896037',
@@ -495,6 +475,41 @@ export const detalleproducto = [
   
 ];
 
+//MIS PRODUCTOS
+export const misproductos = [
+  {
+    id: 3344,
+    titulo: 'Barbies',
+    categoria:'.',
+    imagen:'https://cnnespanol.cnn.com/wp-content/uploads/2015/06/barbies.jpeg',
+    descripcion:'Barbies coleccionables del año 1980',
+    preciobase:'$2000',
+    estado: 'En curso'
+  },
+  {
+    id: 3349,
+    titulo: 'Autos',
+    categoria:'.',
+    imagen:'https://images-na.ssl-images-amazon.com/images/I/61Y%2B7L4Kp-L._AC_SX425_.jpg',
+    descripcion:'Autitos de juguete',
+    preciobase:'$2500',
+    estado: 'Finalizado'
+
+  },
+  {
+    id: 3350,
+    titulo: 'Autos 2',
+    categoria:'.',
+    imagen:'https://www.dhresource.com/0x0/f2/albu/g8/M01/D0/FF/rBVaV1yWTpGAXEAQAAjr9KKxTsE322.jpg',
+    descripcion:'Autitos de juguete',
+    preciobase:'$2600',
+    estado: 'Pendiente'
+
+  },
+
+];
+
+
 //MEDIOS DE PAGO: TARJETAS
 export const tarjetas = [
   {
@@ -532,4 +547,33 @@ export const cuentas = [
     name: 'Cuenta Corriente ICBC',
     number: '2589631478592348'
   },
+];
+
+
+//categoría de productos
+var index = 0;
+export const categoria = [
+  { key: index++, section: true, label: "Categorias" },
+  { key: index++, label: "Antigüedades y Colecciones" },
+  { key: index++, label: "Arte" },
+  { key: index++, label: "Autos, Motos y Otros" },
+  { key: index++, label: "Belleza y Cuidado Personal" },
+  { key: index++, label: "Cámaras y Accesorios" },
+  { key: index++, label: "Celulares y Teléfonos" },
+  { key: index++, label: "Computación" },
+  { key: index++, label: "Consolas y Videojuegos" },
+  { key: index++, label: "Construcción" },
+  { key: index++, label: "Electrodomésticos y Aires Ac." },
+  { key: index++, label: "Electrónica, Audio y Video" },
+  { key: index++, label: "Herramientas" },
+  { key: index++, label: "Hogar, Muebles y Jardín" },
+  { key: index++, label: "Inmuebles" },
+  { key: index++, label: "Instrumentos Musicales" },
+  { key: index++, label: "Joyas y Relojes" },
+  { key: index++, label: "Juegos y Juguetes" },
+  { key: index++, label: "Libros, Revistas y Comics" },
+  { key: index++, label: "Música, Películas y Series" },
+  { key: index++, label: "Objetos de diseñador" },
+  { key: index++, label: "Ropa y Accesorios" },
+  { key: index++, label: "Otras categorías" },
 ];

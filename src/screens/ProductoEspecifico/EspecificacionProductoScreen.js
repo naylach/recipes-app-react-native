@@ -22,11 +22,11 @@ export default class EspecificacionProductoScreen extends React.Component {
       title: navigation.getParam('name')
     };
   };
-
   constructor(props) {
     super(props);
   }
 
+  //creo que no sirve
   onPressRecipe = item => {
     this.props.navigation.navigate('Recipe', { item });
   };
@@ -55,8 +55,14 @@ export default class EspecificacionProductoScreen extends React.Component {
         </View>
         <Text style={styles.titleIngredient}>Información</Text>
         <Text style={styles.ingredientInfo}>Nombre:</Text> 
+        <Text style={styles.ingredientInfo}>Precio base:</Text>
         <Text style={styles.ingredientInfo}>Categoría:</Text>
+        <Text>(arte, autos, etc. Según haya puesto el dueño cuando cargo el producto)</Text>
+        <Text>(si la categoría es de arte u objetos de diseñador se muestran campos distintos) </Text>
+        <Text style={styles.ingredientInfo}>Dueño Actual:</Text>
         <Text style={styles.ingredientInfo}>Descripción:</Text>
+        <Text style={styles.ingredientInfo}>Número de pieza:</Text> 
+        <Text>(lo asignan en el catalogo)</Text>
       </ScrollView>
     );
   }
