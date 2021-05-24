@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     borderRadius: 15,
     height: 22,
-    width: 200,
+    width: 190,
     marginBottom: 8,
     backgroundColor: '#B0D4F7',
     paddingHorizontal: 5

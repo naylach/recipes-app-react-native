@@ -141,7 +141,7 @@ export function getProductos(productosName) {
   return name;
 }
 
-//Especificacion de un producto
+//Especificacion de un producto -- no implementado
 export function getEspecificacionProductos(productosDetails) {
   let name;
   detalles.map((data)=>{

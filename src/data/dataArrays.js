@@ -552,9 +552,9 @@ export const cuentas = [
 ];
 
 
-//categoría de productos
+//tipo de productos
 var index = 0;
-export const categoria = [
+export const tipoProducto = [
   { key: index++, section: true, label: "Categorias" },
   { key: index++, label: "Antigüedades y Colecciones" },
   { key: index++, label: "Arte" },

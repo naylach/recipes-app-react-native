@@ -27,12 +27,23 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center'
   },
-  image: {
-      width: 90,
-      height: 90,
-      alignSelf: 'center',
-      borderRadius: 0
+  modalSelector: {
+    margin: 10,
+    justifyContent:'space-around',
+    padding: 5,
+    fontSize: 15,
+    textAlign: 'center'
   },
+  btnimage:{
+    margin: 20,
+    padding: 5,
+    fontSize: 10,
+    textAlign: 'center',
+    alignSelf: 'center',
+    width: 100,
+    color:'#9FCAF5'
+  },
+
   input: {
       borderRadius: 20,
       backgroundColor: '#B0D4F7',

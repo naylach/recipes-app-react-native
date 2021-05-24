@@ -7,9 +7,39 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements'
 import { TextInput } from 'react-native-gesture-handler';
+import ModalSelector from 'react-native-modal-selector';
+import * as ImagePicker from "expo-image-picker";
+import {tipoProducto} from '../../data/dataArrays';
 
 
 import styles from './styles';
+
+const UselessTextInput = (props) => {
+  return (
+    <TextInput
+      {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
+      editable
+      maxLength={40}
+    />
+  );
+};
+
+const pickImage = async () => {
+  let result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.All,
+    allowsEditing: true,
+    aspect: [4, 3],
+    quality: 1,
+  });
+
+  console.log(result);
+
+  if (!result.cancelled) {
+    setImage(result.uri);
+  }
+};
+
+
 
 export default class CargarNuevoProducto extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -38,21 +68,6 @@ export default class CargarNuevoProducto extends React.Component {
       const nuevoProducto = {
         nombre, categoria, precioBase, marca, modelo, estado, otros
       };
-  
-      // fetch("http://localhost:8000/api/producto/", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(nuevoProducto),
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     console.log("Success:", data);
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error:", error);
-      //   });
         
         navigation.navigate('Home');
     };
@@ -63,14 +78,33 @@ export default class CargarNuevoProducto extends React.Component {
             <Text style={styles.title}>Nombre del producto:</Text>
             <TextInput style={styles.input} onChangeText={this.setState(nombre)} value={nombre} ></TextInput>
             <Text style={styles.title}>Tipo de producto:</Text>
-            <TextInput style={styles.input} onChangeText={this.setState(categoria)} value={categoria} ></TextInput>           
-            <Text style={styles.title}>Imagen  </Text>            
-            <Image source={{ uri: 'https://static.thenounproject.com/png/1156518-200.png' }}style={styles.image}/>
+            <TextInput style={styles.input} onChangeText={this.setState(categoria)} value={categoria} ></TextInput>    
+           
+            <ModalSelector
+              data={tipoProducto}
+              style={styles.modalSelector   }
+              initValue="Seleccionar tipo de producto"
+              margin="50"
+              type='solid'
+              onChange={(option) => {
+                alert(`${option.label} (${option.key}) nom nom nom`);
+              }}
+            />
+
+
+
             <Text style={styles.title}>Precio base:</Text>
-            <TextInput style={styles.input} onChangeText={this.setState(precioBase)} value={precioBase} > </TextInput>
+            <TextInput style={styles.input} onChangeText={this.setState(precioBase)} value={precioBase} >$ </TextInput>
             <Text style={styles.title}>Descripción:</Text>
             <TextInput style={styles.description} onChangeText={this.setState(marca)} value={marca} >  </TextInput>
-  
+
+            <Button
+              title= 'Adjuntar imagen'
+              style={styles.btnimage}
+              onPress={pickImage}
+              color="#9FCAF5"
+            />
+            
             <Button
               title='Aceptar'
               style={styles.buttonLogin}      

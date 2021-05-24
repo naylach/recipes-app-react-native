@@ -2,15 +2,17 @@
 
 import React from 'react';
 import {
-  FlatList,
-  ScrollView,
+  Modal,
   Text,
   View,
   Image,
-  TouchableHighlight
+  Pressable,
+  TouchableHighlight,TextInput
 } from 'react-native';
 import styles from './styles';
 import { Button } from 'react-native-elements'
+
+import ModalNuevoProducto from "./modalcomponent"
 
 import productosDetails from '../../data/MockDataAPI';
 import {
@@ -27,7 +29,16 @@ export default class EspecificacionProductoScreen extends React.Component {
   };
   constructor(props) {
     super(props);
+    this.state={
+      modalVisible: false
+    }
   }
+
+
+ handleAgregarMedio = () => {
+  this.setState({modalVisible: false});
+  };
+
 
   //creo que no sirve
   onPressRecipe = item => {
@@ -52,10 +63,9 @@ export default class EspecificacionProductoScreen extends React.Component {
     const ingredientUrl = getIngredientUrl(productoid);
     const ingredientName = navigation.getParam('name');
     return (
-      <ScrollView style={styles.mainContainer}>
         <View style={{ borderBottomWidth: 0.4, marginBottom: 10, borderBottomColor: 'grey' }}>
           <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
-        </View>
+     
         <Text style={styles.titleIngredient}>Información</Text>
         {/* <Text style={styles.ingredientInfo}>Nombre: {productosDetails.getEspecificacionProductos(1)}  </Text>  */}
         <Text style={styles.ingredientInfo}>Precio base:</Text>
@@ -66,13 +76,44 @@ export default class EspecificacionProductoScreen extends React.Component {
         <Text style={styles.ingredientInfo}>Descripción:</Text>
         <Text style={styles.ingredientInfo}>Número de pieza:</Text> 
         <Text style={styles.nayla}>(lo asignan en el catalogo)</Text>
-        
-        <Button
+      
+            <Button
               title='Pujar'
               style={styles.buttonLogin}      
-            />
+              onPress={() => this.setState({modalVisible: true}) }/>
 
-      </ScrollView>
+<Modal
+        animationType="slide"
+        transparent={true}
+        visible={this.state.modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!this.state.modalVisible);
+        }}>
+                  <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>¿Cuánto desea pujar?</Text>
+            <TextInput style={styles.txtInput}>$ </TextInput>
+            
+            <View style={styles.columns}>
+            <Pressable
+              style={[styles.button, styles.buttonAcept]}
+              onPress={() => this.setState({modalVisible: false})}
+            >
+              <Text style={styles.textStyle}>Confirmar</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => this.setState({modalVisible: false})}
+            >
+              <Text style={styles.textStyle}>Cancelar</Text>
+            </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+   </View>
     );
   }
 }
