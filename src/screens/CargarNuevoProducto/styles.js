@@ -33,10 +33,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
     alignSelf: 'center',
-    width: 250,
-    backgroundColor:'#9FCAF5',
-    borderWidth: 1,
-    borderColor: '#FFFFFF' 
+    width: 240,
+    height:45,
+    backgroundColor:'#8dbfe3',
+    borderRadius: 5,
+    borderColor: 'blue' 
 
   },
   btnimage:{
@@ -46,20 +47,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'center',
     width: 100,
-    color:'#9FCAF5'
+    color:'#8dbfe3'
   },
 
   input: {
-      borderRadius: 20,
-      backgroundColor: '#B0D4F7',
+      borderRadius: 5,
+      backgroundColor: '#8dbfe3',
       width: 220,
+      height:30,
       fontSize: 18,
       alignSelf: 'center',
       textAlign: 'center',
   },
   description: {
-    borderRadius: 20,
-    backgroundColor: '#B0D4F7',
+    borderRadius: 5,
+    backgroundColor: '#8dbfe3',
     width: 300,
     height:80,
     fontSize: 15,

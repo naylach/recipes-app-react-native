@@ -77,6 +77,8 @@ export default class CargarNuevoProducto extends React.Component {
             
             <Text style={styles.title}>Nombre del producto:</Text>
             <TextInput style={styles.input} onChangeText={this.setState(nombre)} value={nombre} ></TextInput>
+            <Text style={styles.title}>Precio base:</Text>
+            <TextInput style={styles.input} onChangeText={this.setState(precioBase)} value={precioBase} > </TextInput>
             <Text style={styles.title}>Tipo de producto:</Text>
            
             <View style={{flex:1, justifyContent:'space-around'}}>
@@ -97,13 +99,13 @@ export default class CargarNuevoProducto extends React.Component {
 
         </View>
 
-            <Text style={styles.title}>Precio base:</Text>
-            <TextInput style={styles.input} onChangeText={this.setState(precioBase)} value={precioBase} >$ </TextInput>
+           
             <Text style={styles.title}>Descripción:</Text>
             <TextInput style={styles.description} onChangeText={this.setState(marca)} value={marca} >  </TextInput>
+            <Text style={styles.title}>Imagenes:</Text>
 
             <Button
-              title= 'Adjuntar imagen'
+              title= '+'
               style={styles.btnimage}
               onPress={pickImage}
               color="#9FCAF5"
