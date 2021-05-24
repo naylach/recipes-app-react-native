@@ -28,11 +28,16 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   modalSelector: {
-    margin: 10,
     justifyContent:'space-around',
     padding: 5,
     fontSize: 15,
-    textAlign: 'center'
+    textAlign: 'center',
+    alignSelf: 'center',
+    width: 250,
+    backgroundColor:'#9FCAF5',
+    borderWidth: 1,
+    borderColor: '#FFFFFF' 
+
   },
   btnimage:{
     margin: 20,

@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     fontSize: 8,
     textAlign: 'left',
     margin: 2
-
   },
   centeredView: {
     flex: 1,
@@ -60,7 +59,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#2196F3",
     marginLeft: 10,
   },
-
   columns: {
     flexDirection: 'row',
     alignSelf: 'center'
@@ -75,9 +73,7 @@ const styles = StyleSheet.create({
     height: 40,
     width:100,
     borderBottomWidth: 1,
-
   },
-  
   textStyle: {
     color: "white",
     fontWeight: "bold",
@@ -92,8 +88,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 100,
     alignSelf: 'center',
-    bottom: -50,
-    margin: 10
+    bottom: -50
+  //  margin: 10
   },
 
   container: RecipeCard.container,

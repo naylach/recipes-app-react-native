@@ -78,20 +78,24 @@ export default class CargarNuevoProducto extends React.Component {
             <Text style={styles.title}>Nombre del producto:</Text>
             <TextInput style={styles.input} onChangeText={this.setState(nombre)} value={nombre} ></TextInput>
             <Text style={styles.title}>Tipo de producto:</Text>
-            <TextInput style={styles.input} onChangeText={this.setState(categoria)} value={categoria} ></TextInput>    
            
+            <View style={{flex:1, justifyContent:'space-around'}}>
+
             <ModalSelector
               data={tipoProducto}
               style={styles.modalSelector   }
-              initValue="Seleccionar tipo de producto"
+              initValue="Seleccionar"
               margin="50"
               type='solid'
-              onChange={(option) => {
-                alert(`${option.label} (${option.key}) nom nom nom`);
-              }}
-            />
+              // onChange={(option) => {
+              //   alert(`${option.label} (${option.key})`);
+              // }}
+            />  
 
 
+
+
+        </View>
 
             <Text style={styles.title}>Precio base:</Text>
             <TextInput style={styles.input} onChangeText={this.setState(precioBase)} value={precioBase} >$ </TextInput>
