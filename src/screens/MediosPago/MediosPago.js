@@ -163,7 +163,7 @@ export default class MediosPago extends React.Component {
                 open={this.state.visibilityModalCreado}
               >
                 <View style={styles.confirmationModal}>
-                  <Text style={styles.modalTitle}>Medio de pago creado</Text>
+                  <Text style={styles.modalTitle}>Medio de pago en proceso de verificación</Text>
                   <Image style={styles.imageModal} source={require('../../../assets/icons/check.png')}/>
                   <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalCreado}/>
                 </View>

@@ -93,10 +93,6 @@ export default class CargarNuevoProducto extends React.Component {
               //   alert(`${option.label} (${option.key})`);
               // }}
             />  
-
-
-
-
         </View>
 
            
