@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "node": "^16.1.0",
+    "pg": "^8.6.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",

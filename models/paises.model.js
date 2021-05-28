@@ -1,8 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
     const Paises = sequelize.define("paises", {
       numero: {
-        type: Sequelize.INTEGER,
-        primaryKey: true
+        type: Sequelize.UUID,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: true
       },
       nombre: {
         type: Sequelize.STRING
