@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 250,
     alignSelf: 'center',
-    bottom: -200,
+    bottom: -150,
     margin: 10,
     borderRadius: 20
   },
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 180,
     alignSelf: 'center',
-    bottom: -100,
+    bottom: -60,
     margin: 10
   },
   buttonRegisterScreen: {
@@ -61,6 +61,27 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textAlign: 'center',
     marginBottom: 10
+  },
+  confirmationModal: { 
+    borderRadius: 15, 
+    height: 250, 
+    alignSelf: 'center', 
+    width: 400, 
+    backgroundColor: 'white', 
+    margin: -100 
+  },
+  modalTitle: {
+    fontSize: 30,
+    textAlign: 'center',
+    marginTop: 10,
+    fontWeight: 'bold'
+  },
+  modalButton: {
+    color: '#4BA9FF',
+    textAlign: 'center',
+    alignSelf: 'center',
+    width: 100,
+    margin: 10
   },
 });
 

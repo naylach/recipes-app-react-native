@@ -57,13 +57,13 @@ export default class MiPerfil extends React.Component {
         <View>
             <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
             <Text style={styles.title}>Nombre y apellido</Text>
-            <TextInput style={styles.input} onChangeText={this.setState(nombre)} value={nombre} >Cristina Cañizales</TextInput>
+            <TextInput style={styles.input} onChangeText={text => this.setState({nombre: text})} value={nombre} >Cristina Cañizales</TextInput>
             <Text style={styles.title}>Categoría</Text>
             <TextInput style={styles.input} editable='false' value={categoria} >Diamante</TextInput>
             <Text style={styles.title}>Teléfono</Text>
-            <TextInput style={styles.input} onChangeText={this.setState(telefono)} value={telefono} >1126704760</TextInput>
+            <TextInput style={styles.input} onChangeText={text => this.setState({telefono: text})} value={telefono} >1126704760</TextInput>
             <Text style={styles.title}>Email</Text>
-            <TextInput style={styles.input} onChangeText={this.setState(email)} value={email} >ccanizales@uade.edu.ar</TextInput>
+            <TextInput style={styles.input} onChangeText={text => this.setState({email: text})} value={email} >ccanizales@uade.edu.ar</TextInput>
             <Text style={styles.title}>DNI</Text>
             <TextInput style={styles.input} editable='false' value={dni} >95.773.254</TextInput>
             <Button 

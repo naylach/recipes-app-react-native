@@ -535,22 +535,48 @@ export const tarjetas = [
 //MEDIOS DE PAGO: CUENTAS
 export const cuentas = [
   {
-    id: 1,
+    id: 4,
     name: 'Caja de ahorros BBVA',
     number: '5462985265321598'
   },
   {
-    id: 2,
+    id: 5,
     name: 'Cuenta Corriente Santander',
     number: '4268597135486245'
   },
   {
-    id: 3,
+    id: 6,
     name: 'Cuenta Corriente ICBC',
     number: '2589631478592348'
   },
 ];
 
+//USER
+export const users = [
+  {},
+];
+
+//PUJAS
+export const pujas = [
+  {
+    id: 1,
+    subastaID: "1098",
+    duenioID: "1506",
+    productoID: "1000",
+    clienteID: "0150",
+    importe: "3500",
+    comision: "350"
+  },
+  {
+    id: 2,
+    subastaID: "1091",
+    duenioID: "1501",
+    productoID: "1001",
+    clienteID: "0151",
+    importe: "3501",
+    comision: "351"
+  }
+];
 
 //tipo de productos
 var index = 0;

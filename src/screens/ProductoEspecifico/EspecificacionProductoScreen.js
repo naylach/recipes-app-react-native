@@ -21,6 +21,8 @@ import {
   getCategoryName
 } from '../../data/MockDataAPI';
 
+import { pujas } from "../../data/dataArrays";
+
 export default class EspecificacionProductoScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -30,10 +32,26 @@ export default class EspecificacionProductoScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      modalVisible: false
+      modalVisible: false,
+      pujas: []
     }
   }
 
+  componentDidMount(){
+    setInterval( () => {
+      //API DE PUJAS
+      for(const puja of pujas){
+        if(!this.state.pujas.find((p) => {
+          if(p.id === puja.id)
+            return true
+          return false
+        })){
+          const p = this.state.pujas.concat(puja);
+          this.setState({pujas: p});
+        }
+      }
+    }, 2000)
+  }
 
  handleAgregarMedio = () => {
   this.setState({modalVisible: false});
@@ -65,7 +83,8 @@ export default class EspecificacionProductoScreen extends React.Component {
     return (
         <View style={{ borderBottomWidth: 0.4, marginBottom: 10, borderBottomColor: 'grey' }}>
           <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
-     
+        {this.state.pujas.length > 0 && (
+          <Text style={styles.titleIngredient}>Última puja: {this.state.pujas[this.state.pujas.length - 1].importe}</Text>)}
         <Text style={styles.titleIngredient}>Información</Text>
         {/* <Text style={styles.ingredientInfo}>Nombre: {productosDetails.getEspecificacionProductos(1)}  </Text>  */}
         <Text style={styles.ingredientInfo}>Precio base:</Text>
@@ -77,12 +96,12 @@ export default class EspecificacionProductoScreen extends React.Component {
         <Text style={styles.ingredientInfo}>Número de pieza:</Text> 
         <Text style={styles.nayla}>(lo asignan en el catalogo)</Text>
       
-            <Button
-              title='Pujar'
-              style={styles.buttonLogin}      
-              onPress={() => this.setState({modalVisible: true}) }/>
+        <Button
+          title='Pujar'
+          style={styles.buttonLogin}      
+          onPress={() => this.setState({modalVisible: true}) }/>
 
-<Modal
+      <Modal
         animationType="slide"
         transparent={true}
         visible={this.state.modalVisible}

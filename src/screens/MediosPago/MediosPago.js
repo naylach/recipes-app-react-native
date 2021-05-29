@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, CheckBox } from 'react-native-elements';
 // import { Overlay } from 'react-native-modal-overlay';
 import {
@@ -11,10 +11,6 @@ import {
 import styles from './styles';
 import { tarjetas, cuentas } from '../../data/dataArrays';
 import Modal from "react-native-simple-modal";
-import Modal2 from "react-native-simple-modal";
-import ModalCreado from "react-native-simple-modal";
-import ModalEliminado from "react-native-simple-modal";
-import ModalError from "react-native-simple-modal";
 
 export default class MediosPago extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -35,7 +31,7 @@ export default class MediosPago extends React.Component {
       visibilityModal2: false, 
       visibilityModalCreado: false,
       visibilityModalEliminado: false, 
-      checked: false, 
+      checked: null, 
       visibilityModalError: false
     }
   }
@@ -84,47 +80,29 @@ export default class MediosPago extends React.Component {
                 <Text style={styles.title}>Tarjetas</Text>
             </View>
             <Separator />
-            <CheckBox
-              checked={this.state.checked}
-              title={`${tarjetas[0].name}       **** ${tarjetas[0].number.substr(-4,4)}`}
-              style={styles.checkbox}
-              onPress={() => this.setState({checked: !this.state.checked})}
-            />
-            <CheckBox
-              checked={this.state.checked}
-              title={`${tarjetas[1].name}       **** ${tarjetas[1].number.substr(-4,4)}`}
-              style={styles.checkbox}
-              onPress={() => this.setState({checked: !this.state.checked})}
-            />
-            <CheckBox
-              checked={this.state.checked}
-              title={`${tarjetas[2].name}       **** ${tarjetas[2].number.substr(-4,4)}`}
-              style={styles.checkbox}
-              onPress={() => this.setState({checked: !this.state.checked})}
-            />
+            {tarjetas.map((tarjeta, i) => {
+              return  <CheckBox
+                key={i}
+                checked={tarjeta.id===this.state.checked}
+                title={`${tarjeta.name}       **** ${tarjeta.number.substr(-4,4)}`}
+                style={styles.checkbox}
+                onPress={() => this.setState({checked: tarjeta.id === this.state.checked ? null: tarjeta.id})}
+               />
+            })}
             <View style={styles.header}>
                 <Image style={styles.image} source={require('../../../assets/icons/bank.png')}/>
             <Text style={styles.title}>Cuentas bancarias</Text>
             </View>
             <Separator />
-            <CheckBox
-              checked={this.state.checked}
-              title={`${cuentas[0].name}       **** ${cuentas[0].number.substr(-4,4)}`}
-              style={styles.checkbox}
-              onPress={() => this.setState({checked: !this.state.checked})}
-            />
-            <CheckBox
-              checked={this.state.checked}
-              title={`${cuentas[1].name}       **** ${cuentas[1].number.substr(-4,4)}`}
-              style={styles.checkbox}
-              onPress={() => this.setState({checked: !this.state.checked})}
-            />
-            <CheckBox
-              checked={this.state.checked}
-              title={`${cuentas[2].name}       **** ${cuentas[2].number.substr(-4,4)}`}
-              style={styles.checkbox}
-              onPress={() => this.setState({checked: !this.state.checked})}
-            />
+            {cuentas.map((cuenta, i) => {
+              return <CheckBox
+                key={i}
+                checked={cuenta.id===this.state.checked}
+                title={`${cuenta.name}       **** ${cuenta.number.substr(-4,4)}`}
+                style={styles.checkbox}
+                onPress={() => this.setState({checked: cuenta.id === this.state.checked ? null: cuenta.id})}
+             />
+            })}
             <View style={styles.buttonArea}>
               <Modal
                 offset={-300}
@@ -144,11 +122,11 @@ export default class MediosPago extends React.Component {
                       <Text style={styles.modalLabel}>CVV:</Text>
                     </View>
                     <View style={styles.column}>
-                      <TextInput style={styles.modalInput} onChangeText={this.setState(tipo)} value={tipo} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={this.setState(nombre)} value={nombre} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={this.setState(numero)} value={numero} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={this.setState(vencimiento)} value={vencimiento} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={this.setState(cvv)} value={cvv} ></TextInput>                    
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({tipo: text})} value={tipo} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({nombre: text})} value={nombre} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({numero: text})} value={numero} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({vencimiento: text})} value={vencimiento} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({cvv: text})} value={cvv} ></TextInput>                    
                     </View>
                   </View>
                   <View style={styles.columns}>
@@ -158,7 +136,7 @@ export default class MediosPago extends React.Component {
                 </View>
               </Modal>
               <Button style={styles.button} title='Nuevo' type='solid' onPress={this.openModal}/>
-              <ModalCreado
+              <Modal
                 offset={-300}
                 open={this.state.visibilityModalCreado}
               >
@@ -167,8 +145,8 @@ export default class MediosPago extends React.Component {
                   <Image style={styles.imageModal} source={require('../../../assets/icons/check.png')}/>
                   <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalCreado}/>
                 </View>
-              </ModalCreado>
-              <ModalError
+              </Modal>
+              <Modal
                 offset={-300}
                 open={this.state.visibilityModalError}
               >
@@ -177,9 +155,9 @@ export default class MediosPago extends React.Component {
                   <Image style={styles.imageModal} source={require('../../../assets/icons/cancel.png')}/>
                   <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalError}/>
                 </View>
-              </ModalError>
+              </Modal>
               <Button style={styles.button} title='Borrar' type='solid' onPress={this.openModal2}/>
-              <Modal2
+              <Modal
                 offset={-300}
                 open={this.state.visibilityModal2}
               >
@@ -190,8 +168,8 @@ export default class MediosPago extends React.Component {
                     <Button style={styles.modalButton} title='No' type='solid' onPress={this.closeModal2}/>
                   </View>
                 </View>
-              </Modal2>
-              <ModalEliminado
+              </Modal>
+              <Modal
                 offset={-300}
                 open={this.state.visibilityModalEliminado}
               >
@@ -200,7 +178,7 @@ export default class MediosPago extends React.Component {
                   <Image style={styles.imageModal} source={require('../../../assets/icons/check.png')}/>
                   <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalEliminado}/>
                 </View>
-              </ModalEliminado>
+              </Modal>
             </View>
         </View>
       </ScrollView>
