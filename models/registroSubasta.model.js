@@ -1,10 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
-    const RegistrosSubasta = sequelize.define("registrosSubasta", {
+    const RegistroSubasta = sequelize.define("registrosSubasta", {
       identificador: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: true
       },
       subastaID: {
         type: Sequelize.INTEGER
@@ -29,5 +28,5 @@ module.exports = (sequelize, Sequelize) => {
         timestamps:false
     });
 
-    return RegistrosSubasta;
+    return RegistroSubasta;
   };

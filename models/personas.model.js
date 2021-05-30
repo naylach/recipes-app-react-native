@@ -1,29 +1,28 @@
 module.exports = (sequelize, Sequelize) => {
-    const Paises = sequelize.define("paises", {
-      numero: {
+    const Personas = sequelize.define("persona", {
+      identificador: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
+      documento: {
+        type: Sequelize.STRING
+      },
       nombre: {
         type: Sequelize.STRING
       },
-      nombreCorto: {
+      direccion: {
         type: Sequelize.STRING
       },
-      capital: {
+      estado: {
         type: Sequelize.STRING
       },
-      nacionalidad: {
-        type: Sequelize.STRING
-      },
-      idiomas: {
+      foto: {
         type: Sequelize.STRING
       },
 
     },{
         timestamps:false
     });
-
-    return Paises;
+    return Personas;
   };

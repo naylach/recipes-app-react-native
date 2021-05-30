@@ -27,5 +27,9 @@ db.sequelize = sequelize;
 db.paises = require("./paises.model.js")(sequelize, Sequelize);
 db.catalogos = require("./catalogos.model.js")(sequelize, Sequelize);
 db.usuarios = require("./usuarios.model.js")(sequelize, Sequelize);
-//db.usuarios = require("./registrosSubasta.model")(sequelize, Sequelize);
+db.registroSubasta = require("./registroSubasta.model")(sequelize, Sequelize);
+db.cliente= require("./cliente.model")(sequelize, Sequelize);
+db.pujas= require("./pujas.model")(sequelize, Sequelize);
+db.productos = require("./productos.model")(sequelize, Sequelize);
+
 module.exports = db;

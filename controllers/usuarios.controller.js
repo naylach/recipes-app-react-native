@@ -61,3 +61,42 @@ exports.chkLoginCred = (req, res) => {
         });
       });
 };
+
+
+exports.create = (req, res) => {
+  // Validate request
+if (!req.body.usuario) {
+  res.status(400).send({
+      message: "Content can not be empty!"
+      });
+  return;
+  }
+
+  //Crear Usuarios
+const credenciales = {
+  idUsuario: req.body.idUsuario,
+  password: req.body.password,
+  idCliente:req.body.idCliente,
+  idUsuario:req.body.idUsuario,
+  categoria: req.body.categoria,
+  verificador:req.body.verificador,
+  documento:req.body.documento,
+  nombre:req.body.nombre,
+  direccion:req.body.direccion,
+  estado:"pendiente de confirmacion",
+  imagen:"foto.jpg"
+};
+
+  // Save Usuarios in the database
+  Usuarios.create(credenciales)
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while creating the USUARIO."
+    });
+  });
+
+};

@@ -5,6 +5,8 @@ module.exports = app => {
 
     // Verificar credenciales ingresadas
     router.get("/", usuarios.chkLoginCred);
+    
+    router.post("/",usuarios.create);
   
   
     app.use('/login', router);

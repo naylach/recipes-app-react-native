@@ -31,9 +31,11 @@ app.get("/", (req, res) => {
 
 require("./routes/paises.routes")(app);
 require("./routes/catalogos.routes")(app);
-//require("./routes/productos.routes")(app);
-//require("./routes/registroSubasta.routes")(app);
+require("./routes/productos.routes")(app);
+require("./routes/registroSubasta.routes")(app);
 require("./routes/usuarios.routes")(app);
+require("./routes/pujas.routes")(app);
+require("./routes/cliente.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -41,9 +43,9 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
+
 /*
 async const pais =  db.paises.create({
-  numero:4,
   nombre:"Peru",
   nombreCorto:"PE",
   capital:"Lima",

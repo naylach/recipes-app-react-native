@@ -5,7 +5,7 @@ module.exports = app => {
 
     // Obtener todos los registros de una subasta
 
-    router.get("/:subasta", registrosSubasta.getAll);
+    router.get("/:subasta", registrosSubasta.findAll);
   
   
     app.use('/RegSub', router);
