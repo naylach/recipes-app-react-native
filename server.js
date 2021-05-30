@@ -18,7 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //sync sequelize
 const db = require("./models");
-db.sequelize.sync();
+
+//borra la BD y la reinicia, hay que sacar todo lo que este en sync(...) para que no borre!
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 // simple route
 app.get("/", (req, res) => {
@@ -26,6 +30,10 @@ app.get("/", (req, res) => {
 });
 
 require("./routes/paises.routes")(app);
+require("./routes/catalogos.routes")(app);
+//require("./routes/productos.routes")(app);
+//require("./routes/registroSubasta.routes")(app);
+require("./routes/usuarios.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -33,3 +41,14 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
+/*
+async const pais =  db.paises.create({
+  numero:4,
+  nombre:"Peru",
+  nombreCorto:"PE",
+  capital:"Lima",
+  nacionalidad:"Peruano/a",
+  idiomas:"ESP"
+
+});
+*/

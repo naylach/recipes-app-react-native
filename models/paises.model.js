@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Paises = sequelize.define("paises", {
       numero: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: true

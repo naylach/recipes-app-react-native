@@ -25,5 +25,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.paises = require("./paises.model.js")(sequelize, Sequelize);
-
+db.catalogos = require("./catalogos.model.js")(sequelize, Sequelize);
+db.usuarios = require("./usuarios.model.js")(sequelize, Sequelize);
+//db.usuarios = require("./registrosSubasta.model")(sequelize, Sequelize);
 module.exports = db;
