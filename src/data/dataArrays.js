@@ -553,7 +553,14 @@ export const cuentas = [
 
 //USER
 export const users = [
-  {},
+  {
+    nombre: "Cristina",
+    apellido: "Cañizales",
+    categoria: "Diamante",
+    telefono: "1126704760",
+    email: "ccanizales@uade.edu.ar",
+    dni: "95773254"
+  },
 ];
 
 //PUJAS

@@ -3,40 +3,44 @@ import React, { useState, createContext, useEffect } from "react";
 export const DataContext = createContext({});
 
 export function DataProvider(props) {
+  const [catalogosList, setCatalogosList] = useState([]);
+  const [usuarios, setUsuariosList] = useState([]);
   const [publicacionesMineList, setPublicacionesMineList] = useState([]);
-  const [publicacionesList, setPublicacionesList] = useState([]);
-  const [vecinosList, setVecinosList] = useState([]);
-  const [rolesList, setRolesList] = useState([]);
+  const [paisesList, setPaisesList] = useState([]);
+  const [clientesList, setClientesList] = useState([]);
   const [notificacionesList, setNotificacionesList] = useState([]);
   const [refresh, setRefresh] = useState(0);
   const [currentUser, setCurrentUser] = useState({});
   const [currentPropiedad, setCurrentPropiedad] = useState({});
 
   useEffect(() => {
+    fetchCatalogos();
+    fetchUsuarios();
     fetchNotificaciones();
-    fetchPublicaciones();
     fetchPublicacionesMine();
-    fetchVecinos();
-    fetchRoles();
+    fetchPaises();
+    fetchClientes();
   }, [refresh]);
 
   return (
     <DataContext.Provider
       value={{
-        vecinosList,
-        setVecinosList,
+        catalogosList,
+        setCatalogosList,
+        usuariosList,
+        setUsuariosList,
+        paisesList,
+        setPaisesList,
         currentUser,
         setCurrentUser,
         currentPropiedad,
         setCurrentPropiedad,
         publicacionesMineList,
         setPublicacionesMineList,
-        publicacionesList,
-        setPublicacionesList,
         notificacionesList,
         setNotificacionesList,
-        rolesList,
-        setRolesList,
+        clientesList,
+        setClientesList,
         refresh,
         setRefresh,
       }}
@@ -45,10 +49,22 @@ export function DataProvider(props) {
     </DataContext.Provider>
   );
 
-  function fetchVecinos() {
+  function fetchCatalogos() {
+    fetch(`http://localhost:8000/api/publicacion/list`)
+      .then((response) => response.json())
+      .then((res) => setCatalogosList(res));
+  }
+
+  function fetchUsuarios() {
+    fetch(`http://localhost:8000/api/publicacion/list`)
+      .then((response) => response.json())
+      .then((res) => setUsuariosList(res));
+  }
+
+  function fetchPaises() {
     fetch(`http://localhost:8000/api/vecino/list`)
       .then((response) => response.json())
-      .then((res) => setVecinosList(res));
+      .then((res) => setPaisesList(res));
   }
 
   function fetchNotificaciones() {
@@ -57,21 +73,15 @@ export function DataProvider(props) {
       .then((res) => setNotificacionesList(res));
   }
 
-  function fetchPublicaciones() {
-    fetch(`http://localhost:8000/api/publicacion/list`)
-      .then((response) => response.json())
-      .then((res) => setPublicacionesList(res));
-  }
-
   function fetchPublicacionesMine() {
     fetch(`http://localhost:8000/api/publicacion/list/vecino/1`)
       .then((response) => response.json())
       .then((res) => setPublicacionesMineList(res));
   }
 
-  function fetchRoles() {
+  function fetchClientes() {
     fetch(`http://localhost:8000/api/rol/list`)
       .then((response) => response.json())
-      .then((res) => setRolesList(res));
+      .then((res) => setClientesList(res));
   }
 }

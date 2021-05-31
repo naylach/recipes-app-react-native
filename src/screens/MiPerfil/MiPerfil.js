@@ -8,6 +8,7 @@ import {
 import { Button } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
 import styles from './styles';
+import { users } from '../../data/dataArrays.js'
 
 export default class MiPerfil extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -57,15 +58,15 @@ export default class MiPerfil extends React.Component {
         <View>
             <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
             <Text style={styles.title}>Nombre y apellido</Text>
-            <TextInput style={styles.input} onChangeText={text => this.setState({nombre: text})} value={nombre} >Cristina Cañizales</TextInput>
+            <TextInput style={styles.input} onChangeText={text => this.setState({nombre: text})} value={nombre} >{`${users[0].nombre} ${users[0].apellido}`}</TextInput>
             <Text style={styles.title}>Categoría</Text>
-            <TextInput style={styles.input} editable='false' value={categoria} >Diamante</TextInput>
+            <TextInput style={styles.input} editable='false' value={categoria} >{users[0].categoria}</TextInput>
             <Text style={styles.title}>Teléfono</Text>
-            <TextInput style={styles.input} onChangeText={text => this.setState({telefono: text})} value={telefono} >1126704760</TextInput>
+            <TextInput style={styles.input} onChangeText={text => this.setState({telefono: text})} value={telefono} >{users[0].telefono}</TextInput>
             <Text style={styles.title}>Email</Text>
-            <TextInput style={styles.input} onChangeText={text => this.setState({email: text})} value={email} >ccanizales@uade.edu.ar</TextInput>
+            <TextInput style={styles.input} onChangeText={text => this.setState({email: text})} value={email} >{users[0].email}</TextInput>
             <Text style={styles.title}>DNI</Text>
-            <TextInput style={styles.input} editable='false' value={dni} >95.773.254</TextInput>
+            <TextInput style={styles.input} editable='false' value={dni} >{users[0].dni}</TextInput>
             <Button 
               style={styles.buttonLogin} 
               title='Guardar cambios'
