@@ -3,6 +3,7 @@ import { View, Image, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import MenuButton from '../../components/MenuButton/MenuButton';
+import { users } from '../../data/dataArrays.js';
 
 
 export default class DrawerContainer extends React.Component {
@@ -16,8 +17,8 @@ export default class DrawerContainer extends React.Component {
           <View style={styles.header}>
             <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
             <View style={styles.name}>
-              <Text>Cristina Cañizales</Text>
-              <Text>ccanizales@uade.edu.ar</Text>
+              <Text>{users[0].nombre} {users[0].apellido}</Text>
+              <Text>{users[0].email}</Text>
             </View>
           </View>
           <Separator />

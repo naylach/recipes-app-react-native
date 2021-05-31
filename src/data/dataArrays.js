@@ -585,6 +585,27 @@ export const pujas = [
   }
 ];
 
+export const historial = [
+  {
+    id: 1,
+    producto: "Auto cool",
+    monto: 50000,
+    tipo: "compra"
+  },
+  {
+    id: 2,
+    producto: "Auto toyota 2021",
+    monto: 35000,
+    tipo: "compra"
+  },
+  {
+    id: 3,
+    producto: "Cuadro Claude Monet",
+    monto: 200000,
+    tipo: "venta"
+  },
+];
+
 //tipo de productos
 var index = 0;
 export const tipoProducto = [

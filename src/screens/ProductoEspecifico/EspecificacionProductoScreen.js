@@ -82,9 +82,9 @@ export default class EspecificacionProductoScreen extends React.Component {
     const ingredientName = navigation.getParam('name');
     return (
         <View style={{ borderBottomWidth: 0.4, marginBottom: 10, borderBottomColor: 'grey' }}>
-          <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
         {this.state.pujas.length > 0 && (
-          <Text style={styles.titleIngredient}>Última puja: {this.state.pujas[this.state.pujas.length - 1].importe}</Text>)}
+          <Text style={styles.titleIngredient}>Última puja: ${this.state.pujas[this.state.pujas.length - 1].importe}</Text>)}
+          <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
         <Text style={styles.titleIngredient}>Información</Text>
         {/* <Text style={styles.ingredientInfo}>Nombre: {productosDetails.getEspecificacionProductos(1)}  </Text>  */}
         <Text style={styles.ingredientInfo}>Precio base:</Text>
@@ -96,10 +96,10 @@ export default class EspecificacionProductoScreen extends React.Component {
         <Text style={styles.ingredientInfo}>Número de pieza:</Text> 
         <Text style={styles.nayla}>(lo asignan en el catalogo)</Text>
       
-        <Button
+        {1 === 1 && (<Button
           title='Pujar'
           style={styles.buttonLogin}      
-          onPress={() => this.setState({modalVisible: true}) }/>
+          onPress={() => this.setState({modalVisible: true}) }/>)}
 
       <Modal
         animationType="slide"

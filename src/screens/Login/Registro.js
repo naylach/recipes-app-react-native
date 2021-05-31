@@ -20,7 +20,7 @@ export default class Registro extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nombre: "", apellido: "", dni: "", email: "", email2: "", telefono: "", password: "", password2: "", visibilityModal: false
+      nombre: "", apellido: "", dni: "", email: "", email2: "", telefono: "", visibilityModal: false
     }
   }
   openModal = () => this.setState({ visibilityModal: true });
@@ -47,10 +47,6 @@ export default class Registro extends React.Component {
             <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({email2: text})} value={email2}></TextInput>
             <Text style={styles.titleRegisterScreen}>Teléfono</Text>
             <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({telefono: text})} value={telefono}></TextInput>
-            {/* <Text style={styles.titleRegisterScreen}>Contraseña</Text>
-            <TextInput secureTextEntry={true} style={styles.inputRegisterScreen} onChangeText={this.setState(password)} value={password}></TextInput>
-            <Text style={styles.titleRegisterScreen}>Confirmar contraseña</Text>
-            <TextInput secureTextEntry={true} style={styles.inputRegisterScreen} onChangeText={this.setState(password2)} value={password2}></TextInput>            */}
             <Button 
                 style={styles.buttonRegisterScreen} 
                 title='Registrarse'

@@ -6,6 +6,7 @@ import {
   Image,
 } from 'react-native';
 import styles from './styles';
+import { historial } from '../../data/dataArrays.js';
 
 export default class HistorialTransacciones extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -32,7 +33,8 @@ export default class HistorialTransacciones extends React.Component {
                     <Text style={styles.title}>Compras</Text>
                 </View>
                 <Separator />
-                <Text style={styles.item}>Auto Toyota 2021 - $20.000</Text>
+                {historial.map((transaccion, i) => {
+                  return transaccion.tipo === "compra" ? <Text style={styles.item} key={i}>{`${transaccion.producto} - ${transaccion.monto}`}</Text> : null})}
             </View>    
             <View style={styles.row}>
                 <View style={styles.header}>
@@ -40,7 +42,8 @@ export default class HistorialTransacciones extends React.Component {
                     <Text style={styles.title}>Ventas</Text>
                 </View>
                 <Separator />
-                <Text style={styles.item}>Cuadro Claude Monet - $50.000</Text>
+                {historial.map((transaccion, i) => {
+                  return transaccion.tipo === "venta" ? <Text style={styles.item} key={i}>{`${transaccion.producto} - ${transaccion.monto}`}</Text> : null})}
             </View>
         </View>
       </ScrollView>

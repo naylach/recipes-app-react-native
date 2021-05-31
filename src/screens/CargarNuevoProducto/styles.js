@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E7F3FF'
   },
   title: {
-    margin: 10,
+    margin: 5,
     padding: 5,
     color: 'black',
     fontSize: 15,
@@ -41,15 +41,12 @@ const styles = StyleSheet.create({
 
   },
   btnimage:{
-    margin: 20,
-    padding: 5,
     fontSize: 10,
     textAlign: 'center',
     alignSelf: 'center',
     width: 100,
     color:'#8dbfe3'
   },
-
   input: {
       borderRadius: 5,
       backgroundColor: '#8dbfe3',
@@ -79,7 +76,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 180,
     alignSelf: 'center',
-    bottom: -50,
     margin: 10
   },
   buttonAdd: {

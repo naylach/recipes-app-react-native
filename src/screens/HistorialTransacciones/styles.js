@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   item: {
-      fontSize: 20
+      fontSize: 20,
+      marginLeft: 15,
+      marginBottom: 5
   },
   separator: {
     borderBottomColor: '#737373',

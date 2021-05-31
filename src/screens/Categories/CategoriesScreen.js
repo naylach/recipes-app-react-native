@@ -30,7 +30,7 @@ export default class CategoriesScreen extends React.Component {
       <View style={styles.categoriesItemContainer}>
         <Image style={styles.categoriesPhoto} source={{ uri: item.photo_url }} />
         <Text style={styles.categoriesName}>{item.name}</Text>
-        <Text style={styles.categoriesInfo}>{getNumberOfRecipes(item.id)} recipes</Text>
+        <Text style={styles.categoriesInfo}>{getNumberOfRecipes(item.id)} catálogos</Text>
       </View>
     </TouchableHighlight>
   );
