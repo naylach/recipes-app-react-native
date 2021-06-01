@@ -28,24 +28,42 @@ export default class MediosPago extends React.Component {
       vencimiento: "", 
       cvv: "", 
       visibilityModal1: false, 
-      visibilityModal2: false, 
+      deleting: null,
+      //visibilityModal2: false, 
       visibilityModalCreado: false,
       visibilityModalEliminado: false, 
       checked: null, 
-      visibilityModalError: false
+      visibilityModalError: false,
+      tarjetas: [],
+      cuentas: []
     }
   }
+
+  componentDidMount(){
+    //api
+    this.setState({cuentas, tarjetas});
+  }
+
   openModal = () => this.setState({ visibilityModal1: true });
   closeModal = () => this.setState({ visibilityModal1: false });
-  openModal2 = () => this.setState({ visibilityModal2: true });
+  openModal2 = () => this.setState({ deleting: this.state.checked });
+  //openModal2 = () => this.setState({ visibilityModal2: true });
   closeModal2 = () => this.setState({ visibilityModal2: false });
-  openModalEliminado = () => this.setState({ visibilityModalEliminado: true });
+  openModalEliminado = () => {
+    this.setState({
+      tarjetas:this.state.tarjetas.filter((t) => t.id !== this.state.deleting),
+      cuentas:this.state.cuentas.filter((t) => t.id !== this.state.deleting),
+      deleting: null
+    })
+  };
+  //pendiente de los ids iguales
+  //openModalEliminado = () => this.setState({ visibilityModalEliminado: true });
   openModalCreado = () => this.setState({ visibilityModalCreado: true });
   openModalError = () => this.setState({ visibilityModalError: true });
 
   render() {
     const { navigation } = this.props;
-    let tipo, nombre, numero, vencimiento, cvv;
+    let {tipo, nombre, numero, vencimiento, cvv} = this.state;
     const Separator = () => (
         <View style={styles.separator} />
       );
@@ -80,7 +98,7 @@ export default class MediosPago extends React.Component {
                 <Text style={styles.title}>Tarjetas</Text>
             </View>
             <Separator />
-            {tarjetas.map((tarjeta, i) => {
+            {this.state.tarjetas.map((tarjeta, i) => {
               return  <CheckBox
                 key={i}
                 checked={tarjeta.id===this.state.checked}
@@ -94,7 +112,7 @@ export default class MediosPago extends React.Component {
             <Text style={styles.title}>Cuentas bancarias</Text>
             </View>
             <Separator />
-            {cuentas.map((cuenta, i) => {
+            {this.state.cuentas.map((cuenta, i) => {
               return <CheckBox
                 key={i}
                 checked={cuenta.id===this.state.checked}
@@ -159,7 +177,7 @@ export default class MediosPago extends React.Component {
               <Button style={styles.button} title='Borrar' type='solid' onPress={this.openModal2}/>
               <Modal
                 offset={-300}
-                open={this.state.visibilityModal2}
+                open={this.state.deleting !== null}
               >
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>¿Está seguro de que desea borrar el medio de pago seleccionado?</Text>

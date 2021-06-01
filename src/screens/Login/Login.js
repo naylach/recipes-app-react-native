@@ -45,6 +45,7 @@ export default class Login extends React.Component {
       //   })
       //   .catch((e) => console.log(e));
         navigation.navigate('Home');
+        console.log("holaaaaaaaaa");
       //}else if (){ -> existe usuario pero aun no está habilitado
       // this.openModal();
       //}else if () -> usuario no registrado{
@@ -75,17 +76,25 @@ export default class Login extends React.Component {
       navigation.navigate('Registro');
     };
     const { navigation } = this.props;
-    let email, password, password2;
+    let {email, password, password2} = this.state;
     return (
       <ScrollView style={styles.mainContainer}  scrollEnabled='false'>
         <View>
             <Text style={styles.title}>Usuario</Text>
             <TextInput style={styles.input} onChangeText={text => this.setState({email: text})} value={email}></TextInput>
-            {1 === 1 && (<Text style={styles.title}>Contraseña</Text>)}
-            {1 === 1 && (<TextInput secureTextEntry={true} style={styles.input} onChangeText={text => this.setState({password: text})} value={password}></TextInput>)}
+            {1 === 1 && (
+              <View>
+                <Text style={styles.title}>Contraseña</Text>
+                <TextInput secureTextEntry={true} style={styles.input} onChangeText={text => this.setState({password: text})} value={password}></TextInput>
+              </View>
+            )}
 
-            {1 === 1 && (<Text style={styles.title}>Confirmar contraseña</Text>)}
-            {1 === 1 && (<TextInput secureTextEntry={true} style={styles.input} onChangeText={text => this.setState({password2: text})} value={password2}></TextInput>)}
+            {1 === 1 && (
+              <View>
+                <Text style={styles.title}>Confirmar contraseña</Text>
+                <TextInput secureTextEntry={true} style={styles.input} onChangeText={text => this.setState({password2: text})} value={password2}></TextInput>
+              </View>
+            )}
 
             <Button 
               style={styles.buttonLogin} 

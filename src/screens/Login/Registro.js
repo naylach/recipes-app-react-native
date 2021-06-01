@@ -31,7 +31,7 @@ export default class Registro extends React.Component {
       this.setState({ visibilityModal: false })
       navigation.navigate('Home');
     };
-    let nombre, apellido, dni, email, email2, telefono
+    let {nombre, apellido, dni, email, email2, telefono} = this.state;
     return (
       <ScrollView style={styles.mainContainer} scrollEnabled='false'>
         <View>
@@ -57,6 +57,7 @@ export default class Registro extends React.Component {
             <Modal
               offset={0}
               open={this.state.visibilityModal}
+              overlayStyle={{backgroundColor:'transparent'}}
             >
               <View style={styles.confirmationModal}>
                 <Text style={styles.modalTitle}>Registro en proceso de verificación.</Text>

@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 180,
     alignSelf: 'center',
-    bottom: -60,
-    margin: 10
+    margin: 10,
+    marginTop: 60
   },
   buttonRegisterScreen: {
     textAlign: 'center',
     width: 250,
     alignSelf: 'center',
-    bottom: -40,
+    marginTop: 20,
     borderRadius: 20,
   },
   input: {

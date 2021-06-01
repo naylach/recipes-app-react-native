@@ -65,7 +65,7 @@ export default class CargarNuevoProducto extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    let nombre, tipo, descripcion, imagenes, artista, fecha, contexto, duenio, curiosidades;
+    let {nombre, tipo, descripcion, imagenes, artista, fecha, contexto, duenio, curiosidades} = this.state;
     const handleButtonClick = (e) => {
       let descripcion = artista + disenador + fecha + contexto + duenio + curiosidades;
       const nuevoProducto = {
@@ -79,9 +79,8 @@ export default class CargarNuevoProducto extends React.Component {
         <View style={{flex:1, justifyContent:'space-around'}}>
             
         <Text style={styles.title}>Nombre del producto:</Text>
-        <TextInput style={styles.input} onChangeText={this.setState(nombre)} value={nombre} ></TextInput>
+        <TextInput style={styles.input} onChangeText={text => this.setState({nombre: text})} value={nombre} ></TextInput>
         <Text style={styles.title}>Tipo de producto:</Text>
-        
 
         <ModalSelector
           data={tipoProducto}
@@ -90,35 +89,34 @@ export default class CargarNuevoProducto extends React.Component {
           margin="50"
           type='solid'
           key={tipo}
-          // onChange={(option) => {
-          //   alert(`${option.label} (${option.key})`);
-          // }}
+          onChangeText={(text) => this.setState({tipo: text})}
         />  
-
            
         <Text style={styles.title}>Descripción:</Text>
         <TextInput style={styles.description} onChangeText={text => this.setState({descripcion: text})} value={descripcion} >  </TextInput>
 
-        { 1 === 1 && 
-        (<Text style={styles.title}>Artista/Diseñador:</Text>
-        &&
-        <TextInput style={styles.input} onChangeText={text => this.setState({artista: text})} value={artista} >  </TextInput>
-        &&
-        <Text style={styles.title}>Fecha:</Text>
-        &&
-        <TextInput style={styles.input} onChangeText={text => this.setState({fecha: text})} value={fecha} >  </TextInput>
-        &&
-        <Text style={styles.title}>Contexto:</Text>
-        &&
-        <TextInput style={styles.input} onChangeText={text => this.setState({contexto: text})} value={contexto} >  </TextInput>
-        &&
-        <Text style={styles.title}>Dueño anterior:</Text>
-        &&
-        <TextInput style={styles.input} onChangeText={text => this.setState({duenio: text})} value={duenio} >  </TextInput>
-        &&
-        <Text style={styles.title}>Curiosidades:</Text>
-        &&
-        <TextInput style={styles.description} onChangeText={text => this.setState({curiosidades: text})} value={curiosidades} >  </TextInput>)}
+        { 1 === 1 &&
+        (<View>
+          <Text style={styles.title}>Artista/Diseñador:</Text>
+          
+          <TextInput style={styles.input} onChangeText={text => this.setState({artista: text})} value={artista} >  </TextInput>
+          
+          <Text style={styles.title}>Fecha:</Text>
+          
+          <TextInput style={styles.input} onChangeText={text => this.setState({fecha: text})} value={fecha} >  </TextInput>
+          
+          <Text style={styles.title}>Contexto:</Text>
+          
+          <TextInput style={styles.input} onChangeText={text => this.setState({contexto: text})} value={contexto} >  </TextInput>
+          
+          <Text style={styles.title}>Dueño anterior:</Text>
+          
+          <TextInput style={styles.input} onChangeText={text => this.setState({duenio: text})} value={duenio} >  </TextInput>
+          
+          <Text style={styles.title}>Curiosidades:</Text>
+          
+          <TextInput style={styles.description} onChangeText={text => this.setState({curiosidades: text})} value={curiosidades} >  </TextInput>
+        </View>)}
 
         <Text style={styles.title}>Imagenes:</Text>
         <Button
