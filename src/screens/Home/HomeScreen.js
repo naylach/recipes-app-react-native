@@ -9,12 +9,12 @@ import { getCategoryName } from '../../data/MockDataAPI';
 export default class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Inicio',
-    headerLeft: () =>
+    headerLeft: () => 1===1 ?
       <MenuImage
         onPress={() => {
           navigation.openDrawer();
         }}
-      />,
+      /> : <></>,
     headerRight: () =>
       <ProfileButton
         onPress={() => {
