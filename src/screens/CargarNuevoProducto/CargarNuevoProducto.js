@@ -101,7 +101,7 @@ export default class CargarNuevoProducto extends React.Component {
           
           <TextInput style={styles.input} onChangeText={text => this.setState({artista: text})} value={artista} >  </TextInput>
           
-          <Text style={styles.title}>Fecha de creación:</Text>
+          <Text style={styles.title}>Fecha:</Text>
           
           <TextInput style={styles.input} onChangeText={text => this.setState({fecha: text})} value={fecha} >  </TextInput>
           
