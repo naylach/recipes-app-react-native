@@ -5,19 +5,19 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 50,
     width: 270,
-    marginTop: 20,
-    marginLeft: 10,
-    marginRight: 10,
     borderRadius: 100,
-    borderColor: '#2cd18a',
+    borderColor: '#15a8ed',
     borderWidth: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-    // backgroundColor: '#2cd18a'
+    alignItems: 'center',
   },
   text: {
     fontSize: 14,
-    color: '#2cd18a'
+    color: '#15a8ed'
+  },
+  touchable: {
+    marginTop: 20,
+    borderRadius: 100
   }
 });
 

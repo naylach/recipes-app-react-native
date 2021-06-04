@@ -76,23 +76,22 @@ export default class Login extends React.Component {
       navigation.navigate('Registro');
     };
     const { navigation } = this.props;
-    let {email, password, password2} = this.state;
     return (
       <ScrollView style={styles.mainContainer}  scrollEnabled='false'>
         <View>
             <Text style={styles.title}>Usuario</Text>
-            <TextInput style={styles.input} onChangeText={text => this.setState({email: text})} value={email}></TextInput>
+            <TextInput style={styles.input} onChangeText={text => this.setState({email: text})} value={this.state.email}></TextInput>
             {1 === 1 && (
               <View>
                 <Text style={styles.title}>Contraseña</Text>
-                <TextInput secureTextEntry={true} style={styles.input} onChangeText={text => this.setState({password: text})} value={password}></TextInput>
+                <TextInput secureTextEntry={true} style={styles.input} onChangeText={text => this.setState({password: text})} value={this.state.password}></TextInput>
               </View>
             )}
 
             {1 === 1 && (
               <View>
                 <Text style={styles.title}>Confirmar contraseña</Text>
-                <TextInput secureTextEntry={true} style={styles.input} onChangeText={text => this.setState({password2: text})} value={password2}></TextInput>
+                <TextInput secureTextEntry={true} style={styles.input} onChangeText={text => this.setState({password2: text})} value={this.state.password2}></TextInput>
               </View>
             )}
 

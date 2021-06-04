@@ -7,7 +7,7 @@ export default class ProfileButton extends React.Component {
   render() {
     return (
       <TouchableOpacity style={styles.headerButtonContainer} onPress={this.props.onPress}>
-        <Image style={styles.image} source={require('../../../assets/icons/user.png')}/>
+        <Image style={styles.image} source={1===1 ? require('../../../assets/icons/selfie.jpeg') : require('../../../assets/icons/user.png')}/>
       </TouchableOpacity>
     );
   }

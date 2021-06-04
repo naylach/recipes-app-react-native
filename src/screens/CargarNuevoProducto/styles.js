@@ -30,8 +30,6 @@ const styles = StyleSheet.create({
   modalSelector: {
     justifyContent:'space-around',
     padding: 5,
-    fontSize: 15,
-    textAlign: 'center',
     alignSelf: 'center',
     width: 240,
     height:45,
@@ -52,9 +50,9 @@ const styles = StyleSheet.create({
       backgroundColor: '#8dbfe3',
       width: 220,
       height:30,
-      fontSize: 18,
+      fontSize: 15,
       alignSelf: 'center',
-      textAlign: 'center',
+      textAlign: 'center'
   },
   description: {
     borderRadius: 5,
@@ -64,7 +62,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     alignSelf: 'center',
     textAlign: 'left',
-},
+  },
   editIcon: {
     marginTop: 10,
     width: 40,

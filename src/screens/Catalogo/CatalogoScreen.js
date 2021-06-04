@@ -13,7 +13,7 @@ import styles from './styles';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { getIngredientName, getCategoryName, getCategoryById } from '../../data/MockDataAPI';
 import BackButton from '../../components/BackButton/BackButton';
-import ViewIngredientsButton from '../../components/ViewIngredientsButton/ViewIngredientsButton';
+import ViewProductsButton from '../../components/ViewProductsButton/ViewProductsButton';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
@@ -83,7 +83,7 @@ export default class RecipeScreen extends React.Component {
               dotsLength={item.photosArray.length}
               activeDotIndex={activeSlide}
               containerStyle={styles.paginationContainer}
-              dotColor="rgba(255, 255, 255, 0.92)"
+              dotColor="#15a8ed"
               dotStyle={styles.paginationDot}
               inactiveDotColor="white"
               inactiveDotOpacity={0.4}
@@ -109,7 +109,7 @@ export default class RecipeScreen extends React.Component {
           </View>
 
           <View style={styles.infoContainer}>
-            <ViewIngredientsButton
+            <ViewProductsButton
               onPress={() => {
                 let ingredients = item.ingredients;
                 let title = '' + item.title;

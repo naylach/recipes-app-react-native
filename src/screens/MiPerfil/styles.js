@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 180,
     alignSelf: 'center',
-    bottom: -10,
     margin: 10
   },
 });

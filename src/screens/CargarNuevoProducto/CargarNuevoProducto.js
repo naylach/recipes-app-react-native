@@ -14,16 +14,6 @@ import {tipoProducto} from '../../data/dataArrays';
 
 import styles from './styles';
 
-const UselessTextInput = (props) => {
-  return (
-    <TextInput
-      {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
-      editable
-      maxLength={40}
-    />
-  );
-};
-
 const pickImage = async () => {
   let result = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -65,9 +55,8 @@ export default class CargarNuevoProducto extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    let {nombre, tipo, descripcion, imagenes, artista, fecha, contexto, duenio, curiosidades} = this.state;
     const handleButtonClick = (e) => {
-      let descripcion = artista + disenador + fecha + contexto + duenio + curiosidades;
+      let descripcion = (this.state.tipo !== 'Arte' && this.state.tipo !== 'Objetos de diseñador') ? this.state.descripcion : this.state.artista + this.state.disenador + this.state.fecha + this.state.contexto + this.state.duenio + this.state.curiosidades;
       const nuevoProducto = {
         nombre, tipoProducto, descripcion, imagenes
       };
@@ -79,44 +68,44 @@ export default class CargarNuevoProducto extends React.Component {
         <View style={{flex:1, justifyContent:'space-around'}}>
             
         <Text style={styles.title}>Nombre del producto:</Text>
-        <TextInput style={styles.input} onChangeText={text => this.setState({nombre: text})} value={nombre} ></TextInput>
+        <TextInput style={styles.input} onChangeText={text => this.setState({nombre: text})} value={this.state.nombre} />
         <Text style={styles.title}>Tipo de producto:</Text>
 
         <ModalSelector
           data={tipoProducto}
-          style={styles.modalSelector   }
+          style={styles.modalSelector}
           initValue="Seleccionar"
           margin="50"
           type='solid'
-          key={tipo}
+          key={this.state.tipo}
           onChangeText={(text) => this.setState({tipo: text})}
         />  
            
         <Text style={styles.title}>Descripción:</Text>
-        <TextInput style={styles.description} onChangeText={text => this.setState({descripcion: text})} value={descripcion} >  </TextInput>
+        <TextInput style={styles.description} onChangeText={text => this.setState({descripcion: text})} value={this.state.descripcion} />
 
-        { 1 === 1 &&
-        (<View>
+        { (this.state.tipo === 'Arte' || this.state.tipo === 'Objetos de diseñador') &&
+        (<>
           <Text style={styles.title}>Artista/Diseñador:</Text>
           
-          <TextInput style={styles.input} onChangeText={text => this.setState({artista: text})} value={artista} >  </TextInput>
+          <TextInput style={styles.input} onChangeText={text => this.setState({artista: text})} value={this.state.artista} />
           
           <Text style={styles.title}>Fecha:</Text>
           
-          <TextInput style={styles.input} onChangeText={text => this.setState({fecha: text})} value={fecha} >  </TextInput>
+          <TextInput style={styles.input} onChangeText={text => this.setState({fecha: text})} value={this.state.fecha} />
           
           <Text style={styles.title}>Contexto:</Text>
           
-          <TextInput style={styles.input} onChangeText={text => this.setState({contexto: text})} value={contexto} >  </TextInput>
+          <TextInput style={styles.input} onChangeText={text => this.setState({contexto: text})} value={this.state.contexto} />
           
           <Text style={styles.title}>Dueño anterior:</Text>
           
-          <TextInput style={styles.input} onChangeText={text => this.setState({duenio: text})} value={duenio} >  </TextInput>
+          <TextInput style={styles.input} onChangeText={text => this.setState({duenio: text})} value={this.state.duenio} />
           
           <Text style={styles.title}>Curiosidades:</Text>
           
-          <TextInput style={styles.description} onChangeText={text => this.setState({curiosidades: text})} value={curiosidades} >  </TextInput>
-        </View>)}
+          <TextInput style={styles.description} onChangeText={text => this.setState({curiosidades: text})} value={this.state.curiosidades} />
+        </>)}
 
         <Text style={styles.title}>Imagenes:</Text>
         <Button

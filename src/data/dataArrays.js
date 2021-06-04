@@ -559,7 +559,8 @@ export const users = [
     categoria: "Diamante",
     telefono: "1126704760",
     email: "ccanizales@uade.edu.ar",
-    dni: "95773254"
+    dni: "95773254",
+    image: '../../../assets/icons/selfie.jpeg'
   },
 ];
 

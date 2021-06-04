@@ -5,10 +5,10 @@ const styles = StyleSheet.create({
     padding: 10
   },
   image: {
-    width: 25,
-    height: 25,
+    width: 30,
+    height: 30,
     marginLeft: 30,
-    marginTop: 10
+    borderRadius: 50
   }
 });
 

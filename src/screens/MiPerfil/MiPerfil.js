@@ -60,13 +60,13 @@ export default class MiPerfil extends React.Component {
             <Text style={styles.title}>Nombre y apellido</Text>
             <TextInput style={styles.input} onChangeText={text => this.setState({nombre: text})} value={nombre} >{`${users[0].nombre} ${users[0].apellido}`}</TextInput>
             <Text style={styles.title}>Categoría</Text>
-            <TextInput style={styles.input} editable='false' value={categoria} >{users[0].categoria}</TextInput>
+            <TextInput style={styles.input} editable={false} value={categoria} >{users[0].categoria}</TextInput>
             <Text style={styles.title}>Teléfono</Text>
             <TextInput style={styles.input} onChangeText={text => this.setState({telefono: text})} value={telefono} >{users[0].telefono}</TextInput>
             <Text style={styles.title}>Email</Text>
             <TextInput style={styles.input} onChangeText={text => this.setState({email: text})} value={email} >{users[0].email}</TextInput>
             <Text style={styles.title}>DNI</Text>
-            <TextInput style={styles.input} editable='false' value={dni} >{users[0].dni}</TextInput>
+            <TextInput style={styles.input} editable={false} value={dni} >{users[0].dni}</TextInput>
             <Button 
               style={styles.buttonLogin} 
               title='Guardar cambios'

@@ -36,7 +36,6 @@ const MainNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-    // headerMode: 'float',
     defaulfNavigationOptions: ({ navigation }) => ({
       headerTitleStyle: {
         fontWeight: 'bold',

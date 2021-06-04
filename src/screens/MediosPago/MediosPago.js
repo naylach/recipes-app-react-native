@@ -63,7 +63,6 @@ export default class MediosPago extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    let {tipo, nombre, numero, vencimiento, cvv} = this.state;
     const Separator = () => (
         <View style={styles.separator} />
       );
@@ -128,6 +127,7 @@ export default class MediosPago extends React.Component {
                 containerStyle={{
                   justifyContent: "center"
                 }}
+                overlayStyle={{backgroundColor:'transparent'}}
               >
                 <View style={styles.mainModal}>
                   <Text style={styles.modalTitle}>Nuevo medio de pago</Text>
@@ -140,11 +140,11 @@ export default class MediosPago extends React.Component {
                       <Text style={styles.modalLabel}>CVV:</Text>
                     </View>
                     <View style={styles.column}>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({tipo: text})} value={tipo} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({nombre: text})} value={nombre} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({numero: text})} value={numero} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({vencimiento: text})} value={vencimiento} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({cvv: text})} value={cvv} ></TextInput>                    
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({tipo: text})} value={this.state.tipo} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({nombre: text})} value={this.state.nombre} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({numero: text})} value={this.state.numero} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({vencimiento: text})} value={this.state.vencimiento} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({cvv: text})} value={this.state.cvv} ></TextInput>                    
                     </View>
                   </View>
                   <View style={styles.columns}>
@@ -178,6 +178,7 @@ export default class MediosPago extends React.Component {
               <Modal
                 offset={-300}
                 open={this.state.deleting !== null}
+                overlayStyle={{backgroundColor:'transparent'}}
               >
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>¿Está seguro de que desea borrar el medio de pago seleccionado?</Text>

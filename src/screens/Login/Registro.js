@@ -31,22 +31,21 @@ export default class Registro extends React.Component {
       this.setState({ visibilityModal: false })
       navigation.navigate('Home');
     };
-    let {nombre, apellido, dni, email, email2, telefono} = this.state;
     return (
       <ScrollView style={styles.mainContainer} scrollEnabled='false'>
         <View>
             <Text style={styles.titleRegisterScreen}>Nombre</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({nombre: text})} value={nombre}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({nombre: text})} value={this.state.nombre}></TextInput>
             <Text style={styles.titleRegisterScreen}>Apellido</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({apellido: text})} value={apellido}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({apellido: text})} value={this.state.apellido}></TextInput>
             <Text style={styles.titleRegisterScreen}>DNI</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({dni: text})} value={dni}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({dni: text})} value={this.state.dni}></TextInput>
             <Text style={styles.titleRegisterScreen}>Email</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({email: text})} value={email}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({email: text})} value={this.state.email}></TextInput>
             <Text style={styles.titleRegisterScreen}>Confirmar email</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({email2: text})} value={email2}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({email2: text})} value={this.state.email2}></TextInput>
             <Text style={styles.titleRegisterScreen}>Teléfono</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({telefono: text})} value={telefono}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({telefono: text})} value={this.state.telefono}></TextInput>
             <Button 
                 style={styles.buttonRegisterScreen} 
                 title='Registrarse'

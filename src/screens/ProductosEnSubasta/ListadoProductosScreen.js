@@ -34,7 +34,7 @@ export default class ListadoProductosScreen extends React.Component {
 
   //texto de la imagen redondita
   renderIngredient = ({ item }) => (
-    <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => this.onPressIngredient(item[0])}>
+    <TouchableHighlight underlayColor='#dfeef5' style={{borderRadius: 50}} onPress={() => this.onPressIngredient(item[0])}>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item[0].photo_url }} />
         <Text style={styles.title}>{item[0].name}</Text>

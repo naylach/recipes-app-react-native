@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     margin: RECIPE_ITEM_OFFSET,
-    marginTop: 30,
+    marginTop: 20,
     width: (SCREEN_WIDTH - RECIPE_ITEM_MARGIN) / numColumns - RECIPE_ITEM_OFFSET,
-    height: RECIPE_ITEM_HEIGHT + 60
+    height: RECIPE_ITEM_HEIGHT + 50
   },
   title: {
     margin: 10,

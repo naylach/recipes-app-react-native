@@ -53,27 +53,10 @@ export default class EspecificacionProductoScreen extends React.Component {
     }, 2000)
   }
 
- handleAgregarMedio = () => {
+ handlePuja = () => {
+   //api pujas aqui
   this.setState({modalVisible: false});
   };
-
-
-  //creo que no sirve
-  onPressRecipe = item => {
-    this.props.navigation.navigate('Recipe', { item });
-  };
-
-  renderRecipes = ({ item }) => (
-    <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => this.onPressRecipe(item)}>
-      <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => this.onPressRecipe(item)}>
-        <View style={styles.container}>
-          <Image style={styles.photo} source={{ uri: item.photo_url }} />
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
-        </View>
-      </TouchableHighlight>
-    </TouchableHighlight>
-  );
 
   render() {
     const { navigation } = this.props;
@@ -117,7 +100,7 @@ export default class EspecificacionProductoScreen extends React.Component {
             <View style={styles.columns}>
             <Pressable
               style={[styles.button, styles.buttonAcept]}
-              onPress={() => this.setState({modalVisible: false})}
+              onPress={this.handlePuja}
             >
               <Text style={styles.textStyle}>Confirmar</Text>
             </Pressable>
