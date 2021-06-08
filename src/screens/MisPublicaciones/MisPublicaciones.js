@@ -15,22 +15,12 @@ import { misproductos } from "../../data/dataArrays";
 
 import styles from "./styles";
 
-export default class MisPublicaciones extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: "Mis Publicaciones",
-    };
-  };
-
-  constructor(props) {
-    super(props);
-  }
-
+export default function MisPublicaciones(props) {
   // onPressRecipe = (item) => {
   //   this.props.navigation.navigate("Recipe", { item });
   // };
 
-  renderItems = ({ item }) => (
+  const renderItems = ({ item }) => (
     <TouchableHighlight>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.imagen }} />
@@ -39,8 +29,6 @@ export default class MisPublicaciones extends React.Component {
       </View>
     </TouchableHighlight>
   );
-
-  render() {
     return (
       <SafeAreaView>
         <FlatList
@@ -48,10 +36,9 @@ export default class MisPublicaciones extends React.Component {
           showsVerticalScrollIndicator={false}
           numColumns={2}
           data={misproductos}
-          renderItem={this.renderItems}
+          renderItem={renderItems}
           keyExtractor={(item) => `${item.id}`}
         />
       </SafeAreaView>
     );
-  }
 }

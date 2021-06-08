@@ -12,29 +12,16 @@ import {
   getAllIngredients,
 } from '../../data/MockDataAPI';
 
-export default class ListadoProductosScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: navigation.getParam('title'),
-      headerTitleStyle: {
-        fontSize: 16
-      }
-    };
-  };
-
-  constructor(props) {
-    super(props);
-  }
-
-  onPressIngredient = item => {
+export default function ListadoProductosScreen(props) {
+  const onPressIngredient = item => {
     let name = getIngredientName(item.productoid);
     let ingredient = item.productoid;
-    this.props.navigation.navigate('EspecificacionProducto', { ingredient, name });
+    props.navigation.navigate('EspecificacionProducto', { ingredient, name });
   };
 
   //texto de la imagen redondita
-  renderIngredient = ({ item }) => (
-    <TouchableHighlight underlayColor='#dfeef5' style={{borderRadius: 50}} onPress={() => this.onPressIngredient(item[0])}>
+  const renderIngredient = ({ item }) => (
+    <TouchableHighlight underlayColor='#dfeef5' style={{borderRadius: 50}} onPress={() => onPressIngredient(item[0])}>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item[0].photo_url }} />
         <Text style={styles.title}>{item[0].name}</Text>
@@ -42,10 +29,7 @@ export default class ListadoProductosScreen extends React.Component {
       </View>
     </TouchableHighlight>
   );
-
-  render() {
-    const { navigation } = this.props;
-    const item = navigation.getParam('ingredients');
+    const item = props.navigation.getParam('ingredients');
     const ingredientsArray = getAllIngredients(item);
 
     return (
@@ -55,10 +39,9 @@ export default class ListadoProductosScreen extends React.Component {
           showsVerticalScrollIndicator={false}
           numColumns={3}
           data={ingredientsArray}
-          renderItem={this.renderIngredient}
+          renderItem={renderIngredient}
           keyExtractor={item => `${item.recipeId}`}
         />
       </View>
     );
-  }
 }

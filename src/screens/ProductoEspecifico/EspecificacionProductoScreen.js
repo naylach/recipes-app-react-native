@@ -1,6 +1,6 @@
 //Información del producto específico en el catálogo
 
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import {
   Modal,
   Text,
@@ -11,10 +11,6 @@ import {
 } from 'react-native';
 import styles from './styles';
 import { Button } from 'react-native-elements'
-
-import ModalNuevoProducto from "./modalcomponent"
-
-import productosDetails from '../../data/MockDataAPI';
 import {
   getIngredientUrl,
   getRecipesByIngredient,
@@ -23,50 +19,37 @@ import {
 
 import { pujas } from "../../data/dataArrays";
 
-export default class EspecificacionProductoScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: navigation.getParam('name')
-    };
-  };
-  constructor(props) {
-    super(props);
-    this.state={
-      modalVisible: false,
-      pujas: []
-    }
-  }
+export default function EspecificacionProductoScreen(props) {
+  const [ modalVisible, setModalVisible ] = useState(false);
+  const [ pujas, setPujas ] = useState([]);
 
-  componentDidMount(){
+  useEffect( () => {
     setInterval( () => {
       //API DE PUJAS
       for(const puja of pujas){
-        if(!this.state.pujas.find((p) => {
+        if(!pujas.find((p) => {
           if(p.id === puja.id)
             return true
           return false
         })){
-          const p = this.state.pujas.concat(puja);
-          this.setState({pujas: p});
+          const p = pujas.concat(puja);
+          setPujas(p);
         }
       }
     }, 2000)
-  }
+  }, []);
 
- handlePuja = () => {
+ const handlePuja = () => {
    //api pujas aqui
-  this.setState({modalVisible: false});
+  setModalVisible(false);
   };
-
-  render() {
-    const { navigation } = this.props;
-    const productoid = navigation.getParam('ingredient');
+    const productoid = props.navigation.getParam('ingredient');
     const ingredientUrl = getIngredientUrl(productoid);
-    const ingredientName = navigation.getParam('name');
+    const ingredientName = props.navigation.getParam('name');
     return (
         <View style={{ borderBottomWidth: 0.4, marginBottom: 10, borderBottomColor: 'grey' }}>
-        {this.state.pujas.length > 0 && (
-          <Text style={styles.titleIngredient}>Última puja: ${this.state.pujas[this.state.pujas.length - 1].importe}</Text>)}
+        {pujas.length > 0 && (
+          <Text style={styles.titleIngredient}>Última puja: ${pujas[pujas.length - 1].importe}</Text>)}
           <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
         <Text style={styles.titleIngredient}>Información</Text>
         {/* <Text style={styles.ingredientInfo}>Nombre: {productosDetails.getEspecificacionProductos(1)}  </Text>  */}
@@ -82,15 +65,15 @@ export default class EspecificacionProductoScreen extends React.Component {
         {1 === 1 && (<Button
           title='Pujar'
           style={styles.buttonLogin}      
-          onPress={() => this.setState({modalVisible: true}) }/>)}
+          onPress={() => setModalVisible(true) }/>)}
 
       <Modal
         animationType="slide"
         transparent={true}
-        visible={this.state.modalVisible}
+        visible={modalVisible}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
-          setModalVisible(!this.state.modalVisible);
+          setModalVisible(!modalVisible);
         }}>
                   <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -100,13 +83,13 @@ export default class EspecificacionProductoScreen extends React.Component {
             <View style={styles.columns}>
             <Pressable
               style={[styles.button, styles.buttonAcept]}
-              onPress={this.handlePuja}
+              onPress={handlePuja}
             >
               <Text style={styles.textStyle}>Confirmar</Text>
             </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => this.setState({modalVisible: false})}
+              onPress={() => setModalVisible(false)}
             >
               <Text style={styles.textStyle}>Cancelar</Text>
             </Pressable>
@@ -117,5 +100,4 @@ export default class EspecificacionProductoScreen extends React.Component {
 
    </View>
     );
-  }
 }

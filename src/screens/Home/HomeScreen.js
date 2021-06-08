@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
 import styles from './styles';
 import { recipes } from '../../data/dataArrays';
@@ -6,33 +6,14 @@ import MenuImage from '../../components/MenuImage/MenuImage';
 import ProfileButton from '../../components/ProfileButton/ProfileButton';
 import { getCategoryName } from '../../data/MockDataAPI';
 
-export default class HomeScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Inicio',
-    headerLeft: () => 1===1 ?
-      <MenuImage
-        onPress={() => {
-          navigation.openDrawer();
-        }}
-      /> : <></>,
-    headerRight: () =>
-      <ProfileButton
-        onPress={() => {
-          navigation.navigate('MiPerfil');
-        }}
-      />
-  });
+export default function HomeScreen(props) {
 
-  constructor(props) {
-    super(props);
-  }
-
-  onPressRecipe = item => {
-    this.props.navigation.navigate('Catalogo', { item });
+  const onPressRecipe = item => {
+    props.navigation.navigate('Catalogo', { item });
   };
 
-  renderCatalogs = ({ item }) => (
-      <TouchableHighlight underlayColor='#dfeef5' style={styles.touchable} onPress={() => this.onPressRecipe(item)}>
+  const renderCatalogs = ({ item }) => (
+      <TouchableHighlight underlayColor='#dfeef5' style={styles.touchable} onPress={() => onPressRecipe(item)}>
         <View style={styles.container}>
           <Image style={styles.photo} source={{ uri: item.photo_url }} />
           <Text style={styles.title}>{item.title}</Text>
@@ -41,7 +22,6 @@ export default class HomeScreen extends React.Component {
       </TouchableHighlight>
   );
 
-  render() {
     return (
       <View>
         <FlatList
@@ -49,10 +29,9 @@ export default class HomeScreen extends React.Component {
           showsVerticalScrollIndicator={false}
           numColumns={2}
           data={recipes}
-          renderItem={this.renderCatalogs}
+          renderItem={renderCatalogs}
           keyExtractor={item => `${item.recipeId}`}
         />
       </View>
     );
-  }
 }

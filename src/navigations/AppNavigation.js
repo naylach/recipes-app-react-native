@@ -1,3 +1,4 @@
+import React from "react";
 import { createAppContainer } from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer'
 import {createStackNavigator} from 'react-navigation-stack'
@@ -17,30 +18,99 @@ import HistorialTransaccionesScreen from '../screens/HistorialTransacciones/Hist
 import CargarNuevoProductoScreen from '../screens/CargarNuevoProducto/CargarNuevoProducto';
 import MisPublicacionesScreen from '../screens/MisPublicaciones/MisPublicaciones';
 
+import MenuImage from '../components/MenuImage/MenuImage';
+import ProfileButton from '../components/ProfileButton/ProfileButton';
+import BackButton from '../components/BackButton/BackButton';
+
 const MainNavigator = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Inicio',
+          headerLeft: () => 1===1 ?
+            <MenuImage
+              onPress={() => {
+                navigation.openDrawer();
+              }}
+            /> : <></>,
+          headerRight: () => (
+            <ProfileButton
+              onPress={() => {
+                navigation.navigate('MiPerfil');
+              }}
+            />
+          ),
+        }
+      }
+    },
     Categories: CategoriesScreen,
-    Catalogo: CatalogoScreen,
+    Catalogo: {
+      screen: CatalogoScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+         title: 'Catálogo',
+         headerTransparent: 'true',
+         headerLeft: () => <BackButton
+           onPress={() => {
+             navigation.goBack();
+           }}
+         />
+       }
+     }
+    },
     RecipesList: RecipesListScreen,
-    EspecificacionProducto: EspecificacionProductoScreen,
+    EspecificacionProducto: {
+      screen: EspecificacionProductoScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: navigation.getParam('name')
+        }
+      }
+    },
     Search: SearchScreen,
-    ListadoProductos: ListadoProductosScreen,
+    ListadoProductos: {
+      screen: ListadoProductosScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: navigation.getParam('title'),
+          headerTitleStyle: {
+            fontSize: 16
+          }
+        }
+      }
+    },
     MiPerfil: MiPerfilScreen,
     MediosPago: MediosPagoScreen,
     Login: LoginScreen,
     Registro: RegistroScreen,
-    HistorialTransacciones: HistorialTransaccionesScreen,
+    HistorialTransacciones: {
+      screen: HistorialTransaccionesScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Historial de Transacciones'
+        }
+      }
+    },
     CargarNuevoProducto: CargarNuevoProductoScreen,
-    MisPublicaciones:MisPublicacionesScreen
+    MisPublicaciones: {
+      screen: MisPublicacionesScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: "Mis Publicaciones",
+        }
+      }
+    }
   },
   {
     initialRouteName: 'Home',
-    defaulfNavigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       headerTitleStyle: {
         fontWeight: 'bold',
         textAlign: 'center',
         alignSelf: 'center',
+        paddingTop: 10,
         flex: 1,
       }
     })
