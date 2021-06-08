@@ -1,3 +1,4 @@
+import React from "react";
 import { createAppContainer } from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer'
 import {createStackNavigator} from 'react-navigation-stack'
@@ -17,9 +18,32 @@ import HistorialTransaccionesScreen from '../screens/HistorialTransacciones/Hist
 import CargarNuevoProductoScreen from '../screens/CargarNuevoProducto/CargarNuevoProducto';
 import MisPublicacionesScreen from '../screens/MisPublicaciones/MisPublicaciones';
 
+import MenuImage from '../components/MenuImage/MenuImage';
+import ProfileButton from '../components/ProfileButton/ProfileButton';
+
 const MainNavigator = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Inicio',
+          headerLeft: () =>
+            <MenuImage
+              onPress={() => {
+                navigation.openDrawer();
+              }}
+            />,
+          headerRight: () => (
+            <ProfileButton
+              onPress={() => {
+                navigation.navigate('MiPerfil');
+              }}
+            />
+          ),
+        }
+      }
+    },
     Categories: CategoriesScreen,
     Catalogo: CatalogoScreen,
     RecipesList: RecipesListScreen,
@@ -36,8 +60,7 @@ const MainNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-    // headerMode: 'float',
-    defaulfNavigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       headerTitleStyle: {
         fontWeight: 'bold',
         textAlign: 'center',
