@@ -634,3 +634,18 @@ export const tipoProducto = [
   { key: index++, label: "Ropa y Accesorios" },
   { key: index++, label: "Otras categorías" },
 ];
+
+
+//para screen de especificacion de producto
+export const especificacionProductoDATA = [
+  {
+    idProducto: 12,
+    tipoProducto: "Autos, Motos y Otros",
+    producto: "Autotest",
+    precioBase: 50000,
+    duenioActual: "pepe",
+    descripcion: "descripcion del producto",
+    numeroPieza: 2485
+  },
+];
+

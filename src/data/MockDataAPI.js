@@ -1,6 +1,6 @@
 import { Text } from 'react-native';
 import React, { Component } from 'react';
-import { recipes, categories, detalleproducto,misproductos } from './dataArrays';
+import { recipes, categories, detalleproducto,misproductos,especificacionProductoDATA } from './dataArrays';
 
 export function getCategoryById(categoryId) {
   let category;
@@ -144,9 +144,9 @@ export function getProductos(productosName) {
 //Especificacion de un producto -- no implementado
 export function getEspecificacionProductos(productosDetails) {
   let name;
-  detalles.map((data)=>{
-    if (data.productoid==productosDetails){
-        name=data.name;
+  especificacionProductoDATA.map((data)=>{
+    if (data.idProducto==productosDetails){
+        name=data;
     }
   });
   return name;

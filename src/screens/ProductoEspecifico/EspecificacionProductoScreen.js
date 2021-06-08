@@ -1,5 +1,8 @@
 //Información del producto específico en el catálogo
 
+import {getEspecificacionProductos} from '../../data/MockDataAPI' ;
+
+
 import React, { useEffect, useState} from 'react';
 import {
   Modal,
@@ -53,14 +56,11 @@ export default function EspecificacionProductoScreen(props) {
         <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
       <Text style={styles.titleIngredient}>Información</Text>
       {/* <Text style={styles.ingredientInfo}>Nombre: {productosDetails.getEspecificacionProductos(1)}  </Text>  */}
-      <Text style={styles.ingredientInfo}>Precio base:</Text>
-      <Text style={styles.ingredientInfo}>Tipo de producto:</Text>
-      <Text style={styles.nayla}>(arte, autos, etc. Según haya puesto el dueño cuando cargo el producto)</Text>
-      <Text style={styles.nayla}>(si la categoría es de arte u objetos de diseñador se muestran campos distintos) </Text>
-      <Text style={styles.ingredientInfo}>Dueño Actual:</Text>
-      <Text style={styles.ingredientInfo}>Descripción:</Text>
-      <Text style={styles.ingredientInfo}>Número de pieza:</Text> 
-      <Text style={styles.nayla}>(lo asignan en el catalogo)</Text>
+      <Text style={styles.ingredientInfo}>Precio base: {getEspecificacionProductos(12).precioBase} </Text>
+      <Text style={styles.ingredientInfo}>Tipo de producto:  {getEspecificacionProductos(12).tipoProducto} </Text>
+      <Text style={styles.ingredientInfo}>Dueño Actual: {getEspecificacionProductos(12).duenioActual}  </Text>
+      <Text style={styles.ingredientInfo}>Descripción: {getEspecificacionProductos(12).descripcion} </Text>
+      <Text style={styles.ingredientInfo}>Número de pieza: {getEspecificacionProductos(12).numeroPieza} </Text> 
     
       {1 === 1 && (<Button
         title='Pujar'
