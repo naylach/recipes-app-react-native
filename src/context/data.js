@@ -1,6 +1,8 @@
 import React, { useState, createContext, useEffect } from "react";
-
+import * as SecureStore from 'expo-secure-store'
 export const DataContext = createContext({});
+const url = 'http://localhost:8080/api/'
+
 
 export function DataProvider(props) {
   const [catalogosList, setCatalogosList] = useState([]);
@@ -14,6 +16,8 @@ export function DataProvider(props) {
   const [currentPropiedad, setCurrentPropiedad] = useState({});
 
   useEffect(() => {
+    checkPassword()
+    checkMail();
     fetchCatalogos();
     fetchUsuarios();
     fetchProductos();
@@ -48,39 +52,106 @@ export function DataProvider(props) {
       {props.children}
     </DataContext.Provider>
   );
+  
+  function checkMail(email){
+    fetch(url+'auth/mail', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email 
+        })
+  }).then((response) =>{
+    if(response.status===200){
+      //Pasar a pedir password
+    }else if (response.status=== 401){
+      //mostrar mensaje de error con data.msg
+      response.json().then((data) => console.log(data.msg))
+    }else{
+      //mostrar popup 'no existe un usuario registrado con ese mail'
+    }
+  })
+}
+//SecureStore.setItemAsync("token",data.token)})
+  function checkPassword(){
+    fetch(url+'auth/pass', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        password: this.state.password 
+      })
+    }).then((response) => {
+      if(response.status===200){
+        response.json().then((data) => {
+            //Login correcto! guardo token
+            SecureStore.setItemAsync("token",data.token)
+            setCurrentUser(data.user)
+            
+          })
+      }else{
+        //mostrar popup 'contraseña incorrecta'
+      }
+    })
+  }
 
   function fetchCatalogos() {
-    fetch(`http://localhost:8000/catalogos/list`)
+    fetch(url+'catalogo/', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }})
       .then((response) => response.json())
       .then((res) => setCatalogosList(res));
   }
 
+  //Hace falta?
   function fetchUsuarios() {
-    fetch(`http://localhost:8000/publicaciones/list`)
+    fetch(url+'publicaciones/list')
       .then((response) => response.json())
       .then((res) => setUsuariosList(res));
   }
 
   function fetchPaises() {
-    fetch(`http://localhost:8000/paises/list`)
+    fetch(url+'paises/', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }})
       .then((response) => response.json())
       .then((res) => setPaisesList(res));
   }
 
+  //BUSCAR MANERA DE OBTERER IDENTIFICADOR DE CATALOGO
   function fetchProductos() {
-    fetch(`http://localhost:8000/productos/list`)
+    fetch(url+'catalogo/id', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        identificador: 2 //ACA VA ID CATALOGO!!
+      })
+    })
       .then((response) => response.json())
-      .then((res) => setProductosList(res));
+      .then((data) => setProductosList(data));
   }
 
   function fetchPublicacionesMine() {
-    fetch(`http://localhost:8000/api/publicacion/list/vecino/1`)
+    fetch(url+'productos/cliente')
       .then((response) => response.json())
       .then((res) => setPublicacionesMineList(res));
   }
 
   function fetchClientes() {
-    fetch(`http://localhost:8000/clientes/list`)
+    fetch(url+'clientes/list')
       .then((response) => response.json())
       .then((res) => setClientesList(res));
   }

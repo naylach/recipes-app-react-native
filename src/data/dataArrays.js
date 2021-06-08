@@ -565,7 +565,7 @@ export const users = [
 ];
 
 //PUJAS
-export const pujas = [
+export const pujas1 = [
   {
     id: 1,
     subastaID: "1098",

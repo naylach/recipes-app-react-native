@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-native-elements'
 import {
   ScrollView,
@@ -10,52 +10,46 @@ import { TextInput } from 'react-native-gesture-handler';
 import styles from './styles';
 import Modal from "react-native-simple-modal";
 
-export default class Registro extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: 'Registro'
-    };
+export default function Registro(props) {
+  const [ nombre, setNombre ] = useState("");
+  const [ apellido, setApellido ] = useState("");
+  const [ dni, setDNI ] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ email2, setEmail2 ] = useState("");
+  const [ telefono, setTelefono ] = useState("");
+  const [ visibilityModal, setVisibilityModal ] = useState(false);
+
+  const openModal = () => setVisibilityModal(true);
+
+  const closeModal = () => {
+    setVisibilityModal(false);
+    props.navigation.navigate('Home');
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      nombre: "", apellido: "", dni: "", email: "", email2: "", telefono: "", visibilityModal: false
-    }
-  }
-  openModal = () => this.setState({ visibilityModal: true });
-
-  render() {
-    const { navigation } = this.props;
-    const closeModal = () => {
-      this.setState({ visibilityModal: false })
-      navigation.navigate('Home');
-    };
     return (
       <ScrollView style={styles.mainContainer} scrollEnabled='false'>
         <View>
             <Text style={styles.titleRegisterScreen}>Nombre</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({nombre: text})} value={this.state.nombre}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setNombre(text)} value={nombre}></TextInput>
             <Text style={styles.titleRegisterScreen}>Apellido</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({apellido: text})} value={this.state.apellido}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setApellido(text)} value={apellido}></TextInput>
             <Text style={styles.titleRegisterScreen}>DNI</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({dni: text})} value={this.state.dni}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setDNI(text)} value={dni}></TextInput>
             <Text style={styles.titleRegisterScreen}>Email</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({email: text})} value={this.state.email}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setEmail(text)} value={email}></TextInput>
             <Text style={styles.titleRegisterScreen}>Confirmar email</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({email2: text})} value={this.state.email2}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setEmail2(text)} value={email2}></TextInput>
             <Text style={styles.titleRegisterScreen}>Teléfono</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => this.setState({telefono: text})} value={this.state.telefono}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setTelefono(text)} value={telefono}></TextInput>
             <Button 
                 style={styles.buttonRegisterScreen} 
                 title='Registrarse'
                 onPress={() => {
-                  this.openModal()
+                  openModal()
                 }}
             />
             <Modal
               offset={0}
-              open={this.state.visibilityModal}
+              open={visibilityModal}
               overlayStyle={{backgroundColor:'transparent'}}
             >
               <View style={styles.confirmationModal}>
@@ -67,5 +61,4 @@ export default class Registro extends React.Component {
         </View>
       </ScrollView>
     );
-  }
 }

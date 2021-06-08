@@ -10,23 +10,16 @@ import styles from './styles';
 import { categories } from '../../data/dataArrays';
 import { getNumberOfRecipes } from '../../data/MockDataAPI';
 
-export default class CategoriesScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Categories'
-  };
+export default function CategoriesScreen (props) {
 
-  constructor(props) {
-    super(props);
-  }
-
-  onPressCategory = item => {
+  const onPressCategory = item => {
     const title = item.name;
     const category = item;
-    this.props.navigation.navigate('RecipesList', { category, title });
+    props.navigation.navigate('RecipesList', { category, title });
   };
 
-  renderCategory = ({ item }) => (
-    <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => this.onPressCategory(item)}>
+  const renderCategory = ({ item }) => (
+    <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => onPressCategory(item)}>
       <View style={styles.categoriesItemContainer}>
         <Image style={styles.categoriesPhoto} source={{ uri: item.photo_url }} />
         <Text style={styles.categoriesName}>{item.name}</Text>
@@ -35,15 +28,13 @@ export default class CategoriesScreen extends React.Component {
     </TouchableHighlight>
   );
 
-  render() {
-    return (
+  return (
       <View>
         <FlatList
           data={categories}
-          renderItem={this.renderCategory}
+          renderItem={renderCategory}
           keyExtractor={item => `${item.id}`}
         />
       </View>
     );
-  }
 }

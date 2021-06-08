@@ -45,7 +45,12 @@ const MainNavigator = createStackNavigator(
         }
       }
     },
-    Categories: CategoriesScreen,
+    Categories: {
+      screen: CategoriesScreen,
+      navigationOptions:{
+        title: 'Categories'
+      }
+    },
     Catalogo: {
       screen: CatalogoScreen,
       navigationOptions: ({ navigation }) => {
@@ -60,7 +65,14 @@ const MainNavigator = createStackNavigator(
        }
      }
     },
-    RecipesList: RecipesListScreen,
+    RecipesList: {
+      screen: RecipesListScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: navigation.getParam('title')
+        };
+      }
+    },
     EspecificacionProducto: {
       screen: EspecificacionProductoScreen,
       navigationOptions: ({ navigation }) => {
@@ -81,10 +93,36 @@ const MainNavigator = createStackNavigator(
         }
       }
     },
-    MiPerfil: MiPerfilScreen,
-    MediosPago: MediosPagoScreen,
-    Login: LoginScreen,
-    Registro: RegistroScreen,
+    MiPerfil: {
+      screen: MiPerfilScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Mi Perfil'
+        }
+      }},
+    MediosPago: {
+      screen: MediosPagoScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Medios de Pago'
+        }
+      }},
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Iniciar sesión'
+        };
+      }
+    },
+    Registro: {
+      screen: RegistroScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Registro'
+        };
+      }
+    },
     HistorialTransacciones: {
       screen: HistorialTransaccionesScreen,
       navigationOptions: ({ navigation }) => {
@@ -93,7 +131,14 @@ const MainNavigator = createStackNavigator(
         }
       }
     },
-    CargarNuevoProducto: CargarNuevoProductoScreen,
+    CargarNuevoProducto: {
+      screen: CargarNuevoProductoScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Cargar nuevo producto'
+        }
+      }
+    },
     MisPublicaciones: {
       screen: MisPublicacionesScreen,
       navigationOptions: ({ navigation }) => {

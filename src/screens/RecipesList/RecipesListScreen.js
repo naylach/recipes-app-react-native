@@ -12,23 +12,13 @@ import {
 import styles from './styles';
 import { getRecipes, getCategoryName } from '../../data/MockDataAPI';
 
-export default class RecipesListScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: navigation.getParam('title')
-    };
+export default function RecipesListScreen (props) {
+  const onPressRecipe = item => {
+    props.navigation.navigate('Catalogo', { item });
   };
 
-  constructor(props) {
-    super(props);
-  }
-
-  onPressRecipe = item => {
-    this.props.navigation.navigate('Catalogo', { item });
-  };
-
-  renderRecipes = ({ item }) => (
-    <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => this.onPressRecipe(item)}>
+  const renderRecipes = ({ item }) => (
+    <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => onPressRecipe(item)}>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
         <Text style={styles.title}>{item.title}</Text>
@@ -38,9 +28,8 @@ export default class RecipesListScreen extends React.Component {
     </TouchableHighlight>
   );
 
-  render() {
-    const { navigation } = this.props;
-    const item = navigation.getParam('category');
+
+    const item = props.navigation.getParam('category');
     const recipesArray = getRecipes(item.id);
     return (
       <View>
@@ -49,10 +38,9 @@ export default class RecipesListScreen extends React.Component {
           showsVerticalScrollIndicator={false}
           numColumns={2}
           data={recipesArray}
-          renderItem={this.renderRecipes}
+          renderItem={renderRecipes}
           keyExtractor={item => `${item.recipeId}`}
         />
       </View>
     );
-  }
 }

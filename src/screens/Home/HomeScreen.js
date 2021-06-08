@@ -1,12 +1,14 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useContext } from 'react';
 import { FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
 import styles from './styles';
 import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
 import ProfileButton from '../../components/ProfileButton/ProfileButton';
 import { getCategoryName } from '../../data/MockDataAPI';
+import { DataContext } from "../../context";
 
 export default function HomeScreen(props) {
+  const { catalogosList } = useContext(DataContext);
 
   const onPressRecipe = item => {
     props.navigation.navigate('Catalogo', { item });
@@ -24,6 +26,7 @@ export default function HomeScreen(props) {
 
     return (
       <View>
+        {console.log(catalogosList)}
         <FlatList
           vertical
           showsVerticalScrollIndicator={false}

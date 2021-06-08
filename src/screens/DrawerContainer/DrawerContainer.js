@@ -6,9 +6,7 @@ import MenuButton from '../../components/MenuButton/MenuButton';
 import { users } from '../../data/dataArrays.js';
 
 
-export default class DrawerContainer extends React.Component {
-  render() {
-    const { navigation } = this.props;
+export default function DrawerContainer (props){
     const Separator = () => (
       <View style={styles.separator} />
     );
@@ -27,48 +25,48 @@ export default class DrawerContainer extends React.Component {
             title="Inicio"
             source={require('../../../assets/icons/home.png')}
             onPress={() => {
-              navigation.navigate('Home');
-              navigation.closeDrawer();
+              props.navigation.navigate('Home');
+              props.navigation.closeDrawer();
             }}
           />
           <MenuButton
             title="Mis publicaciones"
             source={require('../../../assets/icons/publicaciones.png')}
             onPress={() => {
-              navigation.navigate('MisPublicaciones');
-              navigation.closeDrawer();
+              props.navigation.navigate('MisPublicaciones');
+              props.navigation.closeDrawer();
             }}
           />
           <MenuButton
             title="Cargar nuevo producto"
             source={require('../../../assets/icons/upload.png')}
             onPress={() => {
-              navigation.navigate('CargarNuevoProducto');
-              navigation.closeDrawer();
+              props.navigation.navigate('CargarNuevoProducto');
+              props.navigation.closeDrawer();
             }}
           />
           <MenuButton
             title="Historial transacciones"
             source={require('../../../assets/icons/history.png')}
             onPress={() => {
-              navigation.navigate('HistorialTransacciones');
-              navigation.closeDrawer();
+              props.navigation.navigate('HistorialTransacciones');
+              props.navigation.closeDrawer();
             }}
           />
           <MenuButton
             title="Medios de pago"
             source={require('../../../assets/icons/payment.png')}
             onPress={() => {
-              navigation.navigate('MediosPago');
-              navigation.closeDrawer();
+              props.navigation.navigate('MediosPago');
+              props.navigation.closeDrawer();
             }}
           />
           <MenuButton
             title="Login"
             source={require('../../../assets/icons/info.png')}
             onPress={() => {
-              navigation.navigate('Login');
-              navigation.closeDrawer();
+              props.navigation.navigate('Login');
+              props.navigation.closeDrawer();
             }}
           />
         </View>
@@ -77,14 +75,13 @@ export default class DrawerContainer extends React.Component {
             title="Cerrar Sesión"
             source={require('../../../assets/icons/out.png')}
             onPress={() => {
-              navigation.navigate('CerrarSesion');
-              navigation.closeDrawer();
+              props.navigation.navigate('CerrarSesion');
+              props.navigation.closeDrawer();
             }}
           />
         </View>
       </View>
     );
-  }
 }
 
 DrawerContainer.propTypes = {

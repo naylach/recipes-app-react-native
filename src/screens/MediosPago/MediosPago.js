@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, CheckBox } from 'react-native-elements';
 // import { Overlay } from 'react-native-modal-overlay';
 import {
@@ -12,81 +12,65 @@ import styles from './styles';
 import { tarjetas, cuentas } from '../../data/dataArrays';
 import Modal from "react-native-simple-modal";
 
-export default class MediosPago extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: 'Medios de Pago'
-    };
-  };
+export default function MediosPago(props) {
+  const [tipo, setTipo]= useState("");
+  const [nombre, setNombre]= useState("");
+  const [numero, setNumero]= useState("");
+  const [vencimiento, setVencimiento]= useState("");
+  const [cvv, setCVV]= useState("");
+  const [visibilityModal1, setVisibilityModal1]= useState(false);
+  const [visibilityModal2, setVisibilityModal2]= useState(false);
+  const [deleting, setDeleting]= useState(null);
+  const [visibilityModalCreado, setVisibilityModalCreado]= useState(false);
+  const [visibilityModalEliminado, setVisibilityModalEliminado]= useState(false);
+  const [checked, setChecked]= useState(null);
+  const [visibilityModalError, setVisibilityModalError]= useState(false);
+  const [tarjetas, setTarjetas]= useState([]);
+  const [cuentas, setCuentas]= useState([]);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      tipo: "", 
-      nombre: "", 
-      numero: "", 
-      vencimiento: "", 
-      cvv: "", 
-      visibilityModal1: false, 
-      deleting: null,
-      //visibilityModal2: false, 
-      visibilityModalCreado: false,
-      visibilityModalEliminado: false, 
-      checked: null, 
-      visibilityModalError: false,
-      tarjetas: [],
-      cuentas: []
-    }
-  }
-
-  componentDidMount(){
+  useEffect( () => {
     //api
-    this.setState({cuentas, tarjetas});
-  }
+    setTarjetas(tarjetas);
+    setCuentas(cuentas);
+  }, []);
 
-  openModal = () => this.setState({ visibilityModal1: true });
-  closeModal = () => this.setState({ visibilityModal1: false });
-  openModal2 = () => this.setState({ deleting: this.state.checked });
-  //openModal2 = () => this.setState({ visibilityModal2: true });
-  closeModal2 = () => this.setState({ visibilityModal2: false });
-  openModalEliminado = () => {
-    this.setState({
-      tarjetas:this.state.tarjetas.filter((t) => t.id !== this.state.deleting),
-      cuentas:this.state.cuentas.filter((t) => t.id !== this.state.deleting),
-      deleting: null
-    })
+  const openModal = () => setVisibilityModal1(true);
+  const closeModal = () => setVisibilityModal1(false);
+  const openModal2 = () => setDeleting(checked);
+  const closeModal2 = () => setVisibilityModal2(false);
+  const openModalEliminado = () => {
+    setTarjetas(tarjetas.filter((t) => t.id !== deleting));
+    setCuentas(cuentas.filter((c) => c.id !== deleting));
+    setDeleting(null);
   };
   //pendiente de los ids iguales
-  //openModalEliminado = () => this.setState({ visibilityModalEliminado: true });
-  openModalCreado = () => this.setState({ visibilityModalCreado: true });
-  openModalError = () => this.setState({ visibilityModalError: true });
+  const openModalCreado = () => setVisibilityModalCreado(true);
+  const openModalError = () => setVisibilityModalError(true);
 
-  render() {
-    const { navigation } = this.props;
     const Separator = () => (
         <View style={styles.separator} />
       );
     const closeModalEliminado = () => {
-      this.setState({ visibilityModal2: false });
-      this.setState({ visibilityModalEliminado: false });
-      navigation.navigate('MediosPago');
+      setVisibilityModal2(false);
+      setVisibilityModalEliminado(false);
+      props.navigation.navigate('MediosPago');
     };
     const closeModalCreado = () => {
-      this.setState({ visibilityModalCreado: false });
-      this.setState({ visibilityModal1: false });
-      navigation.navigate('MediosPago');
+      setVisibilityModalCreado(false);
+      setVisibilityModal1(false);
+      props.navigation.navigate('MediosPago');
     };
     const closeModalError = () => {
-      this.setState({ visibilityModalError: false });
-      this.setState({ visibilityModal1: false });
-      navigation.navigate('MediosPago');
+      setVisibilityModalError(false);
+      setVisibilityModal1(false);
+      props.navigation.navigate('MediosPago');
     };
     const handleAgregarMedio = () => {
       //if (true)
         closeModalCreado();
-        this.openModalCreado();
+        openModalCreado();
       //else
-      //this.openModalError();
+      //openModalError();
     };
     return (
 
@@ -97,13 +81,13 @@ export default class MediosPago extends React.Component {
                 <Text style={styles.title}>Tarjetas</Text>
             </View>
             <Separator />
-            {this.state.tarjetas.map((tarjeta, i) => {
+            {tarjetas.map((tarjeta, i) => {
               return  <CheckBox
                 key={i}
-                checked={tarjeta.id===this.state.checked}
+                checked={tarjeta.id===checked}
                 title={`${tarjeta.name}       **** ${tarjeta.number.substr(-4,4)}`}
                 style={styles.checkbox}
-                onPress={() => this.setState({checked: tarjeta.id === this.state.checked ? null: tarjeta.id})}
+                onPress={() => setChecked(tarjeta.id === checked ? null: tarjeta.id)}
                />
             })}
             <View style={styles.header}>
@@ -111,19 +95,19 @@ export default class MediosPago extends React.Component {
             <Text style={styles.title}>Cuentas bancarias</Text>
             </View>
             <Separator />
-            {this.state.cuentas.map((cuenta, i) => {
+            {cuentas.map((cuenta, i) => {
               return <CheckBox
                 key={i}
-                checked={cuenta.id===this.state.checked}
+                checked={cuenta.id===checked}
                 title={`${cuenta.name}       **** ${cuenta.number.substr(-4,4)}`}
                 style={styles.checkbox}
-                onPress={() => this.setState({checked: cuenta.id === this.state.checked ? null: cuenta.id})}
+                onPress={() => setChecked(cuenta.id === checked ? null: cuenta.id)}
              />
             })}
             <View style={styles.buttonArea}>
               <Modal
                 offset={-300}
-                open={this.state.visibilityModal1}
+                open={visibilityModal1}
                 containerStyle={{
                   justifyContent: "center"
                 }}
@@ -140,62 +124,62 @@ export default class MediosPago extends React.Component {
                       <Text style={styles.modalLabel}>CVV:</Text>
                     </View>
                     <View style={styles.column}>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({tipo: text})} value={this.state.tipo} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({nombre: text})} value={this.state.nombre} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({numero: text})} value={this.state.numero} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({vencimiento: text})} value={this.state.vencimiento} ></TextInput>
-                      <TextInput style={styles.modalInput} onChangeText={text => this.setState({cvv: text})} value={this.state.cvv} ></TextInput>                    
+                      <TextInput style={styles.modalInput} onChangeText={text => setTipo(text)} value={tipo} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => setNombre(text)} value={nombre} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => setNumero(text)} value={numero} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => setVencimiento(text)} value={vencimiento} ></TextInput>
+                      <TextInput style={styles.modalInput} onChangeText={text => setCVV(text)} value={cvv} ></TextInput>                    
                     </View>
                   </View>
                   <View style={styles.columns}>
-                    <Button style={styles.modalButton} title='Agregar' type='solid' onPress={handleAgregarMedio}/>
-                    <Button style={styles.modalButton} title='Cerrar' type='solid' onPress={this.closeModal}/>
+                    <Button style={styles.modalButton} title='Agregar' type='solid' onPress={handleAgregarMedio()}/>
+                    <Button style={styles.modalButton} title='Cerrar' type='solid' onPress={closeModal()}/>
                   </View>
                 </View>
               </Modal>
-              <Button style={styles.button} title='Nuevo' type='solid' onPress={this.openModal}/>
+              <Button style={styles.button} title='Nuevo' type='solid' onPress={openModal()}/>
               <Modal
                 offset={-300}
-                open={this.state.visibilityModalCreado}
+                open={visibilityModalCreado}
               >
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>Medio de pago en proceso de verificación</Text>
                   <Image style={styles.imageModal} source={require('../../../assets/icons/check.png')}/>
-                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalCreado}/>
+                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalCreado()}/>
                 </View>
               </Modal>
               <Modal
                 offset={-300}
-                open={this.state.visibilityModalError}
+                open={visibilityModalError}
               >
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>Los datos ingresados están incompletos</Text>
                   <Image style={styles.imageModal} source={require('../../../assets/icons/cancel.png')}/>
-                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalError}/>
+                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalError()}/>
                 </View>
               </Modal>
-              <Button style={styles.button} title='Borrar' type='solid' onPress={this.openModal2}/>
+              <Button style={styles.button} title='Borrar' type='solid' onPress={openModal2()}/>
               <Modal
                 offset={-300}
-                open={this.state.deleting !== null}
+                open={deleting !== null}
                 overlayStyle={{backgroundColor:'transparent'}}
               >
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>¿Está seguro de que desea borrar el medio de pago seleccionado?</Text>
                   <View style={styles.columns}>
-                    <Button style={styles.modalButton} title='Sí' type='solid' onPress={this.openModalEliminado}/>
-                    <Button style={styles.modalButton} title='No' type='solid' onPress={this.closeModal2}/>
+                    <Button style={styles.modalButton} title='Sí' type='solid' onPress={openModalEliminado()}/>
+                    <Button style={styles.modalButton} title='No' type='solid' onPress={closeModal2()}/>
                   </View>
                 </View>
               </Modal>
               <Modal
                 offset={-300}
-                open={this.state.visibilityModalEliminado}
+                open={visibilityModalEliminado}
               >
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>Medio de pago eliminado</Text>
                   <Image style={styles.imageModal} source={require('../../../assets/icons/check.png')}/>
-                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalEliminado}/>
+                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalEliminado()}/>
                 </View>
               </Modal>
             </View>
@@ -203,5 +187,4 @@ export default class MediosPago extends React.Component {
       </ScrollView>
 
     );
-  }
 }
