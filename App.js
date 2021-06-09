@@ -5,8 +5,8 @@ import { ContextProvider } from "./src/context/providerCompose";
 
 export default function App() {
   return (
-    //<ContextProvider>
+    <ContextProvider>
       <AppContainer />
-    //</ContextProvider>
+    </ContextProvider>
   );
 }

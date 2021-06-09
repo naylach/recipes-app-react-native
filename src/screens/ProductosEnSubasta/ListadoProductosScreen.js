@@ -8,20 +8,20 @@ import {
 } from 'react-native';
 import styles from './styles';
 import {
-  getIngredientName,
-  getAllIngredients,
+  getProductName,
+  getAllProducts,
 } from '../../data/MockDataAPI';
 
 export default function ListadoProductosScreen(props) {
-  const onPressIngredient = item => {
-    let name = getIngredientName(item.productoid);
-    let ingredient = item.productoid;
-    props.navigation.navigate('EspecificacionProducto', { ingredient, name });
+  const onPressProduct = item => {
+    let name = getProductName(item.productoid);
+    let product = item.productoid;
+    props.navigation.navigate('EspecificacionProducto', { product, name });
   };
 
   //texto de la imagen redondita
-  const renderIngredient = ({ item }) => (
-    <TouchableHighlight underlayColor='#dfeef5' style={{borderRadius: 50}} onPress={() => onPressIngredient(item[0])}>
+  const renderProduct = ({ item }) => (
+    <TouchableHighlight underlayColor='#dfeef5' style={{borderRadius: 50}} onPress={() => onPressProduct(item[0])}>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item[0].photo_url }} />
         <Text style={styles.title}>{item[0].name}</Text>
@@ -29,8 +29,8 @@ export default function ListadoProductosScreen(props) {
       </View>
     </TouchableHighlight>
   );
-    const item = props.navigation.getParam('ingredients');
-    const ingredientsArray = getAllIngredients(item);
+    const item = props.navigation.getParam('products');
+    const ingredientsArray = getAllProducts(item);
 
     return (
       <View>
@@ -39,7 +39,7 @@ export default function ListadoProductosScreen(props) {
           showsVerticalScrollIndicator={false}
           numColumns={3}
           data={ingredientsArray}
-          renderItem={renderIngredient}
+          renderItem={renderProduct}
           keyExtractor={item => `${item.recipeId}`}
         />
       </View>

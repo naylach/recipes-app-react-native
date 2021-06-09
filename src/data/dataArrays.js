@@ -513,7 +513,7 @@ export const misproductos = [
 
 
 //MEDIOS DE PAGO: TARJETAS
-export const tarjetas = [
+export const tarjetas1 = [
   {
     id: 1,
     name: 'VISA',
@@ -533,7 +533,7 @@ export const tarjetas = [
 
 
 //MEDIOS DE PAGO: CUENTAS
-export const cuentas = [
+export const cuentas1 = [
   {
     id: 4,
     name: 'Caja de ahorros BBVA',

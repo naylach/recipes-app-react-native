@@ -3,9 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer'
 import {createStackNavigator} from 'react-navigation-stack'
 import HomeScreen from '../screens/Home/HomeScreen';
-import CategoriesScreen from '../screens/Categories/CategoriesScreen';
 import CatalogoScreen from '../screens/Catalogo/CatalogoScreen';
-import RecipesListScreen from '../screens/RecipesList/RecipesListScreen';
 import DrawerContainer from '../screens/DrawerContainer/DrawerContainer';
 import EspecificacionProductoScreen from '../screens/ProductoEspecifico/EspecificacionProductoScreen';
 import SearchScreen from '../screens/Search/SearchScreen';
@@ -45,17 +43,11 @@ const MainNavigator = createStackNavigator(
         }
       }
     },
-    Categories: {
-      screen: CategoriesScreen,
-      navigationOptions:{
-        title: 'Categories'
-      }
-    },
     Catalogo: {
       screen: CatalogoScreen,
       navigationOptions: ({ navigation }) => {
         return {
-         title: 'Catálogo',
+         title: 'Catalogo',
          headerTransparent: 'true',
          headerLeft: () => <BackButton
            onPress={() => {
@@ -64,14 +56,6 @@ const MainNavigator = createStackNavigator(
          />
        }
      }
-    },
-    RecipesList: {
-      screen: RecipesListScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          title: navigation.getParam('title')
-        };
-      }
     },
     EspecificacionProducto: {
       screen: EspecificacionProductoScreen,

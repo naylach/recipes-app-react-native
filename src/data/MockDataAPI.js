@@ -1,5 +1,3 @@
-import { Text } from 'react-native';
-import React, { Component } from 'react';
 import { recipes, categories, detalleproducto,misproductos,especificacionProductoDATA } from './dataArrays';
 
 export function getCategoryById(categoryId) {
@@ -12,7 +10,7 @@ export function getCategoryById(categoryId) {
   return category;
 }
 
-export function getIngredientName(productoid) {
+export function getProductName(productoid) {
   let name;
   detalleproducto.map(data => {
     if (data.productoid == productoid) {
@@ -22,7 +20,7 @@ export function getIngredientName(productoid) {
   return name;
 }
 
-export function getIngredientUrl(productoid) {
+export function getProductUrl(productoid) {
   let url;
   detalleproducto.map(data => {
     if (data.productoid == productoid) {
@@ -53,7 +51,7 @@ export function getRecipes(categoryId) {
 }
 
 // modifica
-export function getRecipesByIngredient(productoid) {
+export function getRecipesByProduct(productoid) {
   const recipesArray = [];
   recipes.map(data => {
     data.detalleproducto.map(index => {
@@ -75,7 +73,7 @@ export function getNumberOfRecipes(categoryId) {
   return count;
 }
 
-export function getAllIngredients(idArray) {
+export function getAllProducts(idArray) {
   const ingredientsArray = [];
   idArray.map(index => {
     detalleproducto.map(data => {
@@ -88,13 +86,13 @@ export function getAllIngredients(idArray) {
 }
 
 // functions for search
-export function getRecipesByIngredientName(ingredientName) {
+export function getRecipesByProductName(ingredientName) {
   const nameUpper = ingredientName.toUpperCase();
   const recipesArray = [];
   detalleproducto.map(data => {
     if (data.name.toUpperCase().includes(nameUpper)) {
       // data.name.yoUpperCase() == nameUpper
-      const recipes = getRecipesByIngredient(data.productoid);
+      const recipes = getRecipesByProduct(data.productoid);
       const unique = [...new Set(recipes)];
       unique.map(item => {
         recipesArray.push(item);

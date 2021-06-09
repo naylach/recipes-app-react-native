@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import {
-  FlatList,
   ScrollView,
   Text,
   View,
-  TouchableOpacity,
   Image,
   Dimensions,
   TouchableHighlight
 } from 'react-native';
 import styles from './styles';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import { getIngredientName, getCategoryName, getCategoryById } from '../../data/MockDataAPI';
+import { getCategoryName, getCategoryById } from '../../data/MockDataAPI';
 import ViewProductsButton from '../../components/ViewProductsButton/ViewProductsButton';
 
 const { width: viewportWidth } = Dimensions.get('window');
@@ -26,12 +24,6 @@ export default function CatalogoScreen(props) {
       </View>
     </TouchableHighlight>
   );
-
-  const onPressIngredient = item => {
-    var name = getIngredientName(item);
-    let ingredient = item;
-    props.navigation.navigate('Ingredient', { ingredient, name });
-  };
     const item = props.navigation.getParam('item');
     const category = getCategoryById(item.categoryId);
     const title = getCategoryName(category.id);
@@ -74,11 +66,7 @@ export default function CatalogoScreen(props) {
         <View style={styles.infoRecipeContainer}>
           <Text style={styles.infoRecipeName}>{item.title}</Text>
           <View style={styles.infoContainer}>
-            <TouchableHighlight
-              onPress={() => props.navigation.navigate('RecipesList', { category, title })}
-            >
-              <Text style={styles.category}>{getCategoryName(item.categoryId).toUpperCase()}</Text>
-            </TouchableHighlight>
+            <Text style={styles.category}>{getCategoryName(item.categoryId).toUpperCase()}</Text>
           </View>
 
           <View style={styles.infoContainer}>
@@ -89,9 +77,9 @@ export default function CatalogoScreen(props) {
           <View style={styles.infoContainer}>
             <ViewProductsButton
               onPress={() => {
-                let ingredients = item.ingredients;
+                let products = item.ingredients;
                 let title = '' + item.title;
-                props.navigation.navigate('ListadoProductos', { ingredients, title });
+                props.navigation.navigate('ListadoProductos', { products, title });
               }}
             />
           </View>

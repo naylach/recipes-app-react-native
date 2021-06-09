@@ -93,14 +93,14 @@ export default function CargarNuevoProducto (props) {
       <Button
         title= '+'
         style={styles.btnimage}
-        onPress={pickImage()}
+        onPress={pickImage}
         color="#9FCAF5"
       />
       
       <Button
         title='Aceptar'
         style={styles.buttonLogin}      
-        onPress={handleButtonClick()}
+        onPress={handleButtonClick}
       />
 
       </View>

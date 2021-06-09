@@ -9,7 +9,7 @@ import {
   TextInput
 } from 'react-native';
 import styles from './styles';
-import { tarjetas, cuentas } from '../../data/dataArrays';
+import { tarjetas1, cuentas1 } from '../../data/dataArrays';
 import Modal from "react-native-simple-modal";
 
 export default function MediosPago(props) {
@@ -25,8 +25,8 @@ export default function MediosPago(props) {
   const [visibilityModalEliminado, setVisibilityModalEliminado]= useState(false);
   const [checked, setChecked]= useState(null);
   const [visibilityModalError, setVisibilityModalError]= useState(false);
-  const [tarjetas, setTarjetas]= useState([]);
-  const [cuentas, setCuentas]= useState([]);
+  const [tarjetas, setTarjetas]= useState(tarjetas1);
+  const [cuentas, setCuentas]= useState(cuentas1);
 
   useEffect( () => {
     //api
@@ -72,8 +72,8 @@ export default function MediosPago(props) {
       //else
       //openModalError();
     };
+    console.log(tarjetas, cuentas)
     return (
-
       <ScrollView style={styles.mainContainer}>
         <View>
             <View style={styles.header}>
@@ -132,12 +132,12 @@ export default function MediosPago(props) {
                     </View>
                   </View>
                   <View style={styles.columns}>
-                    <Button style={styles.modalButton} title='Agregar' type='solid' onPress={handleAgregarMedio()}/>
-                    <Button style={styles.modalButton} title='Cerrar' type='solid' onPress={closeModal()}/>
+                    <Button style={styles.modalButton} title='Agregar' type='solid' onPress={handleAgregarMedio}/>
+                    <Button style={styles.modalButton} title='Cerrar' type='solid' onPress={closeModal}/>
                   </View>
                 </View>
               </Modal>
-              <Button style={styles.button} title='Nuevo' type='solid' onPress={openModal()}/>
+              <Button style={styles.button} title='Nuevo' type='solid' onPress={openModal}/>
               <Modal
                 offset={-300}
                 open={visibilityModalCreado}
@@ -145,7 +145,7 @@ export default function MediosPago(props) {
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>Medio de pago en proceso de verificación</Text>
                   <Image style={styles.imageModal} source={require('../../../assets/icons/check.png')}/>
-                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalCreado()}/>
+                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalCreado}/>
                 </View>
               </Modal>
               <Modal
@@ -155,10 +155,10 @@ export default function MediosPago(props) {
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>Los datos ingresados están incompletos</Text>
                   <Image style={styles.imageModal} source={require('../../../assets/icons/cancel.png')}/>
-                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalError()}/>
+                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalError}/>
                 </View>
               </Modal>
-              <Button style={styles.button} title='Borrar' type='solid' onPress={openModal2()}/>
+              <Button style={styles.button} title='Borrar' type='solid' onPress={openModal2}/>
               <Modal
                 offset={-300}
                 open={deleting !== null}
@@ -167,8 +167,8 @@ export default function MediosPago(props) {
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>¿Está seguro de que desea borrar el medio de pago seleccionado?</Text>
                   <View style={styles.columns}>
-                    <Button style={styles.modalButton} title='Sí' type='solid' onPress={openModalEliminado()}/>
-                    <Button style={styles.modalButton} title='No' type='solid' onPress={closeModal2()}/>
+                    <Button style={styles.modalButton} title='Sí' type='solid' onPress={openModalEliminado}/>
+                    <Button style={styles.modalButton} title='No' type='solid' onPress={closeModal2}/>
                   </View>
                 </View>
               </Modal>
@@ -179,7 +179,7 @@ export default function MediosPago(props) {
                 <View style={styles.confirmationModal}>
                   <Text style={styles.modalTitle}>Medio de pago eliminado</Text>
                   <Image style={styles.imageModal} source={require('../../../assets/icons/check.png')}/>
-                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalEliminado()}/>
+                  <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModalEliminado}/>
                 </View>
               </Modal>
             </View>

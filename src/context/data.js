@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
 import * as SecureStore from 'expo-secure-store'
 export const DataContext = createContext({});
-const url = 'http://localhost:8080/api/'
+const url = 'http://192.168.0.182:8080/api/'
 
 
 export function DataProvider(props) {
@@ -15,15 +15,16 @@ export function DataProvider(props) {
   const [currentUser, setCurrentUser] = useState({});
   const [currentPropiedad, setCurrentPropiedad] = useState({});
 
+
   useEffect(() => {
-    checkPassword()
-    checkMail();
+    // checkPassword()
+    // checkMail();
     fetchCatalogos();
-    fetchUsuarios();
-    fetchProductos();
-    fetchPublicacionesMine();
-    fetchPaises();
-    fetchClientes();
+    // fetchUsuarios();
+    // fetchProductos();
+    // fetchPublicacionesMine();
+    // fetchPaises();
+    // fetchClientes();
   }, [refresh]);
 
   return (
@@ -53,60 +54,55 @@ export function DataProvider(props) {
     </DataContext.Provider>
   );
   
-  function checkMail(email){
-    fetch(url+'auth/mail', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email 
-        })
-  }).then((response) =>{
-    if(response.status===200){
-      //Pasar a pedir password
-    }else if (response.status=== 401){
-      //mostrar mensaje de error con data.msg
-      response.json().then((data) => console.log(data.msg))
-    }else{
-      //mostrar popup 'no existe un usuario registrado con ese mail'
-    }
-  })
-}
-//SecureStore.setItemAsync("token",data.token)})
-  function checkPassword(){
-    fetch(url+'auth/pass', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        password: this.state.password 
-      })
-    }).then((response) => {
-      if(response.status===200){
-        response.json().then((data) => {
-            //Login correcto! guardo token
-            SecureStore.setItemAsync("token",data.token)
-            setCurrentUser(data.user)
+//   function checkMail(email){
+//     fetch(url+'auth/mail', {
+//         method: 'POST',
+//         headers: {
+//           Accept: 'application/json',
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//           email: email 
+//         })
+//   }).then((response) =>{
+//     if(response.status===200){
+//       //Pasar a pedir password
+//     }else if (response.status=== 401){
+//       //mostrar mensaje de error con data.msg
+//       response.json().then((data) => console.log(data.msg))
+//     }else{
+//       //mostrar popup 'no existe un usuario registrado con ese mail'
+//     }
+//   })
+// }
+// //SecureStore.setItemAsync("token",data.token)})
+//   function checkPassword(password){
+//     fetch(url+'auth/pass', {
+//       method: 'POST',
+//       headers: {
+//         Accept: 'application/json',
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         password: password 
+//       })
+//     }).then((response) => {
+//       if(response.status===200){
+//         response.json().then((data) => {
+//             //Login correcto! guardo token
+//             SecureStore.setItemAsync("token",data.token)
+//             setCurrentUser(data.user)
             
-          })
-      }else{
-        //mostrar popup 'contraseña incorrecta'
-      }
-    })
-  }
+//           })
+//       }else{
+//         //mostrar popup 'contraseña incorrecta'
+//       }
+//     })
+//   }
 
   function fetchCatalogos() {
-    fetch(url+'catalogo/', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }})
-      .then((response) => response.json())
+    fetch(url+'catalogo/')
+      .then((response) =>response.json())
       .then((res) => setCatalogosList(res));
   }
 
@@ -129,20 +125,20 @@ export function DataProvider(props) {
   }
 
   //BUSCAR MANERA DE OBTERER IDENTIFICADOR DE CATALOGO
-  function fetchProductos() {
-    fetch(url+'catalogo/id', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        identificador: 2 //ACA VA ID CATALOGO!!
-      })
-    })
-      .then((response) => response.json())
-      .then((data) => setProductosList(data));
-  }
+  // function fetchProductos() {
+  //   fetch(url+'catalogo/id', {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       identificador: 2 //ACA VA ID CATALOGO!!
+  //     })
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => setProductosList(data));
+  // }
 
   function fetchPublicacionesMine() {
     fetch(url+'productos/cliente')

@@ -15,9 +15,7 @@ import {
 import styles from './styles';
 import { Button } from 'react-native-elements'
 import {
-  getIngredientUrl,
-  getRecipesByIngredient,
-  getCategoryName
+  getProductUrl,
 } from '../../data/MockDataAPI';
 
 import { pujas1 } from "../../data/dataArrays.js";
@@ -46,16 +44,13 @@ export default function EspecificacionProductoScreen(props) {
    //api pujas aqui
   setModalVisible(false);
   };
-  const productoid = props.navigation.getParam('ingredient');
-  const ingredientUrl = getIngredientUrl(productoid);
-  const ingredientName = props.navigation.getParam('name');
+  const productoid = props.navigation.getParam('product');
   return (
       <View style={{ borderBottomWidth: 0.4, marginBottom: 10, borderBottomColor: 'grey' }}>
       {pujas.length > 0 && (
         <Text style={styles.titleIngredient}>Última puja: ${pujas[pujas.length - 1].importe}</Text>)}
-        <Image style={styles.photoIngredient} source={{ uri: '' + ingredientUrl }} />
+        <Image style={styles.photoIngredient} source={{ uri: '' + getProductUrl(productoid) }} />
       <Text style={styles.titleIngredient}>Información</Text>
-      {/* <Text style={styles.ingredientInfo}>Nombre: {productosDetails.getEspecificacionProductos(1)}  </Text>  */}
       <Text style={styles.ingredientInfo}>Precio base: {getEspecificacionProductos(12).precioBase} </Text>
       <Text style={styles.ingredientInfo}>Tipo de producto:  {getEspecificacionProductos(12).tipoProducto} </Text>
       <Text style={styles.ingredientInfo}>Dueño Actual: {getEspecificacionProductos(12).duenioActual}  </Text>
