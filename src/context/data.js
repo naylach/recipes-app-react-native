@@ -21,7 +21,7 @@ export function DataProvider(props) {
     // checkMail();
     fetchCatalogos();
     // fetchUsuarios();
-    // fetchProductos();
+    fetchProductos();
     // fetchPublicacionesMine();
     // fetchPaises();
     // fetchClientes();
@@ -125,20 +125,11 @@ export function DataProvider(props) {
   }
 
   //BUSCAR MANERA DE OBTERER IDENTIFICADOR DE CATALOGO
-  // function fetchProductos() {
-  //   fetch(url+'catalogo/id', {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       identificador: 2 //ACA VA ID CATALOGO!!
-  //     })
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setProductosList(data));
-  // }
+  function fetchProductos() {
+    fetch(url+'catalogo/id?identificador=1')
+      .then((response) => response.json())
+      .then((data) => setProductosList(data));
+  }
 
   function fetchPublicacionesMine() {
     fetch(url+'productos/cliente')

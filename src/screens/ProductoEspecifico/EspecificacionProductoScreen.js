@@ -10,13 +10,11 @@ import {
   View,
   Image,
   Pressable,
-  TouchableHighlight,TextInput
+  TextInput
 } from 'react-native';
 import styles from './styles';
 import { Button } from 'react-native-elements'
-import {
-  getProductUrl,
-} from '../../data/MockDataAPI';
+import { getProductUrl } from '../../data/MockDataAPI';
 
 import { pujas1 } from "../../data/dataArrays.js";
 

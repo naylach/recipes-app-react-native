@@ -40,16 +40,6 @@ export function getCategoryName(categoryId) {
   return name;
 }
 
-export function getRecipes(categoryId) {
-  const recipesArray = [];
-  recipes.map(data => {
-    if (data.categoryId == categoryId) {
-      recipesArray.push(data);
-    }
-  });
-  return recipesArray;
-}
-
 // modifica
 export function getRecipesByProduct(productoid) {
   const recipesArray = [];
