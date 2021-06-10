@@ -15,15 +15,19 @@ import { DataContext } from "../../context";
 import { recipes } from '../../data/dataArrays';
 
 export default function ListadoProductosScreen(props) {
-  const { productosList,url  } = useContext(DataContext);
+  const { productosList,url,setCurrentProducto  } = useContext(DataContext);
   const onPressProduct = item => {
     // let name = getProductName(item.identificador);
     // let product = item.identificador;
 
     fetch(url+'productos/producto/?id='+item.identificador)
       .then((response) => response.json())
-      .then((data) => setProductosList(data));
-    props.navigation.navigate('EspecificacionProducto', { product, name });
+      .then((producto) => {
+          setCurrentProducto(producto)
+          //console.log(producto)
+          props.navigation.navigate('EspecificacionProducto', { producto });
+        });
+    
   };
 
   //texto de la imagen redondita

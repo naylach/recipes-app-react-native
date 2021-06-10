@@ -3,7 +3,7 @@
 import {getEspecificacionProductos} from '../../data/MockDataAPI' ;
 
 
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import {
   Modal,
   Text,
@@ -15,13 +15,14 @@ import {
 import styles from './styles';
 import { Button } from 'react-native-elements'
 import { getProductUrl } from '../../data/MockDataAPI';
+import { DataContext } from "../../context";
 
 import { pujas1 } from "../../data/dataArrays.js";
 
 export default function EspecificacionProductoScreen(props) {
   const [ modalVisible, setModalVisible ] = useState(false);
   const [ pujas, setPujas ] = useState(pujas1);
-
+const {currentProducto} = useContext(DataContext);
   useEffect( () => {
     setInterval( () => {
       //API DE PUJAS
@@ -42,18 +43,20 @@ export default function EspecificacionProductoScreen(props) {
    //api pujas aqui
   setModalVisible(false);
   };
-  const productoid = props.navigation.getParam('product');
+  //const producto = props.navigation.getParam('producto');
+  
+  
   return (
       <View style={{ borderBottomWidth: 0.4, marginBottom: 10, borderBottomColor: 'grey' }}>
       {pujas.length > 0 && (
         <Text style={styles.titleIngredient}>Última puja: ${pujas[pujas.length - 1].importe}</Text>)}
-        <Image style={styles.photoIngredient} source={{ uri: '' + getProductUrl(productoid) }} />
+        <Image style={styles.photoIngredient} source={{ uri: currentProducto[0]?.foto }} />
       <Text style={styles.titleIngredient}>Información</Text>
-      <Text style={styles.ingredientInfo}>Precio base: {getEspecificacionProductos(12).precioBase} </Text>
-      <Text style={styles.ingredientInfo}>Tipo de producto:  {getEspecificacionProductos(12).tipoProducto} </Text>
-      <Text style={styles.ingredientInfo}>Dueño Actual: {getEspecificacionProductos(12).duenioActual}  </Text>
-      <Text style={styles.ingredientInfo}>Descripción: {getEspecificacionProductos(12).descripcion} </Text>
-      <Text style={styles.ingredientInfo}>Número de pieza: {getEspecificacionProductos(12).numeroPieza} </Text> 
+      <Text style={styles.ingredientInfo}>Precio base: {currentProducto[0]?.precioBase} </Text>
+      {/* <Text style={styles.ingredientInfo}>Tipo de producto:  {producto} </Text> */}
+      <Text style={styles.ingredientInfo}>Dueño Actual: {currentProducto[0]?.duenio}  </Text>
+      <Text style={styles.ingredientInfo}>Descripción: {currentProducto[0]?.descripcionCatalogo} </Text>
+      <Text style={styles.ingredientInfo}>Número de pieza: {currentProducto[0]?.identificador} </Text> 
     
       {1 === 1 && (<Button
         title='Pujar'

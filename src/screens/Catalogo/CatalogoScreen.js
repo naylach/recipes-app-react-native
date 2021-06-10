@@ -32,7 +32,7 @@ export default function CatalogoScreen(props) {
     //const item1 = new Array(productosList.length) 
     
     productosList.forEach(p =>arrayfotos.push(p.foto));
-    const item = productosList[1];
+    const item = productosList[0];
     const category = getCategoryById(0);
     const title = getCategoryName(category.id);
     
@@ -79,14 +79,14 @@ export default function CatalogoScreen(props) {
 
           <View style={styles.infoContainer}>
             <Image style={styles.infoPhoto} source={require('../../../assets/icons/time.png')} />
-            <Text style={styles.infoRecipe}>{item?.fecha==="01-01-2021" ? "En curso" : "Próximamente"}  </Text>
+            <Text style={styles.infoRecipe}>{item?.fecha==="10/06/2021" ? "En curso" : "Próximamente"}  </Text>
           </View>
 
           <View style={styles.infoContainer}>
             <ViewProductsButton
               onPress={() => {
                 let products = productosList;
-                let title = +item.descripcionCatalogo;
+                let title = ""+catalogoSeleccionado;
                 props.navigation.navigate('ListadoProductos', { products, title });
               }}
             />

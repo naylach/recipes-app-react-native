@@ -14,6 +14,7 @@ export function DataProvider(props) {
   const [refresh, setRefresh] = useState(0);
   const [currentUser, setCurrentUser] = useState({});
   const [currentPropiedad, setCurrentPropiedad] = useState({}); 
+  const [currentProducto, setCurrentProducto] = useState([]); 
   const [catalogoSeleccionado, setCatalogoSeleccionado] = useState("");
 
   useEffect(() => {
@@ -50,7 +51,9 @@ export function DataProvider(props) {
         setRefresh,    
         catalogoSeleccionado, 
         setCatalogoSeleccionado,  
-        url
+        url,
+        currentProducto, 
+        setCurrentProducto
 
       }}
     >
