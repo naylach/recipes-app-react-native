@@ -15,10 +15,14 @@ import { DataContext } from "../../context";
 import { recipes } from '../../data/dataArrays';
 
 export default function ListadoProductosScreen(props) {
-  const { productosList, catalogosList } = useContext(DataContext);
+  const { productosList,url  } = useContext(DataContext);
   const onPressProduct = item => {
-    let name = getProductName(item.identificador);
-    let product = item.identificador;
+    // let name = getProductName(item.identificador);
+    // let product = item.identificador;
+
+    fetch(url+'productos/producto/?id='+item.identificador)
+      .then((response) => response.json())
+      .then((data) => setProductosList(data));
     props.navigation.navigate('EspecificacionProducto', { product, name });
   };
 
@@ -26,8 +30,8 @@ export default function ListadoProductosScreen(props) {
   const renderProduct = ({ item }) => (
     <TouchableHighlight underlayColor='#dfeef5' style={{borderRadius: 50}} onPress={() => onPressProduct(item)}>
       <View style={styles.container}>
-        <Image style={styles.photo} source={{ uri: catalogosList[0].photo_url }} />
-        <Text style={styles.title}>{item.duenio}</Text>
+        <Image style={styles.photo} source={{ uri: item.foto }} />
+        <Text style={styles.title}>{item.descripcionCatalogo}</Text>
         {/* //poner titulo */}
         <Text style={{ color: 'grey' }}>{item[1]}</Text>
       </View>

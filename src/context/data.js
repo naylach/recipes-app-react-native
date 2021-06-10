@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
 import * as SecureStore from 'expo-secure-store'
 export const DataContext = createContext({});
-const url = 'http://192.168.0.182:8080/api/'
+const url = 'http://192.168.0.16:8080/api/'
 
 
 export function DataProvider(props) {
@@ -13,15 +13,15 @@ export function DataProvider(props) {
   const [productosList, setProductosList] = useState([]);
   const [refresh, setRefresh] = useState(0);
   const [currentUser, setCurrentUser] = useState({});
-  const [currentPropiedad, setCurrentPropiedad] = useState({});
-
+  const [currentPropiedad, setCurrentPropiedad] = useState({}); 
+  const [catalogoSeleccionado, setCatalogoSeleccionado] = useState("");
 
   useEffect(() => {
     // checkPassword()
     // checkMail();
     fetchCatalogos();
     // fetchUsuarios();
-    fetchProductos();
+    //fetchProductos();
     // fetchPublicacionesMine();
     // fetchPaises();
     // fetchClientes();
@@ -47,7 +47,11 @@ export function DataProvider(props) {
         clientesList,
         setClientesList,
         refresh,
-        setRefresh,
+        setRefresh,    
+        catalogoSeleccionado, 
+        setCatalogoSeleccionado,  
+        url
+
       }}
     >
       {props.children}
@@ -126,9 +130,11 @@ export function DataProvider(props) {
 
   //BUSCAR MANERA DE OBTERER IDENTIFICADOR DE CATALOGO
   function fetchProductos() {
-    fetch(url+'catalogo/id?identificador=1')
+    
+    fetch(url+'catalogo/id?identificador='+catalogoSeleccionado)
       .then((response) => response.json())
       .then((data) => setProductosList(data));
+    
   }
 
   function fetchPublicacionesMine() {

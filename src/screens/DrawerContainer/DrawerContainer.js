@@ -1,12 +1,18 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { View, Image, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import MenuButton from '../../components/MenuButton/MenuButton';
 import { users } from '../../data/dataArrays.js';
-
+import { DataContext } from "../../context";
 
 export default function DrawerContainer (props){
+  const {url,setPublicacionesMineList,publicacionesMineList}= useContext(DataContext);
+   function getMyPublicaciones(){
+    fetch(url+'productos/cliente/?idCliente=16')
+                    .then((response) => response.json())
+                    .then((res) => setPublicacionesMineList(res));
+  }
     const Separator = () => (
       <View style={styles.separator} />
     );
@@ -33,6 +39,8 @@ export default function DrawerContainer (props){
             title="Mis publicaciones"
             source={require('../../../assets/icons/publicaciones.png')}
             onPress={() => {
+              getMyPublicaciones()
+              //console.log(publicacionesMineList)
               props.navigation.navigate('MisPublicaciones');
               props.navigation.closeDrawer();
             }}

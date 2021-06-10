@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   FlatList,
   ScrollView,
@@ -15,11 +15,10 @@ import { getIngredientName, getCategoryName, getCategoryById } from '../../data/
 import ViewProductsButton from '../../components/ViewProductsButton/ViewProductsButton';
 import { DataContext } from "../../context";
 import { recipes } from '../../data/dataArrays';
-
 const { width: viewportWidth } = Dimensions.get('window');
 
 export default function CatalogoScreen(props) {
-  const { productosList } = useContext(DataContext);
+  const {productosList,catalogoSeleccionado} = useContext(DataContext);
   const [activeSlide, setActiveSlide] = useState(0);
 
   const renderImage = ({ item }) => (
@@ -29,12 +28,14 @@ export default function CatalogoScreen(props) {
       </View>
     </TouchableHighlight>
   );
-    const item1 = recipes[0];
-    const item = productosList[0]
+    const arrayfotos = [];
+    //const item1 = new Array(productosList.length) 
+    
+    productosList.forEach(p =>arrayfotos.push(p.foto));
+    const item = productosList[1];
     const category = getCategoryById(0);
     const title = getCategoryName(category.id);
     
-
     return (
       <ScrollView style={styles.container}>
         <View style={styles.carouselContainer}>
@@ -43,7 +44,7 @@ export default function CatalogoScreen(props) {
               // ref={c => {
               //   this.slider1Ref = c;
               // }}
-              data={item1.photosArray}
+              data={arrayfotos}
               renderItem={renderImage}
               sliderWidth={viewportWidth}
               itemWidth={viewportWidth}
@@ -57,7 +58,7 @@ export default function CatalogoScreen(props) {
               onSnapToItem={index => setActiveSlide(index)}
             />
             <Pagination
-              dotsLength={item1.photosArray.length}
+              dotsLength={arrayfotos.length}
               activeDotIndex={activeSlide}
               containerStyle={styles.paginationContainer}
               dotColor="#15a8ed"
@@ -71,28 +72,28 @@ export default function CatalogoScreen(props) {
           </View>
         </View>
         <View style={styles.infoRecipeContainer}>
-          <Text style={styles.infoRecipeName}>{item.descripcionCatalogo}</Text>
+          <Text style={styles.infoRecipeName}>{catalogoSeleccionado}</Text>
           <View style={styles.infoContainer}>
-            <Text style={styles.category}>{getCategoryName(item1.categoryId).toUpperCase()}</Text>
+            <Text style={styles.category}>{"CATALOGO"}</Text>
           </View>
 
           <View style={styles.infoContainer}>
             <Image style={styles.infoPhoto} source={require('../../../assets/icons/time.png')} />
-            <Text style={styles.infoRecipe}>{item.fecha==="01-01-2021" ? "En curso" : "Próximamente"}  </Text>
+            <Text style={styles.infoRecipe}>{item?.fecha==="01-01-2021" ? "En curso" : "Próximamente"}  </Text>
           </View>
 
           <View style={styles.infoContainer}>
             <ViewProductsButton
               onPress={() => {
                 let products = productosList;
-                let title = '' + item.descripcionCatalogo;
+                let title = +item.descripcionCatalogo;
                 props.navigation.navigate('ListadoProductos', { products, title });
               }}
             />
           </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.infoDescriptionRecipe}>{item.descripcionCompleta}</Text>
-          </View>
+          {/* <View style={styles.infoContainer}>
+            <Text style={styles.infoDescriptionRecipe}>{""}</Text>
+          </View> */}
         </View>
       </ScrollView>
     );

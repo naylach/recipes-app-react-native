@@ -49,7 +49,7 @@ export const recipes = [
       
     ],
     time: 'En curso',
-    products: [[0, '$200000'], [1, '$494395'], [2, '$42423']],
+    ingredients: [[0, '$200000'], [1, '$494395'], [2, '$42423']],
     description: 'Autos del año 2019 en adelante con poco uso. Excelente estado.'
   },
   {
@@ -65,7 +65,7 @@ export const recipes = [
       
     ],
     time: '10/06/2021',
-    products: [
+    ingredients: [
       [15, '$300000'],
       [16, '$55500'],
       
@@ -76,7 +76,7 @@ export const recipes = [
     catalogoId: 2,
     categoryId: 3,
     title: 'Vajillas antiguas',
-    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/71KXAhzy-tL._AC_SX466_.jpg',
+    photo_url: '556',
     photosArray: [
       'https://images-na.ssl-images-amazon.com/images/I/71KXAhzy-tL._AC_SX466_.jpg',
       'https://i.pinimg.com/originals/41/4c/11/414c1104e8ca941fbee93082ae132090.jpg',
@@ -85,7 +85,7 @@ export const recipes = [
       
     ],
     time: '20/10/2021',
-    products: [
+    ingredients: [
       [7, '$675'],
       [8, '$1675'],
       [9, '$29675']
@@ -107,7 +107,7 @@ export const recipes = [
       'https://http2.mlstatic.com/D_NQ_NP_774433-MLA44971440130_022021-O.jpg'
     ],
     time: '05/08/2021',
-    products: [
+    ingredients: [
       [3, '$975'],
       [4, '$975'],
       [5, '$975']
@@ -128,7 +128,7 @@ export const recipes = [
       
     ],
     time: '30/11/2021',
-    products: [
+    ingredients: [
       [11, '$5000'],
       [12, '$6000']
      
@@ -147,7 +147,7 @@ export const recipes = [
       'https://i.pinimg.com/originals/a3/fc/0e/a3fc0ebeac6708abc60d808ea44c4a51.png'
     ],
     time: '19/11/2021',
-    products: [
+    ingredients: [
       [13, '$7000'],
       [14, '$5000']
       
@@ -167,7 +167,7 @@ export const recipes = [
       'https://cdn-image.foodandwine.com/sites/default/files/styles/medium_2x/public/201403-xl-chipotle-chicken-fajitas.jpg?itok=ghVcI5SQ'
     ],
     time: 13/12/2021,
-    products: [
+    ingredients: [
       [33, '1/2 teaspoons'],
       [32, '4 tablespoons']
       
@@ -187,7 +187,7 @@ export const recipes = [
       'https://static1.squarespace.com/static/565bb41ae4b0509ba9fdf769/t/5b9a8e80aa4a998b0be0fcf4/1536855690622/pizza.gif'
     ],
     time: 5/8/2022,
-    products: [
+    ingredients: [
       [30, '$3335'],
       [31, '$3335'],
       [32, '$3335'],
@@ -208,7 +208,7 @@ export const recipes = [
       'https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg'
     ],
     time: '15',
-    products: [[0, '200ml'], [1, '5g'], [2, '300g']],
+    ingredients: [[0, '200ml'], [1, '5g'], [2, '300g']],
     description:
       '...'
   },
@@ -223,7 +223,7 @@ export const recipes = [
       'https://cdn-image.foodandwine.com/sites/default/files/HD-201104-r-spaghetti-with-anchovy.jpg'
     ],
     time: 15,
-    products: [
+    ingredients: [
       [35, '50g'],
       [35, '100g'],
       [4, '2 teaspoons']
@@ -242,7 +242,7 @@ export const recipes = [
       'https://images4.alphacoders.com/817/817350.jpg'
     ],
     time: 60,
-    products: [
+    ingredients: [
       [30, '1 large'],
       [25, '1 pound']
      
@@ -513,7 +513,7 @@ export const misproductos = [
 
 
 //MEDIOS DE PAGO: TARJETAS
-export const tarjetas1 = [
+export const tarjetas = [
   {
     id: 1,
     name: 'VISA',
@@ -533,7 +533,7 @@ export const tarjetas1 = [
 
 
 //MEDIOS DE PAGO: CUENTAS
-export const cuentas1 = [
+export const cuentas = [
   {
     id: 4,
     name: 'Caja de ahorros BBVA',
@@ -634,18 +634,3 @@ export const tipoProducto = [
   { key: index++, label: "Ropa y Accesorios" },
   { key: index++, label: "Otras categorías" },
 ];
-
-
-//para screen de especificacion de producto
-export const especificacionProductoDATA = [
-  {
-    idProducto: 12,
-    tipoProducto: "Autos, Motos y Otros",
-    producto: "Autotest",
-    precioBase: 50000,
-    duenioActual: "pepe",
-    descripcion: "descripcion del producto",
-    numeroPieza: 2485
-  },
-];
-

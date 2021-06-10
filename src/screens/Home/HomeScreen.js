@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
 import styles from './styles';
 import { recipes } from '../../data/dataArrays';
@@ -37,10 +37,31 @@ import { DataContext } from "../../context";
 //     );
 // }
 export default function HomeScreen(props) {
-  const { catalogosList } = useContext(DataContext);
-
+  const { catalogosList,setProductosList,url,setCatalogoSeleccionado} = useContext(DataContext);
+  
   const onPressRecipe = item => {
-    props.navigation.navigate('Catalogo', { item });
+    fetch(url+'catalogo/id?identificador='+item.identificador)
+      .then((response) => response.json())
+      .then((itm) => {
+        console.log(`en el catalogo ${item.descripcion} seleccionado hay ${itm.length} productos`)
+        setProductosList(itm)
+        setCatalogoSeleccionado(item.descripcion)
+        // fetchProductos
+        props.navigation.navigate('Catalogo', { itm })
+      });
+    /*
+    const onPressRecipe = item => {
+    setCatalogoSeleccionado(item.descripcion)
+    fetch(url+'catalogo/id?identificador='+item.identificador)
+      .then((response) => response.json())
+      .then((itms) => {
+        console.log(`en el catalogo ${item.identificador} seleccionado hay ${itms.length} productos`)
+        const listadoDeCatalogo={titulo:item.descripcion, productos:itms}
+        //setProductosList=itms                                  
+        props.navigation.navigate('Catalogo', { itms })
+      });
+  };
+  */
   };
 
   const renderCatalogs = ({ item }) => (

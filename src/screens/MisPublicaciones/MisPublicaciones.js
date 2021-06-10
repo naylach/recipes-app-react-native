@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext, useLayoutEffect  } from "react";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getProductos } from "../../data/MockDataAPI";
-
+import { DataContext } from "../../context";
 import {
   StyleSheet,
   FlatList,
@@ -20,12 +20,22 @@ export default function MisPublicaciones(props) {
   //   this.props.navigation.navigate("Recipe", { item });
   // };
 
+  const { publicacionesMineList,url}= useContext(DataContext);
+
+  // function fetchPublicacionesMine() {
+  //   fetch(url+'productos/cliente/?idCliente=16')
+  //     .then((response) => response.json())
+  //     .then((res) => setPublicacionesMineList(res));
+  // }
+  // useLayoutEffect (()=>fetchPublicacionesMine)
+  
+  console.log(publicacionesMineList)
   const renderItems = ({ item }) => (
     <TouchableHighlight>
       <View style={styles.container}>
-        <Image style={styles.photo} source={{ uri: item.imagen }} />
-        <Text style={styles.title}>{item.titulo}</Text>
-        <Text style={styles.category}>{item.estado}</Text>
+        <Image style={styles.photo} source={{ uri: item.foto }} />
+        <Text style={styles.title}>{item.descripcionCatalogo}</Text>
+        <Text style={styles.category}>{item.disponible==='si' ? "En proceso de subasta":"Subastado"}</Text>
       </View>
     </TouchableHighlight>
   );
@@ -35,7 +45,7 @@ export default function MisPublicaciones(props) {
           vertical
           showsVerticalScrollIndicator={false}
           numColumns={2}
-          data={misproductos}
+          data={publicacionesMineList}
           renderItem={renderItems}
           keyExtractor={(item) => `${item.id}`}
         />
