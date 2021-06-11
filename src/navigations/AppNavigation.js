@@ -16,6 +16,7 @@ import HistorialTransaccionesScreen from '../screens/HistorialTransacciones/Hist
 import CargarNuevoProductoScreen from '../screens/CargarNuevoProducto/CargarNuevoProducto';
 import MisPublicacionesScreen from '../screens/MisPublicaciones/MisPublicaciones';
 
+import * as SecureStore from 'expo-secure-store';
 import MenuImage from '../components/MenuImage/MenuImage';
 import ProfileButton from '../components/ProfileButton/ProfileButton';
 import BackButton from '../components/BackButton/BackButton';
@@ -159,5 +160,3 @@ const DrawerStack = createDrawerNavigator(
 );
 
 export default AppContainer = createAppContainer(DrawerStack);
-
-console.disableYellowBox = true;

@@ -20,6 +20,14 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     textAlign: 'center',
   },
+  errorMail: {
+    color: 'red',
+    fontSize: 15,
+    flex: 0.9,
+    textDecorationStyle: 'solid',
+    paddingLeft: 10,
+    textAlign: 'center',
+  },
   button: {
     textAlign: 'center',
     width: 250,

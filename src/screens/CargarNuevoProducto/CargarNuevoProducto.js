@@ -25,7 +25,7 @@ export default function CargarNuevoProducto (props) {
   const [disenador, setDisenador] = useState("");
  
   const handleButtonClick = (e) => {
-      let descr = (tipo !== 'Arte' && tipo !== 'Objetos de diseñador') ? descripcion : artista + disenador + fecha + contexto + duenio + curiosidades;
+      let descr = (tipo != 'Arte' && tipo != 'Objetos de diseñador') ? descripcion : artista + disenador + fecha + contexto + duenio + curiosidades;
       const nuevoProducto = {
         nombre, tipoProducto, descr, imagenes
       };

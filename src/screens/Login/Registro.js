@@ -13,10 +13,11 @@ import Modal from "react-native-simple-modal";
 export default function Registro(props) {
   const [ nombre, setNombre ] = useState("");
   const [ apellido, setApellido ] = useState("");
-  const [ dni, setDNI ] = useState("");
+  const [ documento, setDNI ] = useState("");
   const [ email, setEmail ] = useState("");
   const [ email2, setEmail2 ] = useState("");
   const [ telefono, setTelefono ] = useState("");
+  const [ direccion, setDireccion ] = useState("");
   const [ visibilityModal, setVisibilityModal ] = useState(false);
 
   const openModal = () => setVisibilityModal(true);
@@ -24,6 +25,51 @@ export default function Registro(props) {
   const closeModal = () => {
     setVisibilityModal(false);
     props.navigation.navigate('Home');
+  };
+
+  const handleButtonClick = () => {
+    const nuevoUsuario = {
+      nombre: nombre + " " + apellido,
+      documento,
+      telefono,
+      email,
+      direccion
+    };
+    console.log("Nuevo usuario: ", JSON.stringify(nuevoUsuario));
+
+    fetch("http://192.168.0.182:8080/api/auth/signUp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(nuevoUsuario),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    // var details = {
+    //   destinatario: email,
+    //   asunto: "Registro en SubastApp para el usuario: " + nombre + " " + apellido,
+    // };
+    // var formBody = [];
+    // for (var property in details) {
+    //   var encodedKey = encodeURIComponent(property);
+    //   var encodedValue = encodeURIComponent(details[property]);
+    //   formBody.push(encodedKey + "=" + encodedValue);
+    // }
+    // formBody = formBody.join("&");
+    // fetch("http://localhost:8080/api/sendEmail", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+    //   },
+    //   body: formBody,
+    // });
+    openModal();
   };
     return (
       <ScrollView style={styles.mainContainer} scrollEnabled='false'>
@@ -33,20 +79,21 @@ export default function Registro(props) {
             <Text style={styles.titleRegisterScreen}>Apellido</Text>
             <TextInput style={styles.inputRegisterScreen} onChangeText={text => setApellido(text)} value={apellido}></TextInput>
             <Text style={styles.titleRegisterScreen}>DNI</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setDNI(text)} value={dni}></TextInput>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setDNI(text)} value={documento}></TextInput>
+            <Text style={styles.titleRegisterScreen}>Teléfono</Text>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setTelefono(text)} value={telefono}></TextInput>
+            <Text style={styles.titleRegisterScreen}>Dirección</Text>
+            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setDireccion(text)} value={direccion}></TextInput>
             <Text style={styles.titleRegisterScreen}>Email</Text>
             <TextInput style={styles.inputRegisterScreen} onChangeText={text => setEmail(text)} value={email}></TextInput>
             <Text style={styles.titleRegisterScreen}>Confirmar email</Text>
             <TextInput style={styles.inputRegisterScreen} onChangeText={text => setEmail2(text)} value={email2}></TextInput>
-            <Text style={styles.titleRegisterScreen}>Teléfono</Text>
-            <TextInput style={styles.inputRegisterScreen} onChangeText={text => setTelefono(text)} value={telefono}></TextInput>
-            <Button 
+            {email !== email2 && <Text style={styles.errorMail}>Los emails deben coincidir.</Text>}
+            {nombre !== "" && apellido !== "" && documento !== "" && telefono !== "" && direccion !== "" && email === email2 && <Button 
                 style={styles.buttonRegisterScreen} 
                 title='Registrarse'
-                onPress={() => {
-                  openModal()
-                }}
-            />
+                onPress={handleButtonClick}
+            />}
             <Modal
               offset={0}
               open={visibilityModal}
