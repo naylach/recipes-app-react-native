@@ -1,7 +1,10 @@
 import React, { useState, createContext, useEffect } from "react";
 import * as SecureStore from 'expo-secure-store'
 export const DataContext = createContext({});
-const url = 'http://192.168.0.182:8080/api/'
+
+
+const url = 'http://192.168.1.22:8080/api/'
+
 
 
 export function DataProvider(props) {
