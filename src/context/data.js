@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
-import * as SecureStore from 'expo-secure-store'
+import * as SecureStore from 'expo-secure-store';
 export const DataContext = createContext({});
-const url = 'http://192.168.0.182:8080/api/'
+const url = 'http://192.168.0.182:8080/api/';
 
 
 export function DataProvider(props) {
@@ -60,52 +60,6 @@ export function DataProvider(props) {
       {props.children}
     </DataContext.Provider>
   );
-  
-//   function checkMail(email){
-//     fetch(url+'auth/mail', {
-//         method: 'POST',
-//         headers: {
-//           Accept: 'application/json',
-//           'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//           email: email 
-//         })
-//   }).then((response) =>{
-//     if(response.status===200){
-//       //Pasar a pedir password
-//     }else if (response.status=== 401){
-//       //mostrar mensaje de error con data.msg
-//       response.json().then((data) => console.log(data.msg))
-//     }else{
-//       //mostrar popup 'no existe un usuario registrado con ese mail'
-//     }
-//   })
-// }
-// //SecureStore.setItemAsync("token",data.token)})
-//   function checkPassword(password){
-//     fetch(url+'auth/pass', {
-//       method: 'POST',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         password: password 
-//       })
-//     }).then((response) => {
-//       if(response.status===200){
-//         response.json().then((data) => {
-//             //Login correcto! guardo token
-//             SecureStore.setItemAsync("token",data.token)
-//             setCurrentUser(data.user)
-            
-//           })
-//       }else{
-//         //mostrar popup 'contraseña incorrecta'
-//       }
-//     })
-//   }
 
   function fetchCatalogos() {
     fetch(url+'catalogo/')

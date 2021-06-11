@@ -3,6 +3,8 @@ import { TouchableOpacity, Image} from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
+import * as SecureStore from 'expo-secure-store';
+
 export default function ProfileButton(props) {
     return (
       <TouchableOpacity style={styles.headerButtonContainer} onPress={props.onPress}>

@@ -1,55 +1,120 @@
 import React, { useState, useEffect, useContext } from 'react';
+import * as SecureStore from 'expo-secure-store';
 import { Button } from 'react-native-elements'
 import {
   ScrollView,
   Text,
   View,
-  Image,
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import styles from './styles';
 import { DataContext } from "../../context";
-import { Alert } from 'react-native';
 import Modal from "react-native-simple-modal";
 
 export default function Login (props) {
-  const [email, setEmail]=useState("");
-  const [password, setPassword]= useState("");
-  const [password2, setPassword2]=useState("");
-  const [visibilityModal, setVisibilityModal]=useState(false);
-  const [visibilityModal1, setVisibilityModal1]=useState(false);
-  const [visibilityModal2, setVisibilityModal2]=useState(false);
-  const [visibilityModal3, setVisibilityModal3]=useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [visibilityModal, setVisibilityModal] = useState(false);
+  const [visibilityModal1, setVisibilityModal1] = useState(false);
+  const [visibilityModal2, setVisibilityModal2] = useState(false);
+  const [visibilityModal3, setVisibilityModal3] = useState(false);
+  const [visibilityModal4, setVisibilityModal4] = useState(false);
+  const [ usuario, setUsuario ] = useState(null);
+  const { currentUser, setCurrentUser } = useContext(DataContext);
  
   const openModal = () => setVisibilityModal(true);
   const openModal1 = () => setVisibilityModal1(true);
   const openModal2 = () => setVisibilityModal2(true);
   const openModal3 = () => setVisibilityModal3(true);
+  const openModal4 = () => setVisibilityModal4(true);
 
-    //const { setCurrentUser } = useContext(DataContext);
-    
-  const handleLoginClick = (e) => {
-    //if (){ -> existe el usuario y eso
-    // fetch(
-    //   `http://localhost:8000/usuarios/login/mail/${email}/pass/${password}`
-    // )
-    //   .then((response) => response.json())
-    //   .then((r) => {
-    //     console.log(r);
-    //     setCurrentUser(r);
-    //   })
-    //   .catch((e) => console.log(e));
-      props.navigation.navigate('Home');
-      console.log("holaaaaaaaaa");
-    //}else if (){ -> existe usuario pero aun no está habilitado
-    // this.openModal();
-    //}else if () -> usuario no registrado{
-    // this.openModal3();
-    //}else if (){ -> usuario registrado, habilitado para crear contraseña
-    // this.openModal2();}
-    // else{ -> usuario registrado y habilitado, datos incorrectos
-    // this.openModal1();}
+  useEffect(() => {
+    if(usuario){
+      if (usuario.invalid){
+        openModal3();
+      }
+      else if (usuario.estado === 2){
+      }else if (usuario.estado === 0){
+        openModal();
+      }else if (usuario.estado === 1){
+        openModal2();
+      }
+      else{
+        console.log("if incorrectos");
+        openModal1();
+      }
+    }
+  }, [usuario, currentUser])
+
+  const handleEmailChange = () => {
+    console.log("handle email change");
+    fetch("http://192.168.0.182:8080/api/auth/mail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email}),
+    })
+    .then((response) => {
+      if (response.status != 404)
+        return response.json()
+      return
+    })
+    .then((res) => {
+      if(res) 
+        setUsuario(res)
+      else
+        setUsuario({invalid: true})
+    })
+    .catch((error) => {
+      console.error("Error auth mail:", error);
+    });
   };
+
+  const handleLoginClick = () => {
+    if(usuario?.estado === 2){
+      fetch("http://192.168.0.182:8080/api/auth/pass", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email, password}),
+      })
+      .then((response) => {
+        if (response.status != 401){
+          setCurrentUser(response.json());
+          SecureStore.setItemAsync("token",response.json().token);
+          props.navigation.navigate('Home');
+          return response.json()
+        }
+        else
+          openModal1();
+        return
+      })
+      .catch((error) => {
+        console.error("Error login:", error);
+      });
+    }
+    else if(usuario?.estado === 1){
+      fetch("http://192.168.0.182:8080/api/auth/pass", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email, password}),
+      })
+      .then((response) => response.json())
+      .then((res) => {
+        setCurrentUser(res)
+        openModal4();
+      })
+      .catch((error) => {
+        console.error("Error generate:", error);
+      });
+    }
+  };
+
   const handleContinueClick = (e) => {
     props.navigation.navigate('Home');
   };
@@ -67,33 +132,43 @@ export default function Login (props) {
     setVisibilityModal2(false);
   };
   const closeModal3 = () => {
-    setVisibilityModal3( false);
+    setVisibilityModal3(false);
     props.navigation.navigate('Registro');
+  };
+  const closeModal4 = () => {
+    setVisibilityModal2(false);
+    props.navigation.navigate('Home');
   };
   return (
     <ScrollView style={styles.mainContainer}  scrollEnabled='false'>
       <View>
-          <Text style={styles.title}>Usuario</Text>
-          <TextInput style={styles.input} onChangeText={text => setEmail(text)} value={email}></TextInput>
-          {1 === 1 && (
+          <Text style={styles.title}>Email</Text>
+          <TextInput style={styles.input}  onChangeText={text => setEmail(text)} value={email}></TextInput>
+          {(usuario?.estado === 2 || usuario?.estado === 1) && (
             <View>
               <Text style={styles.title}>Contraseña</Text>
-              <TextInput secureTextEntry={true} style={styles.input} onChangeText={text => setPassword( text)} value={password}></TextInput>
+              <TextInput secureTextEntry={true} style={styles.input} onChangeText={text => setPassword(text)} value={password}></TextInput>
             </View>
           )}
 
-          {1 === 1 && (
+          {usuario?.estado === 1 && (
             <View>
               <Text style={styles.title}>Confirmar contraseña</Text>
               <TextInput secureTextEntry={true} style={styles.input} onChangeText={text => setPassword2(text)} value={password2}></TextInput>
+              {password !== password2 && <Text style={styles.errorMail}>Las contraseñas deben coincidir.</Text>}
             </View>
           )}
 
+          {(usuario?.estado === 2 || (usuario?.estado === 1 && password === password2)) ? 
           <Button 
             style={styles.buttonLogin} 
             title='Iniciar sesión'
             onPress={handleLoginClick}
-          />
+          /> : <Button 
+          style={styles.buttonLogin} 
+          title='Verificar email'
+          onPress={handleEmailChange}
+        />}
 
           <Button 
             style={styles.button} 
@@ -108,6 +183,7 @@ export default function Login (props) {
           <Modal
             offset={0}
             open={visibilityModal}
+            overlayStyle={{backgroundColor:'transparent'}}
           >
             <View style={styles.confirmationModal}>
               <Text style={styles.modalTitle}>Registro en proceso de verificación.</Text>
@@ -118,6 +194,7 @@ export default function Login (props) {
           <Modal
             offset={0}
             open={visibilityModal1}
+            overlayStyle={{backgroundColor:'transparent'}}
           >
             <View style={styles.confirmationModal}>
               <Text style={styles.modalTitle}>Los datos ingresados son incorrectos.</Text>
@@ -128,6 +205,7 @@ export default function Login (props) {
           <Modal
             offset={0}
             open={visibilityModal2}
+            overlayStyle={{backgroundColor:'transparent'}}
           >
             <View style={styles.confirmationModal}>
               <Text style={styles.modalTitle}>¡Bienvenido a SubastApp!</Text>
@@ -138,11 +216,23 @@ export default function Login (props) {
           <Modal
             offset={0}
             open={visibilityModal3}
+            overlayStyle={{backgroundColor:'transparent'}}
           >
             <View style={styles.confirmationModal}>
               <Text style={styles.modalTitle}>Usuario no registrado.</Text>
               <Text style={{fontSize: 15, margin: 20}}>Para ingresar a la aplicación, debe registrarse primero.</Text>
               <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModal3}/>
+            </View>
+          </Modal>
+          <Modal
+            offset={0}
+            open={visibilityModal4}
+            overlayStyle={{backgroundColor:'transparent'}}
+          >
+            <View style={styles.confirmationModal}>
+              <Text style={styles.modalTitle}>¡Felicidades!</Text>
+              <Text style={{fontSize: 15, margin: 20}}>Contraseña exitosamente creada. No olvides anotarla por las dudas :)</Text>
+              <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModal4}/>
             </View>
           </Modal>
       </View>
