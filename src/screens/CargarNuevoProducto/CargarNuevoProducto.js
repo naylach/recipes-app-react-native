@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Modal,
   ScrollView,
   Text,
   View,
@@ -24,15 +25,40 @@ export default function CargarNuevoProducto (props) {
   const [curiosidades, setCuriosidades] = useState("");
   const [disenador, setDisenador] = useState("");
  
+  const [modalSuccessVisible, setModalSuccessVisible] = useState(false);
+
+  const checkTextInput = (e) => {
+     if (!nombre.trim()) {
+       alert("Por favor, ingrese nombre del producto");
+       return;
+     }
+     if (!descripcion.trim()) {
+       alert("Por favor, ingrese descripcion del producto");
+       return;
+     }
+     /*if (!tipo.trim()) {
+       alert("Por favor, seleciones tipo de producto");
+       return;
+     }*/
+    setModalSuccessVisible(true);
+    handleButtonClick;
+  };
+
   const handleButtonClick = (e) => {
-      let descr = (tipo != 'Arte' && tipo != 'Objetos de diseñador') ? descripcion : artista + disenador + fecha + contexto + duenio + curiosidades;
-      const nuevoProducto = {
-        nombre, tipoProducto, descr, imagenes
-      };
-        
-        props.navigation.navigate('Home');
+    let descr =
+      tipo != "Arte" && tipo != "Objetos de diseñador"
+        ? descripcion
+        : artista + disenador + fecha + contexto + duenio + curiosidades;
+    const nuevoProducto = {
+      nombre,
+      tipoProducto,
+      descr,
+      imagenes,
     };
-    
+
+    props.navigation.navigate("Home");
+  };
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -47,63 +73,120 @@ export default function CargarNuevoProducto (props) {
   };
   return (
     <ScrollView style={styles.mainContainer}>
-      <View style={{flex:1, justifyContent:'space-around'}}>
-          
-      <Text style={styles.title}>Nombre del producto:</Text>
-      <TextInput style={styles.input} onChangeText={text => setNombre(text)} value={nombre} />
-      <Text style={styles.title}>Tipo de producto:</Text>
+      <View style={{ flex: 1, justifyContent: "space-around" }}>
+        <Text style={styles.title}>Nombre del producto:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setNombre(text)}
+          value={nombre}
+        />
+        <Text style={styles.title}>Tipo de producto:</Text>
 
-      <ModalSelector
-        data={tipoProducto}
-        style={styles.modalSelector}
-        initValue="Seleccionar"
-        margin="50"
-        type='solid'
-        key={tipo}
-        onChangeText={text => setTipo(text)}
-      />  
-          
-      <Text style={styles.title}>Descripción:</Text>
-      <TextInput style={styles.description} onChangeText={text => setDescripcion(text)} value={descripcion} />
+        <ModalSelector
+          data={tipoProducto}
+          style={styles.modalSelector}
+          initValue="Seleccionar"
+          margin="50"
+          type="solid"
+          key={tipo}
+          onChangeText={(text) => setTipo(text)}
+        />
 
-      { (tipo === 'Arte' || tipo === 'Objetos de diseñador') &&
-      (<>
-        <Text style={styles.title}>Artista/Diseñador:</Text>
-        
-        <TextInput style={styles.input} onChangeText={text => setArtista(text)} value={artista} />
-        
-        <Text style={styles.title}>Fecha:</Text>
-        
-        <TextInput style={styles.input} onChangeText={text => setFecha(texto)} value={fecha} />
-        
-        <Text style={styles.title}>Contexto:</Text>
-        
-        <TextInput style={styles.input} onChangeText={text => setContexto(text)} value={contexto} />
-        
-        <Text style={styles.title}>Dueño anterior:</Text>
-        
-        <TextInput style={styles.input} onChangeText={text => setDuenio(text)} value={duenio} />
-        
-        <Text style={styles.title}>Curiosidades:</Text>
-        
-        <TextInput style={styles.description} onChangeText={text => setCuriosidades(text)} value={curiosidades} />
-      </>)}
+        <Text style={styles.title}>Descripción:</Text>
+        <TextInput
+          style={styles.description}
+          onChangeText={(text) => setDescripcion(text)}
+          value={descripcion}
+        />
 
-      <Text style={styles.title}>Imagenes:</Text>
-      <Button
-        title= '+'
-        style={styles.btnimage}
-        onPress={pickImage}
-        color="#9FCAF5"
-      />
-      
-      <Button
-        title='Aceptar'
-        style={styles.buttonLogin}      
-        onPress={handleButtonClick}
-      />
+        {(tipo === "Arte" || tipo === "Objetos de diseñador") && (
+          <>
+            <Text style={styles.title}>Artista/Diseñador:</Text>
 
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setArtista(text)}
+              value={artista}
+            />
+
+            <Text style={styles.title}>Fecha:</Text>
+
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setFecha(texto)}
+              value={fecha}
+            />
+
+            <Text style={styles.title}>Contexto:</Text>
+
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setContexto(text)}
+              value={contexto}
+            />
+
+            <Text style={styles.title}>Dueño anterior:</Text>
+
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setDuenio(text)}
+              value={duenio}
+            />
+
+            <Text style={styles.title}>Curiosidades:</Text>
+
+            <TextInput
+              style={styles.description}
+              onChangeText={(text) => setCuriosidades(text)}
+              value={curiosidades}
+            />
+          </>
+        )}
+
+        <Text style={styles.title}>Imagenes:</Text>
+        <Button
+          title="+"
+          style={styles.btnimage}
+          onPress={pickImage}
+          color="#9FCAF5"
+        />
+
+        <Button
+          title="Aceptar"
+          style={styles.buttonLogin}
+          onPress={checkTextInput}
+        />
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalSuccessVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalSuccessVisible(!modalSuccessVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>
+              {" "}
+              ¡Felicitaciones! Su producto está en revisión{" "}
+            </Text>
+            <View style={styles.columns}>
+              <Image
+                style={styles.imageModal}
+                source={require("../../../assets/icons/check.png")}
+              />
+
+              <Button
+                title="Aceptar"
+                color="#06d755"
+                onPress={() => setModalSuccessVisible(false)}
+              ></Button>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 }
