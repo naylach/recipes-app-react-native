@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
     textAlign: 'center'
   },
+  TimeContainer:{
+    width: 20,
+    height: 20,
+    marginLeft:10
+  },
+
   photoIngredient: {
     width: '100%',
     height: 250,
@@ -20,12 +26,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 
-  //eliminar este texto despues
-  nayla:{
-    fontSize: 8,
-    textAlign: 'left',
-    margin: 2
-  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2
+    
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
@@ -87,9 +88,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     textAlign: 'center',
     width: 100,
-    alignSelf: 'center',
-    bottom: -50
-  //  margin: 10
+    alignSelf: 'flex-end',
+    bottom: -20,
+    marginRight: 30
   },
 
   container: RecipeCard.container,
