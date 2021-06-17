@@ -3,10 +3,7 @@ import * as SecureStore from 'expo-secure-store';
 export const DataContext = createContext({});
 
 
-const url = 'http://192.168.1.22:8080/api/'
-
-
-
+const url = 'http://192.168.0.16:8080/api/'
 
 export function DataProvider(props) {
   const [catalogosList, setCatalogosList] = useState([]);
@@ -68,7 +65,10 @@ export function DataProvider(props) {
   function fetchCatalogos() {
     fetch(url+'catalogo/')
       .then((response) =>response.json())
-      .then((res) => setCatalogosList(res));
+      .then((res) => {
+        //console.log(res)
+        setCatalogosList(res)
+      });
   }
 
   //Hace falta?

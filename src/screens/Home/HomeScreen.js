@@ -67,9 +67,9 @@ export default function HomeScreen(props) {
   const renderCatalogs = ({ item }) => (
       <TouchableHighlight underlayColor='#dfeef5' style={styles.touchable} onPress={() => onPressRecipe(item)}>
         <View style={styles.container}>
-          <Image style={styles.photo} source={{ uri: item.imagenes[0] }} />
+          <Image style={styles.photo} source={{ uri: item?.imagenes[0] }} />
           <Text style={styles.title}>{item.descripcion}</Text>
-          <Text style={styles.category}>Catálogo</Text>
+          <Text style={styles.category}>{item?.subasta?.categoria}</Text>
         </View>
       </TouchableHighlight>
   );

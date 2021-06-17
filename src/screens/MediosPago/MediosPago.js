@@ -30,9 +30,14 @@ export default function MediosPago(props) {
 
   useEffect( () => {
     //api
+    getTarjetas();
     setTarjetas(tarjetas);
     setCuentas(cuentas);
   }, []);
+
+  function getTarjetas(){
+    
+  }
 
   const openModal = () => setVisibilityModal1(true);
   const closeModal = () => setVisibilityModal1(false);
