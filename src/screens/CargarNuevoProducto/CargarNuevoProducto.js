@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+
 import {
   Modal,
   ScrollView,
@@ -12,6 +13,7 @@ import ModalSelector from 'react-native-modal-selector';
 import * as ImagePicker from "expo-image-picker";
 import {tipoProducto} from '../../data/dataArrays';
 import styles from './styles';
+import { DataContext } from '../../context';
 
 export default function CargarNuevoProducto (props) {
   const [nombre, setNombre] = useState("");
@@ -26,6 +28,7 @@ export default function CargarNuevoProducto (props) {
   const [disenador, setDisenador] = useState("");
  
   const [modalSuccessVisible, setModalSuccessVisible] = useState(false);
+  const {url,currentUser} =useContext(DataContext)
 
   const checkTextInput = (e) => {
      if (!nombre.trim()) {
@@ -40,23 +43,52 @@ export default function CargarNuevoProducto (props) {
        alert("Por favor, seleciones tipo de producto");
        return;
      }*/
-    setModalSuccessVisible(true);
-    handleButtonClick;
+    
+    handleButtonClick();
   };
 
-  const handleButtonClick = (e) => {
-    let descr =
+  function handleButtonClick () {
+    
+    const descr =
       tipo != "Arte" && tipo != "Objetos de diseñador"
         ? descripcion
         : artista + disenador + fecha + contexto + duenio + curiosidades;
     const nuevoProducto = {
-      nombre,
-      tipoProducto,
-      descr,
-      imagenes,
+      descripcionCatalogo: nombre,
+      tipo: tipo,
+      descripcionCompleta: descr,
+      foto:imagenes,
+      duenio: currentUser?.idCliente
     };
+    const user ={
+      "idCliente": 1,
+      "idUsuario": "31619",
+      "email": "augusto@a.es",
+      "password": "$2b$05$aQOxju6Pz7l3y5FxsHmjAexJFPLt.WUbvJRUfzFN4q8qEUVsLtoMm",
+      "categoria": "comun",
+      "verificador": null,
+      "documento": "789456126",
+      "nombre": "cris cañizales",
+      "direccion": "santa fe 3000",
+      "estado": 2,
+      "imagen": ""
+    };
+    //console.log(nuevoProducto,currentUser)
+    const data = Object.assign(nuevoProducto,user) 
+    fetch(url+"productos", {
+    
+      method: "POST",
+      headers: {
+        "Content-Type": 'application/json; charset=UTF-8',
+      },
 
-    props.navigation.navigate("Home");
+      body: JSON.stringify({...nuevoProducto}),
+    })
+    .then((response) => response.json())
+    .then(data=>{
+        console.log("cargue el producto!")
+        setModalSuccessVisible(true);
+    })
   };
 
   const pickImage = async () => {
@@ -89,7 +121,7 @@ export default function CargarNuevoProducto (props) {
           margin="50"
           type="solid"
           key={tipo}
-          onChangeText={(text) => setTipo(text)}
+          onChange={ (texto)=>{setTipo(texto.label)}}
         />
 
         <Text style={styles.title}>Descripción:</Text>
@@ -181,7 +213,9 @@ export default function CargarNuevoProducto (props) {
               <Button
                 title="Aceptar"
                 color="#06d755"
-                onPress={() => setModalSuccessVisible(false)}
+                onPress={() =>  {
+                  setModalSuccessVisible(false);
+                  props.navigation.navigate("Home")}}
               ></Button>
             </View>
           </View>

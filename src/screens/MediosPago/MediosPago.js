@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { Button, CheckBox } from 'react-native-elements';
 // import { Overlay } from 'react-native-modal-overlay';
 import {
@@ -11,6 +11,8 @@ import {
 import styles from './styles';
 import { tarjetas1, cuentas1 } from '../../data/dataArrays';
 import Modal from "react-native-simple-modal";
+import { DataContext } from "../../context";
+
 
 export default function MediosPago(props) {
   const [tipo, setTipo]= useState("");
@@ -18,6 +20,7 @@ export default function MediosPago(props) {
   const [numero, setNumero]= useState("");
   const [vencimiento, setVencimiento]= useState("");
   const [cvv, setCVV]= useState("");
+
   const [visibilityModal1, setVisibilityModal1]= useState(false);
   const [visibilityModal2, setVisibilityModal2]= useState(false);
   const [deleting, setDeleting]= useState(null);
@@ -25,19 +28,16 @@ export default function MediosPago(props) {
   const [visibilityModalEliminado, setVisibilityModalEliminado]= useState(false);
   const [checked, setChecked]= useState(null);
   const [visibilityModalError, setVisibilityModalError]= useState(false);
-  const [tarjetas, setTarjetas]= useState(tarjetas1);
+  //const [tarjetas, setTarjetas]= useState(tarjetas1);
   const [cuentas, setCuentas]= useState(cuentas1);
 
+  
   useEffect( () => {
     //api
-    getTarjetas();
-    setTarjetas(tarjetas);
+    //getTarjetas();
+    //setTarjetas(tarjetas);
     setCuentas(cuentas);
-  }, []);
-
-  function getTarjetas(){
-    
-  }
+  });
 
   const openModal = () => setVisibilityModal1(true);
   const closeModal = () => setVisibilityModal1(false);
@@ -78,6 +78,7 @@ export default function MediosPago(props) {
       //openModalError();
     };
     console.log(tarjetas, cuentas)
+    const {tarjetas, setTarjetas} = useContext(DataContext);
     return (
       <ScrollView style={styles.mainContainer}>
         <View>

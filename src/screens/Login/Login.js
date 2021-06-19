@@ -21,7 +21,7 @@ export default function Login (props) {
   const [visibilityModal3, setVisibilityModal3] = useState(false);
   const [visibilityModal4, setVisibilityModal4] = useState(false);
   const [ usuario, setUsuario ] = useState(null);
-  const { currentUser, setCurrentUser } = useContext(DataContext);
+  const { currentUser, setCurrentUser,url } = useContext(DataContext);
  
   const openModal = () => setVisibilityModal(true);
   const openModal1 = () => setVisibilityModal1(true);
@@ -49,7 +49,7 @@ export default function Login (props) {
 
   const handleEmailChange = () => {
     console.log("handle email change");
-    fetch("http://192.168.0.182:8080/api/auth/mail", {
+    fetch(url+"auth/mail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function Login (props) {
 
   const handleLoginClick = () => {
     if(usuario?.estado === 2){
-      fetch("http://192.168.0.182:8080/api/auth/pass", {
+      fetch(url+"/auth/pass", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +97,7 @@ export default function Login (props) {
       });
     }
     else if(usuario?.estado === 1){
-      fetch("http://192.168.0.182:8080/api/auth/pass", {
+      fetch(url+"auth/pass", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
