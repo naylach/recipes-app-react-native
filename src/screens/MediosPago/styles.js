@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   image: {
       width: 30,
-      height: 35,
+      height: 40,
       flex: 0.1
   },
   imageModal: {
@@ -52,8 +52,7 @@ const styles = StyleSheet.create({
   buttonArea: {
     flexDirection: 'row',
     color: '#4BA9FF',
-    alignSelf: 'center',
-    bottom: -125,
+    alignSelf: 'center'
   },
   separator: {
     borderBottomColor: '#737373',

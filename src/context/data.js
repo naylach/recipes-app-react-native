@@ -15,7 +15,7 @@ const user ={
   "imagen": ""
 };
 
-const url = 'http://192.168.0.16:8080/api/'
+const url = 'http://192.168.0.182:8080/api/'
 
 export function DataProvider(props) {
   const [catalogosList, setCatalogosList] = useState([]);
@@ -25,7 +25,7 @@ export function DataProvider(props) {
   const [clientesList, setClientesList] = useState([]);
   const [productosList, setProductosList] = useState([]);
   const [refresh, setRefresh] = useState(0);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(user);
   const [currentPropiedad, setCurrentPropiedad] = useState({}); 
   const [currentProducto, setCurrentProducto] = useState([]); 
   const [catalogoSeleccionado, setCatalogoSeleccionado] = useState("");
@@ -41,9 +41,6 @@ export function DataProvider(props) {
       setCurrentUser(user); 
       console.log("inicialice usuario: "+currentUser.idCliente)
     }
-       
-  
-    
     console.log("sesion iniciada con: "+currentUser.idCliente)
     fetchCatalogos();
     fetchTarjetas();

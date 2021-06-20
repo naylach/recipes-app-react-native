@@ -551,6 +551,25 @@ export const cuentas1 = [
   },
 ];
 
+//MEDIOS DE PAGO: EN PROCESO DE VERIFICACION
+export const mediosSinVerificar1 = [
+  {
+    id: 7,
+    name: 'Caja de ahorros Macro',
+    number: '5467775265321598'
+  },
+  {
+    id: 8,
+    name: 'Cuenta Corriente HSBC',
+    number: '4268597135486245'
+  },
+  {
+    id: 9,
+    name: 'Cuenta Corriente Rebanking',
+    number: '2566631478592348'
+  },
+];
+
 //USER
 export const users = [
   {
