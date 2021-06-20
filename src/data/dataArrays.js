@@ -539,7 +539,7 @@ export const cuentas1 = [
     name: 'Caja de ahorros BBVA',
     number: '5462985265321598'
   },
-  {
+/*   {
     id: 5,
     name: 'Cuenta Corriente Santander',
     number: '4268597135486245'
@@ -548,7 +548,7 @@ export const cuentas1 = [
     id: 6,
     name: 'Cuenta Corriente ICBC',
     number: '2589631478592348'
-  },
+  }, */
 ];
 
 //MEDIOS DE PAGO: EN PROCESO DE VERIFICACION

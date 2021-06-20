@@ -124,6 +124,16 @@ const styles = StyleSheet.create({
     width: 16,
     height: 16
   },
+  modalSelector: {
+    justifyContent: "space-around",
+    padding: 5,
+    alignSelf: "center",
+    width: 240,
+    height: 45,
+    backgroundColor: "#8dbfe3",
+    borderRadius: 5,
+    borderColor: "blue",
+  },
 });
 
 export default styles;

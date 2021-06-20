@@ -1,5 +1,7 @@
 import React, { useState, useEffect,useContext } from 'react';
 import { Button, CheckBox } from 'react-native-elements';
+import ModalSelector from 'react-native-modal-selector';
+
 // import { Overlay } from 'react-native-modal-overlay';
 import {
   ScrollView,
@@ -17,7 +19,7 @@ import { DataContext } from "../../context";
 
 
 export default function MediosPago(props) {
-  const [tipo, setTipo]= useState("s");
+  const [tipo, setTipo]= useState(null);
   const [nombre, setNombre]= useState("");
   const [numero, setNumero]= useState("");
   const [vencimiento, setVencimiento]= useState("");
@@ -39,9 +41,16 @@ export default function MediosPago(props) {
   useEffect( () => {
     setCuentas(cuentas);
   });
+  let index=0;
+
+  const data=[
+    {key: index++, label: "Tarjeta"},
+    {key: index++, label: "Cuenta bancaria"},
+  ]
 
   const openModal = () => setVisibilityModal1(true);
-  const closeModal = () => setVisibilityModal1(false);
+  const closeModal = () => {setVisibilityModal1(false);
+  setTipo(null);}
   const openModal2 = () => setDeleting(checked);
   const closeModal2 = () => setDeleting(null);
   const openModalEliminado = () => {
@@ -53,6 +62,19 @@ export default function MediosPago(props) {
   //pendiente de los ids iguales
   const openModalCreado = () => setVisibilityModalCreado(true);
   const openModalError = () => setVisibilityModalError(true);
+  const todoBlanco=()=>{
+setAlias("");
+setNombre("");
+setNumero("");
+setCBU("");
+setCUIL("");
+setCVV("");
+setCuentas("");
+setTipo(null);
+
+
+
+  }
 
     const Separator = () => (
         <View style={styles.separator} />
@@ -120,6 +142,7 @@ export default function MediosPago(props) {
       }else{
         openModalError();
       }
+      todoBlanco;
     };
     console.log(tarjetas, cuentas);
     const {tarjetas, setTarjetas, url} = useContext(DataContext);
@@ -183,6 +206,7 @@ export default function MediosPago(props) {
               >
                 <View style={styles.mainModal}>
                   <Text style={styles.modalTitle}>Nuevo medio de pago</Text>
+
                   <View style={styles.modal}>
                     <View style={styles.column}>
                       <Text style={styles.modalLabel}>Tipo:</Text>
@@ -200,13 +224,27 @@ export default function MediosPago(props) {
                       </>}
                     </View>
                     <View style={styles.column}>
-                      <Picker selectedValue={tipo} onValueChange={(itemValue, itemIndex) => setTipo(itemValue)}>
-                        <Picker.Item label="Cuenta bancaria" value="cuenta" />
-                        <Picker.Item label="Tarjeta" value="tarjeta" />
-                      </Picker>
+                    {tipo === null && 
+                      <>
+
+                    <ModalSelector
+
+                          data={data}
+                          initValue="Seleccionar"
+                          margin="50"
+                          style={styles.modalSelector}
+                          type="solid"
+                          key={tipo}
+                          onChange={ (texto)=>{setTipo(texto.label)}}
+
+                          />
+
+                          </>}
+
                       {/* <TextInput style={styles.modalInput} onChangeText={text => setTipo(text)} value={tipo} ></TextInput> */}
                       {tipo === "Tarjeta" && 
                       <>
+                         <TextInput style={styles.modalInput} onChangeText={text =>setTipoCuenta(tipo)} value={tipo} editable={false} ></TextInput>
                         <TextInput style={styles.modalInput} onChangeText={text => setNombre(text)} value={nombre} ></TextInput>
                         <TextInput style={styles.modalInput} onChangeText={text => setNumero(text)} value={numero} ></TextInput>
                         <TextInput style={styles.modalInput} onChangeText={text => setVencimiento(text)} value={vencimiento} ></TextInput>
@@ -214,7 +252,7 @@ export default function MediosPago(props) {
                       </>}
                       {tipo === "Cuenta bancaria" && 
                       <>
-                        <TextInput style={styles.modalInput} onChangeText={text => setTipoCuenta(text)} value={tipoCuenta} ></TextInput>
+                        <TextInput style={styles.modalInput} onChangeText={text => setTipoCuenta(tipo)} value={tipo}  editable={false}></TextInput>
                         <TextInput style={styles.modalInput} onChangeText={text => setCUIL(text)} value={CUIL} ></TextInput>
                         <TextInput style={styles.modalInput} onChangeText={text => setCBU(text)} value={CBU} ></TextInput>
                         <TextInput style={styles.modalInput} onChangeText={text => setAlias(text)} value={alias} ></TextInput>
