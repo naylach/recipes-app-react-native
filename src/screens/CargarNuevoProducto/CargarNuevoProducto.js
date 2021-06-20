@@ -145,7 +145,7 @@ export default function CargarNuevoProducto (props) {
 
             <TextInput
               style={styles.input}
-              onChangeText={(text) => setFecha(texto)}
+              onChangeText={(text) => setFecha(text)}
               value={fecha}
             />
 
