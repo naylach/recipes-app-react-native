@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center', 
     width: 400, 
     backgroundColor: 'white', 
-    margin: -100 
+    margin: -100
   },
   modal: {
     flexDirection: 'row',

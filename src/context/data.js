@@ -15,7 +15,7 @@ const user ={
   "imagen": ""
 };
 
-const url = 'http://192.168.1.22:8080/api/'
+const url = 'http://192.168.0.182:8080/api/'
 
 export function DataProvider(props) {
   const [catalogosList, setCatalogosList] = useState([]);
@@ -94,7 +94,7 @@ export function DataProvider(props) {
       fetch(url+'tarjetas/?idCliente='+currentUser.idCliente)
       .then((response) =>response.json())
       .then((res) => {
-        //console.log(res)
+        console.log(res)
         setTarjetas(res)
       });
     }
