@@ -16,7 +16,6 @@ import HistorialTransaccionesScreen from '../screens/HistorialTransacciones/Hist
 import CargarNuevoProductoScreen from '../screens/CargarNuevoProducto/CargarNuevoProducto';
 import MisPublicacionesScreen from '../screens/MisPublicaciones/MisPublicaciones';
 
-import * as SecureStore from 'expo-secure-store';
 import MenuImage from '../components/MenuImage/MenuImage';
 import ProfileButton from '../components/ProfileButton/ProfileButton';
 import BackButton from '../components/BackButton/BackButton';
@@ -48,7 +47,7 @@ const MainNavigator = createStackNavigator(
       screen: CatalogoScreen,
       navigationOptions: ({ navigation }) => {
         return {
-         title: 'Catalogo',
+         title: 'Catálogo',
          headerTransparent: 'true',
          headerLeft: () => <BackButton
            onPress={() => {

@@ -70,10 +70,10 @@ export default function EspecificacionProductoScreen(props) {
   }, []);
 
   async function handlePujaModalActiva() {
-    // TraerActivos;
-    // await fetch(url + "tarjetas/?idCliente=" + currentUser.idCliente)
+
+    setModalVisible(true);
     var auxiliar = [];
-    await fetch("http://192.168.1.29:8080/api/tarjetas/?idCliente=1")
+    fetch("http://192.168.1.29:8080/api/tarjetas/?idCliente=1")
       .then((response) => response.json())
       .then((res) => {
         setTarjetas(res);
@@ -87,8 +87,6 @@ export default function EspecificacionProductoScreen(props) {
       }
       setData(auxiliar);
     });
-
-    setModalVisible(true);
   }
 
   const handlePuja = () => {
@@ -117,7 +115,7 @@ export default function EspecificacionProductoScreen(props) {
       )}
       <Image
         style={styles.photoIngredient}
-        source={{ uri: currentProducto[0]?.foto }}
+        source={{ uri: currentProducto[0]?.foto[0] }}
       />
       <Text style={styles.titleIngredient}>Información</Text>
       <Text style={styles.ingredientInfo}>
@@ -187,7 +185,7 @@ export default function EspecificacionProductoScreen(props) {
               onChange={(texto) => {
                 setElegido(texto.label);
               }}
-              backdropPressToClose="true"
+              backdropPressToClose={true}
             />
 
             <View style={styles.columns}>

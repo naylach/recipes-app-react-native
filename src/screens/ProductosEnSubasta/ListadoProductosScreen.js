@@ -24,8 +24,9 @@ export default function ListadoProductosScreen(props) {
       .then((response) => response.json())
       .then((producto) => {
           setCurrentProducto(producto)
-          //console.log(producto)
-          props.navigation.navigate('EspecificacionProducto', { producto });
+          console.log(producto)
+          let name = item.descripcionCatalogo;
+          props.navigation.navigate('EspecificacionProducto', { producto, name });
         });
     
   };
@@ -34,16 +35,13 @@ export default function ListadoProductosScreen(props) {
   const renderProduct = ({ item }) => (
     <TouchableHighlight underlayColor='#dfeef5' style={{borderRadius: 50}} onPress={() => onPressProduct(item)}>
       <View style={styles.container}>
-        <Image style={styles.photo} source={{ uri: item.foto }} />
+        <Image style={styles.photo} source={{ uri: item.foto[0] }} />
         <Text style={styles.title}>{item.descripcionCatalogo}</Text>
         {/* //poner titulo */}
         <Text style={{ color: 'grey' }}>{item[1]}</Text>
       </View>
     </TouchableHighlight>
   );
-    const item = props.navigation.getParam('products');
-    const productsArray = getAllProducts(item);
-
     return (
       <View>
         <FlatList

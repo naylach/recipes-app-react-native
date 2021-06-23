@@ -24,7 +24,7 @@ export default function CatalogoScreen(props) {
   const renderImage = ({ item }) => (
     <TouchableHighlight>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: item }} />
+        <Image style={styles.image} source={{ uri: item[0] }} />
       </View>
     </TouchableHighlight>
   );

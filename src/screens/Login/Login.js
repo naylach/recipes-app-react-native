@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import * as SecureStore from 'expo-secure-store';
 import { Button } from 'react-native-elements'
 import {
   ScrollView,
@@ -84,13 +83,10 @@ export default function Login (props) {
       .then((response) => {
         if (response.status != 401){
           setCurrentUser(response.json());
-          SecureStore.setItemAsync("token",response.json().token);
           props.navigation.navigate('Home');
-          return response.json()
         }
         else
           openModal1();
-        return
       })
       .catch((error) => {
         console.error("Error login:", error);
@@ -113,6 +109,7 @@ export default function Login (props) {
         console.error("Error generate:", error);
       });
     }
+    console.log(currentUser);
   };
 
   const handleContinueClick = (e) => {

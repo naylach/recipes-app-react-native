@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   ScrollView,
   Text,
@@ -9,20 +9,22 @@ import { Button } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
 import styles from './styles';
 import { users } from '../../data/dataArrays.js'
+import { DataContext } from '../../context';
 
 export default function MiPerfil(props) {
 
   const [nombre, setNombre] = useState("");
   const [categoria, setCategoria] =  useState("");
-  const [telefono, setTelefono] = useState("");
+  const [direccion, setDireccion] = useState("");
   const [email, setEmail] = useState("");
-  const [dni, setDni] = useState("");
+  const [documento, setDocumento] = useState("");
+  const { currentUser, setCurrentUser, url } = useContext(DataContext);
     const handleButtonClick = (e) => {
       const usuario = {
-        nombre, categoria, telefono, email, dni
+        nombre, categoria, direccion, email, documento
       };
   
-      // fetch("http://localhost:8000/api/producto/", {
+      // fetch("http://localhost:8000/api/cliente/", {
       //   method: "PUT",
       //   headers: {
       //     "Content-Type": "application/json",
@@ -44,15 +46,15 @@ export default function MiPerfil(props) {
         <View>
           <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
           <Text style={styles.title}>Nombre y apellido</Text>
-          <TextInput style={styles.input} onChangeText={text => setNombre(text)} value={nombre} >{`${users[0].nombre} ${users[0].apellido}`}</TextInput>
+          <TextInput style={styles.input} onChangeText={text => setNombre(text)} value={nombre} >{currentUser.nombre}</TextInput>
           <Text style={styles.title}>Categoría</Text>
-          <TextInput style={styles.input} editable={false} value={categoria} >{users[0].categoria}</TextInput>
-          <Text style={styles.title}>Teléfono</Text>
-          <TextInput style={styles.input} onChangeText={text => setTelefono(text)} value={telefono} >{users[0].telefono}</TextInput>
+          <TextInput style={styles.input} editable={false} value={categoria} >{currentUser.categoria}</TextInput>
+          <Text style={styles.title}>Dirección</Text>
+          <TextInput style={styles.input} onChangeText={text => setDireccion(text)} value={direccion} >{currentUser.direccion}</TextInput>
           <Text style={styles.title}>Email</Text>
-          <TextInput style={styles.input} onChangeText={text => setEmail(text)} value={email} >{users[0].email}</TextInput>
+          <TextInput style={styles.input} onChangeText={text => setEmail(text)} value={email} >{currentUser.email}</TextInput>
           <Text style={styles.title}>DNI</Text>
-          <TextInput style={styles.input} editable={false} value={dni} >{users[0].dni}</TextInput>
+          <TextInput style={styles.input} editable={false} value={documento} >{currentUser.documento}</TextInput>
             <Button 
               style={styles.buttonLogin} 
               title='Guardar cambios'
