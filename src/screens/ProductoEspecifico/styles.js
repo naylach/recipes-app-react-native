@@ -1,36 +1,36 @@
-import { StyleSheet } from 'react-native';
-import { RecipeCard } from '../../AppStyles';
+import { StyleSheet } from "react-native";
+import { RecipeCard } from "../../AppStyles";
 
 const styles = StyleSheet.create({
   titleIngredient: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 22,
-    textAlign: 'center'
+    textAlign: "center",
   },
-  TimeContainer:{
+  TimeContainer: {
     width: 20,
     height: 20,
-    marginLeft:10
+    marginLeft: 10,
   },
 
   photoIngredient: {
-    width: '100%',
+    width: "100%",
     height: 250,
-    alignSelf: 'center'
+    alignSelf: "center",
   },
   ingredientInfo: {
-    color: 'black',
+    color: "black",
     margin: 10,
     fontSize: 15,
-    textAlign: 'left',
-    fontWeight: 'bold'
+    textAlign: "left",
+    fontWeight: "bold",
   },
 
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 22,
   },
   modalView: {
     margin: 50,
@@ -41,17 +41,16 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
-    
+    elevation: 2,
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
@@ -61,42 +60,53 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   columns: {
-    flexDirection: 'row',
-    alignSelf: 'center'
+    flexDirection: "row",
+    alignSelf: "center",
   },
   buttonClose: {
     backgroundColor: "#2196F3",
     marginLeft: 10,
   },
-  txtInput:{
-    marginBottom:20, 
-    borderBottomColor:"#000000",
+  txtInput: {
+    marginBottom: 20,
+    borderBottomColor: "#000000",
     height: 40,
-    width:100,
+    width: 100,
     borderBottomWidth: 1,
   },
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: "center",
   },
   buttonLogin: {
     borderRadius: 20,
-    textAlign: 'center',
+    textAlign: "center",
     width: 100,
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
     bottom: -20,
-    marginRight: 30
+    marginRight: 30,
+  },
+  modalSelector: {
+    justifyContent: "space-around",
+    padding: 5,
+    alignSelf: "center",
+    width: 240,
+    height: 45,
+    backgroundColor: "#8dbfe3",
+    borderRadius: 5,
+    borderColor: "blue",
+    marginBottom: 20,
   },
 
   container: RecipeCard.container,
   photo: RecipeCard.photo,
   title: RecipeCard.title,
-  category: RecipeCard.category
+  category: RecipeCard.category,
 });
 
 export default styles;
