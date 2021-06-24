@@ -46,7 +46,6 @@ export default function Login (props) {
   }, [usuario, currentUser])
 
   const handleEmailChange = () => {
-    console.log("handle email change");
     fetch(url+"auth/mail", {
       method: "POST",
       headers: {
@@ -113,7 +112,6 @@ export default function Login (props) {
         console.error("Error generate:", error);
       });
     }
-    console.log("current user", currentUser);
   };
 
   const handleContinueClick = (e) => {

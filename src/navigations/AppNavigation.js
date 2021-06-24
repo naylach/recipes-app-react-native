@@ -95,7 +95,12 @@ const MainNavigator = createStackNavigator(
       screen: LoginScreen,
       navigationOptions: ({ navigation }) => {
         return {
-          title: 'Iniciar sesión'
+          title: 'Iniciar sesión',
+          headerLeft: () => <BackButton
+            onPress={() => {
+              navigation.navigate('Home');
+            }}
+          />
         };
       }
     },

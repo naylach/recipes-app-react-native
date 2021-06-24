@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, CheckBox } from "react-native-elements";
 import ModalSelector from "react-native-modal-selector";
-
-// import { Overlay } from 'react-native-modal-overlay';
 import { ScrollView, Text, View, Image, TextInput } from "react-native";
 import styles from "./styles";
-import { cuentas1 } from "../../data/dataArrays";
 import Modal from "react-native-simple-modal";
 import { DataContext } from "../../context";
 
@@ -24,14 +21,13 @@ export default function MediosPago(props) {
   const [visibilityModal2, setVisibilityModal2] = useState(false);
   const [deleting, setDeleting] = useState(null);
   const [visibilityModalCreado, setVisibilityModalCreado] = useState(false);
-  const [visibilityModalEliminado, setVisibilityModalEliminado] =
-    useState(false);
+  const [visibilityModalEliminado, setVisibilityModalEliminado] = useState(false);
   const [checked, setChecked] = useState(null);
   const [visibilityModalError, setVisibilityModalError] = useState(false);
-  const [cuentas, setCuentas] = useState(cuentas1);
+  const { tarjetas, setTarjetas, url, currentUser, cuentas, setCuentas } = useContext(DataContext);
 
   useEffect(() => {
-    setCuentas(cuentas);
+    fetchCuentas();
     fetchTarjetas();
   }, [visibilityModalEliminado, visibilityModalCreado]);
   let index = 0;
@@ -48,6 +44,13 @@ export default function MediosPago(props) {
         setTarjetas(res);
       });
   };
+  const fetchCuentas = () => {
+    fetch(url + "cuentasBancarias/?idCliente=" + "1")
+      .then((response) => response.json())
+      .then((res) => {
+        setCuentas(res);
+      });
+  }
   const openModal = () => setVisibilityModal1(true);
   const closeModal = () => {
     setVisibilityModal1(false);
@@ -57,8 +60,6 @@ export default function MediosPago(props) {
   const closeModal2 = () => setDeleting(null);
   const openModalEliminado = () => {
     setVisibilityModalEliminado(true);
-    // setTarjetas(tarjetas.filter((t) => t.id !== deleting));
-    // setCuentas(cuentas.filter((c) => c.id !== deleting));
     setDeleting(null);
   };
   //pendiente de los ids iguales
@@ -99,10 +100,9 @@ export default function MediosPago(props) {
         vencimiento: vencimiento,
         cvv: cvv,
         estado: "en revision",
-        //por quilombos de la relacion hay dos campos de id de usuario. No me preguntes porqué
         usuario: {
-          //usuarioidCliente: 1, //hardcodeo (?)
-          idCliente: 1, //hardcodeo (?)
+          usuarioIdCliente: 1, //hardcodeo (?)
+          idCliente: 1, //hardcodeo (?)Z
         },
       };
       const checkTextInput = (e) => {
@@ -147,9 +147,8 @@ export default function MediosPago(props) {
         tipo: tipoCuenta,
         cuil: CUIL,
         alias: alias,
-        //por quilombos de la relacion hay dos campos de id de usuario. No me preguntes porqué
         usuario: {
-          //usuarioidCliente: 1, //hardcodeo (?)
+          usuarioIdCliente: 1, //hardcodeo (?)
           idCliente: 1, //hardcodeo (?)
         },
       };
@@ -188,6 +187,7 @@ export default function MediosPago(props) {
     }
   };
   const handleBorrarMedio = () => {
+    //borrar cuentas
     fetch(url + "tarjetas/" + checked, {
       method: "DELETE",
       headers: {
@@ -203,8 +203,6 @@ export default function MediosPago(props) {
         console.error("Error deleting tarjeta:", error);
       });
   };
-  const { tarjetas, setTarjetas, url, currentUser } = useContext(DataContext);
-  console.log("tarjetas en la db", tarjetas);
   return (
     <ScrollView style={styles.mainContainer}>
       <View>
@@ -246,11 +244,11 @@ export default function MediosPago(props) {
           return (
             <CheckBox
               key={i}
-              checked={cuenta.id === checked}
-              title={`${cuenta.name}       **** ${cuenta.number.substr(-4, 4)}`}
+              checked={cuenta.idCuentaBancaria === checked}
+              title={`${cuenta.tipo}       **** ${cuenta.cbu.substr(-4, 4)}`}
               style={styles.checkbox}
               onPress={() =>
-                setChecked(cuenta.id === checked ? null : cuenta.id)
+                setChecked(cuenta.idCuentaBancaria === checked ? null : cuenta.idCuentaBancaria)
               }
             />
           );
@@ -352,7 +350,7 @@ export default function MediosPago(props) {
                   <>
                     <TextInput
                       style={styles.modalInput}
-                      onChangeText={(text) => setTipoCuenta(tipo)}
+                      onChangeText={setTipoCuenta(tipo)}
                       value={tipo}
                       editable={false}
                     ></TextInput>
@@ -382,9 +380,13 @@ export default function MediosPago(props) {
                   <>
                     <TextInput
                       style={styles.modalInput}
-                      onChangeText={(text) => setTipoCuenta(tipo)}
                       value={tipo}
                       editable={false}
+                    ></TextInput>
+                    <TextInput
+                      style={styles.modalInput}
+                      onChangeText={(text) => setTipoCuenta(text)}
+                      value={tipoCuenta}
                     ></TextInput>
                     <TextInput
                       style={styles.modalInput}

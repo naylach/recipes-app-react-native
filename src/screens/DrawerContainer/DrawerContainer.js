@@ -7,26 +7,29 @@ import { users } from '../../data/dataArrays.js';
 import { DataContext } from "../../context";
 
 export default function DrawerContainer (props){
-  const {url,setPublicacionesMineList,publicacionesMineList}= useContext(DataContext);
+  const {url,setPublicacionesMineList, currentUser, setCurrentUser }= useContext(DataContext);
    function getMyPublicaciones(){
     fetch(url+'productos/cliente/?idCliente=16')
                     .then((response) => response.json())
                     .then((res) => setPublicacionesMineList(res));
   }
-    const Separator = () => (
-      <View style={styles.separator} />
-    );
-    return (
-      <View style={styles.content}>
-          <View style={styles.header}>
-            <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
-            <View style={styles.name}>
-              <Text>{users[0].nombre} {users[0].apellido}</Text>
-              <Text>{users[0].email}</Text>
-            </View>
+  const Separator = () => (
+    <View style={styles.separator} />
+  );
+  return (
+    <View style={styles.content}>
+      {currentUser &&
+        <View style={styles.header}>
+          <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
+          <View style={styles.name}>
+            <Text>{currentUser.nombre}</Text>
+            <Text>{currentUser.email}</Text>
           </View>
-          <Separator />
-        <View style={styles.container}>
+        </View>
+      }
+      {currentUser &&<Separator />}
+      <View style={styles.container}>
+        {currentUser && <>
           <MenuButton
             title="Inicio"
             source={require('../../../assets/icons/home.png')}
@@ -40,7 +43,6 @@ export default function DrawerContainer (props){
             source={require('../../../assets/icons/publicaciones.png')}
             onPress={() => {
               getMyPublicaciones()
-              //console.log(publicacionesMineList)
               props.navigation.navigate('MisPublicaciones');
               props.navigation.closeDrawer();
             }}
@@ -69,27 +71,33 @@ export default function DrawerContainer (props){
               props.navigation.closeDrawer();
             }}
           />
-          <MenuButton
-            title="Login"
-            source={require('../../../assets/icons/info.png')}
-            onPress={() => {
-              props.navigation.navigate('Login');
-              props.navigation.closeDrawer();
-            }}
-          />
-        </View>
-        <View style={styles.logout}>
-          <MenuButton
-            title="Cerrar Sesión"
-            source={require('../../../assets/icons/out.png')}
-            onPress={() => {
-              props.navigation.navigate('CerrarSesion');
-              props.navigation.closeDrawer();
-            }}
-          />
-        </View>
+        </>}
+        {!currentUser && <MenuButton
+          title="Login"
+          source={require('../../../assets/icons/info.png')}
+          onPress={() => {
+            props.navigation.navigate('Login');
+            props.navigation.closeDrawer();
+            console.log("usuarito", currentUser);
+          }}
+        />
+        }
       </View>
-    );
+      {currentUser &&
+      <View style={styles.logout}>
+        <MenuButton
+          title="Cerrar Sesión"
+          source={require('../../../assets/icons/out.png')}
+          onPress={() => {
+            setCurrentUser(null);
+            props.navigation.navigate('CerrarSesion');
+            props.navigation.closeDrawer();
+          }}
+        />
+      </View>
+      }
+    </View>
+  );
 }
 
 DrawerContainer.propTypes = {

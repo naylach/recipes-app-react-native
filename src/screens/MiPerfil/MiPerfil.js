@@ -43,7 +43,7 @@ export default function MiPerfil(props) {
     };
     return (
       <ScrollView style={styles.mainContainer}>
-        <View>
+        {currentUser && <View>
           <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
           <Text style={styles.title}>Nombre y apellido</Text>
           <TextInput style={styles.input} onChangeText={text => setNombre(text)} value={nombre} >{currentUser.nombre}</TextInput>
@@ -58,11 +58,16 @@ export default function MiPerfil(props) {
             <Button 
               style={styles.buttonLogin} 
               title='Guardar cambios'
-              onPress={handleButtonClick()}
+              onPress={handleButtonClick}
             >
               <Image style={styles.editIcon} source={require('../../../assets/icons/edit.png')}></Image>
               </Button>
-        </View>
+        </View>}
+        {!currentUser &&<Button 
+            style={styles.buttonLogin} 
+            title='Iniciar sesión'
+            onPress={props.navigation.navigate('Login')}
+          />}
       </ScrollView>
     );
 }
