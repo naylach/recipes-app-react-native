@@ -40,7 +40,6 @@ export default function Login (props) {
         openModal2();
       }
       else{
-        console.log("if incorrectos");
         openModal1();
       }
     }
@@ -73,7 +72,7 @@ export default function Login (props) {
 
   const handleLoginClick = () => {
     if(usuario?.estado === 2){
-      fetch(url+"/auth/pass", {
+      fetch(url+"auth/pass", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -82,11 +81,16 @@ export default function Login (props) {
       })
       .then((response) => {
         if (response.status != 401){
-          setCurrentUser(response.json());
-          props.navigation.navigate('Home');
+          return response.json();
         }
         else
           openModal1();
+      })
+      .then(res => {
+        if(res){
+          setCurrentUser(res.user);
+          props.navigation.navigate('Home');
+        }
       })
       .catch((error) => {
         console.error("Error login:", error);
@@ -109,7 +113,7 @@ export default function Login (props) {
         console.error("Error generate:", error);
       });
     }
-    console.log(currentUser);
+    console.log("current user", currentUser);
   };
 
   const handleContinueClick = (e) => {
@@ -195,7 +199,7 @@ export default function Login (props) {
           >
             <View style={styles.confirmationModal}>
               <Text style={styles.modalTitle}>Los datos ingresados son incorrectos.</Text>
-              <Text style={{fontSize: 15, margin: 20}}>Verifique usuario y contraseña ingresados.</Text>
+              <Text style={{fontSize: 15, margin: 20}}>Verifique la contraseña ingresada.</Text>
               <Button style={styles.modalButton} title='Aceptar' type='solid' onPress={closeModal1}/>
             </View>
           </Modal>
