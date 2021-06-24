@@ -41,7 +41,7 @@ export default function MediosPago(props) {
     { key: index++, label: "Cuenta bancaria" },
   ];
   const fetchTarjetas = () => {
-    fetch(url + "tarjetas/?idCliente=" + "1")
+    fetch(url + "tarjetas/?idCliente=" + "1")//
       .then((response) => response.json())
       .then((res) => {
         console.log(res);
@@ -92,53 +92,100 @@ export default function MediosPago(props) {
     props.navigation.navigate("MediosPago");
   };
   const handleAgregarMedio = () => {
-    const tarjetita = {
-      numero: numero,
-      nombre: nombre,
-      vencimiento: vencimiento,
-      cvv: cvv,
-      estado: "en revision",
-      //por quilombos de la relacion hay dos campos de id de usuario. No me preguntes porqué
-      usuario: {
-        usuarioidCliente: 1, //hardcodeo (?)
-        idCliente: 1, //hardcodeo (?)
-      },
-    };
-    const checkTextInput = (e) => {
-      if (!nombre.trim()) {
-        alert("Por favor, ingrese el nombre de la tarjeta");
-        return;
-      }
-      if (!numero.trim()) {
-        alert("Por favor, ingrese el numero de la tarjeta");
-        return;
-      }
-      if (!cvv.trim()) {
-        alert("Por favor, ingrese el cvv de la tarjeta");
-        return;
-      }
-      if (!vencimiento.trim()) {
-        alert("Por favor, indique el vencimiento de producto");
-        return;
-      }
-      return true;
-    };
-    if (checkTextInput) {
-      fetch(url + "tarjetas/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    if (tipo ==="Tarjeta"){
+      const tarjetita = {
+        numero: numero,
+        nombre: nombre,
+        vencimiento: vencimiento,
+        cvv: cvv,
+        estado: "en revision",
+        //por quilombos de la relacion hay dos campos de id de usuario. No me preguntes porqué
+        usuario: {
+          //usuarioidCliente: 1, //hardcodeo (?)
+          idCliente: 1, //hardcodeo (?)
         },
-        body: JSON.stringify(tarjetita),
-      }).catch((error) => {
-        console.error("Error tarjeta:", error);
-      });
-      closeModalCreado();
-      openModalCreado();
-    } else {
-      openModalError();
+      };
+      const checkTextInput = (e) => {
+        if (!nombre.trim()) {
+          alert("Por favor, ingrese el nombre de la tarjeta");
+          return;
+        }
+        if (!numero.trim()) {
+          alert("Por favor, ingrese el numero de la tarjeta");
+          return;
+        }
+        if (!cvv.trim()) {
+          alert("Por favor, ingrese el cvv de la tarjeta");
+          return;
+        }
+        if (!vencimiento.trim()) {
+          alert("Por favor, indique el vencimiento de producto");
+          return;
+        }
+        return true;
+      };
+      if (checkTextInput) {
+        fetch(url + "tarjetas/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(tarjetita),
+        }).catch((error) => {
+          console.error("Error tarjeta:", error);
+        });
+        closeModalCreado();
+        openModalCreado();
+      } else {
+        openModalError();
+      }
+      todoBlanco;
     }
-    todoBlanco;
+    else if (tipo === "Cuenta bancaria"){
+      const cuentaBancaria = {
+        cbu: CBU,
+        tipo: tipoCuenta,
+        cuil: CUIL,
+        alias: alias,
+        //por quilombos de la relacion hay dos campos de id de usuario. No me preguntes porqué
+        usuario: {
+          //usuarioidCliente: 1, //hardcodeo (?)
+          idCliente: 1, //hardcodeo (?)
+        },
+      };
+      const checkTextInput = (e) => {
+        if (!CBU.trim()) {
+          alert("Por favor, ingrese el CBU de la cuenta");
+          return;
+        }
+        if (!tipoCuenta.trim()) {
+          alert("Por favor, ingrese el tipo de cuenta");
+          return;
+        }
+        if (!CUIL.trim()) {
+          alert("Por favor, ingrese su numero de CUIL");
+          return;
+        }
+        return true;
+      };
+      if (checkTextInput) {
+        fetch(url + "cuentasBancarias/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(cuentaBancaria),
+        }).catch((error) => {
+          console.error("Error tarjeta:", error);
+        });
+        closeModalCreado();
+        openModalCreado();
+      } else {
+        openModalError();
+      }
+      todoBlanco;
+
+    }
   };
   const handleBorrarMedio = () => {
     fetch(url + "tarjetas/" + checked, {
