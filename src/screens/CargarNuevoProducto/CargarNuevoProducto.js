@@ -14,6 +14,8 @@ import * as ImagePicker from "expo-image-picker";
 import {tipoProducto} from '../../data/dataArrays';
 import styles from './styles';
 import { DataContext } from '../../context';
+import mime from "mime"
+
 
 export default function CargarNuevoProducto (props) {
   const [nombre, setNombre] = useState("");
@@ -46,9 +48,53 @@ export default function CargarNuevoProducto (props) {
     
     handleButtonClick();
   };
+  async function imageUploader(files){
+    
+    
+    const newUri = "file://" + files.split("file:/").join("")
+    console.log(newUri,mime.getType(newUri))
+    let photo ={
+      uri: newUri,
+      type: mime.getType(newUri),
+      name: newUri.split("/").pop()
+    }
+    const formData = new FormData()
+    formData.append("file",photo)
+    // {
+    //   uri: newUri,
+    //   type: mime.getType(newUri),
+    //   name: newUri.split("/").pop()
+    // }
+    formData.append('upload_preset','dhnd6bdt')
+    formData.append('resource_type','image')
+    // const data = {
+    //   upload_preset:'dhnd6bdt',
+    //   resource_type:'image',
+    //   file:files
+      //{
+      //   uri: newUri,
+      //   type: mime.getType(newUri),
+      //   name: newUri.split("/").pop()
+      // }
+    console.log(formData)
+    fetch("https://api.cloudinary.com/v1_1/subastapp/image/upload",{
+      headers: {
+        'content-type': 'application/form-data'
+      },
+      method:'POST',
+      body: formData
+    })
+      .then((response) =>response.json())
+      .then(data=>{
+          console.log("####"+JSON.stringify(data))
+          setImagenes([data.url])
+      })
+
+
+  }
 
   function handleButtonClick () {
-    
+    console.log(imagenes)
     const descr =
       tipo != "Arte" && tipo != "Objetos de diseñador"
         ? descripcion
@@ -57,11 +103,11 @@ export default function CargarNuevoProducto (props) {
       descripcionCatalogo: nombre,
       tipo: tipo,
       descripcionCompleta: descr,
-      foto:imagenes,
-      duenio: currentUser?.idCliente
+      foto: [imagenes],
+      duenio: currentUser?.idCliente || 9000
     };
     const user ={
-      "idCliente": 1,
+      "idCliente": 9000,
       "idUsuario": "31619",
       "email": "augusto@a.es",
       "password": "$2b$05$aQOxju6Pz7l3y5FxsHmjAexJFPLt.WUbvJRUfzFN4q8qEUVsLtoMm",
@@ -74,7 +120,7 @@ export default function CargarNuevoProducto (props) {
       "imagen": ""
     };
     //console.log(nuevoProducto,currentUser)
-    const data = Object.assign(nuevoProducto,user) 
+    const data = currentUser? Object.assign(nuevoProducto,user): nuevoProducto 
     fetch(url+"productos", {
     
       method: "POST",
@@ -84,9 +130,11 @@ export default function CargarNuevoProducto (props) {
 
       body: JSON.stringify({...nuevoProducto}),
     })
-    .then((response) => response.json())
+    .then((response) => {
+      //console.log(response.status+": "+JSON.stringify(response))
+      return response.json()})
     .then(data=>{
-        console.log("cargue el producto!")
+        console.log("cargue el producto!"+JSON.stringify(data))
         setModalSuccessVisible(true);
     })
   };
@@ -96,11 +144,14 @@ export default function CargarNuevoProducto (props) {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      quality: 0.5,
+      maxWidth: 800,
+      maxHeight:600,
     });
 
     if (!result.cancelled) {
-      setImage(result.uri);
+      console.log(result.uri)
+      imageUploader(result.uri)
     }
   };
   return (
@@ -215,7 +266,8 @@ export default function CargarNuevoProducto (props) {
                 color="#06d755"
                 onPress={() =>  {
                   setModalSuccessVisible(false);
-                  props.navigation.navigate("Home")}}
+                  //props.navigation.navigate("Home")
+                }}
               ></Button>
             </View>
           </View>
