@@ -86,7 +86,7 @@ export default function CargarNuevoProducto (props) {
     })
       .then((response) =>response.json())
       .then(data=>{
-          console.log("####"+JSON.stringify(data))
+          console.log("===>"+JSON.stringify(data))
           setImagenes([data.url])
       })
 
