@@ -25,11 +25,15 @@ import ModalSelector from "react-native-modal-selector";
 export default function EspecificacionProductoScreen(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [pujas, setPujas] = useState(pujas1);
-  const { currentProducto } = useContext(DataContext);
+  const { currentProducto,catalogoSeleccionado } = useContext(DataContext);
   const [elegido, setElegido] = useState("");
   const { tarjetas, setTarjetas, url, currentUser } = useContext(DataContext);
   const [data, setData] = useState([]);
-
+  const item =props?.navigation?.state?.params?.producto[0]
+  console.log("\n\n\n=======================================================================")
+  console.log ("Especificacion de Producto (item)=>"+JSON.stringify(item,null,2))
+  console.log("producto (currentProducto)=>"+JSON.stringify(currentProducto,null,2))
+  console.log("catalogo seleccionado (catalogoSeleccionado)=>"+JSON.stringify(catalogoSeleccionado,null,2))
   // var data = [
   //   { key: index++, label: "Tarjeta" },
   //   { key: index++, label: "Cuenta bancaria" },
@@ -115,21 +119,21 @@ export default function EspecificacionProductoScreen(props) {
       )}
       <Image
         style={styles.photoIngredient}
-        source={{ uri: currentProducto[0]?.foto[0] }}
+        source={{ uri: item.foto[0] }}
       />
       <Text style={styles.titleIngredient}>Información</Text>
       <Text style={styles.ingredientInfo}>
-        Precio base: {currentProducto[0]?.precioBase}{" "}
+        Precio base: {currentProducto?.ItemsCatalogo?.precioBase}{" "}
       </Text>
       {/* <Text style={styles.ingredientInfo}>Tipo de producto:  {producto} </Text> */}
       <Text style={styles.ingredientInfo}>
-        Dueño Actual: {currentProducto[0]?.duenio}{" "}
+        Dueño Actual: {currentProducto?.duenio}{" "}
       </Text>
       <Text style={styles.ingredientInfo}>
-        Descripción: {currentProducto[0]?.descripcionCompleta}{" "}
+        Descripción: {currentProducto?.descripcionCompleta}{" "}
       </Text>
       <Text style={styles.ingredientInfo}>
-        Número de pieza: {currentProducto[0]?.identificador}{" "}
+        Número de pieza: {currentProducto?.identificador}{" "}
       </Text>
 
       <View style={styles.TimeContainer}>

@@ -14,7 +14,7 @@ const user = {
   imagen: "../../../assets/icons/selfie.jpeg",
 };
 
-const url = "http://192.168.0.182:8080/api/";
+const url = "http://192.168.0.16:8080/api/";
 
 export function DataProvider(props) {
   const [catalogosList, setCatalogosList] = useState([]);
@@ -27,7 +27,7 @@ export function DataProvider(props) {
   const [currentUser, setCurrentUser] = useState({});
   const [currentPropiedad, setCurrentPropiedad] = useState({});
   const [currentProducto, setCurrentProducto] = useState([]);
-  const [catalogoSeleccionado, setCatalogoSeleccionado] = useState("");
+  const [catalogoSeleccionado, setCatalogoSeleccionado] = useState({});
   const [tarjetas, setTarjetas] = useState([]);
   const [cuentas, setCuentas] = useState([]);
   useEffect(() => {

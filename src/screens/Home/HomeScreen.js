@@ -12,7 +12,8 @@ export default function HomeScreen(props) {
       .then((itm) => {
         console.log(`en el catalogo ${item.descripcion} seleccionado hay ${itm.length} productos`)
         setProductosList(itm)
-        setCatalogoSeleccionado(item.descripcion)
+        setCatalogoSeleccionado(item)
+        // console.log("catalogo seleccionado: " + JSON.stringify(item))
         // fetchProductos
         props.navigation.navigate('Catalogo', { itm })
       });

@@ -72,21 +72,21 @@ export default function CatalogoScreen(props) {
           </View>
         </View>
         <View style={styles.infoRecipeContainer}>
-          <Text style={styles.infoRecipeName}>{catalogoSeleccionado}</Text>
+          <Text style={styles.infoRecipeName}>{catalogoSeleccionado.descripcion}</Text>
           <View style={styles.infoContainer}>
             <Text style={styles.category}>{"CATALOGO"}</Text>
           </View>
 
           <View style={styles.infoContainer}>
             <Image style={styles.infoPhoto} source={require('../../../assets/icons/time.png')} />
-            <Text style={styles.infoRecipe}>{item?.fecha==="10/06/2021" ? "En curso" : "Próximamente"}  </Text>
+            <Text style={styles.infoRecipe}>{ item?.fecha}  </Text>
           </View>
 
           <View style={styles.infoContainer}>
             <ViewProductsButton
               onPress={() => {
                 let products = productosList;
-                let title = ""+catalogoSeleccionado;
+                let title = ""+catalogoSeleccionado.descripcion;
                 props.navigation.navigate('ListadoProductos', { products, title });
               }}
             />

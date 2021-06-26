@@ -23,8 +23,8 @@ export default function ListadoProductosScreen(props) {
     fetch(url+'productos/producto/?id='+item.identificador)
       .then((response) => response.json())
       .then((producto) => {
-          setCurrentProducto(producto)
-          console.log(producto)
+          setCurrentProducto(item)
+          console.log(item)
           let name = item.descripcionCatalogo;
           props.navigation.navigate('EspecificacionProducto', { producto, name });
         });
