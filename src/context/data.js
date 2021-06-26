@@ -31,7 +31,7 @@ export function DataProvider(props) {
   const [tarjetas, setTarjetas] = useState([]);
   const [cuentas, setCuentas] = useState([]);
   useEffect(() => {
-    console.log("sesion iniciada con: " + currentUser.idCliente);
+    console.log("sesion iniciada con: " + JSON.stringify(currentUser));
     fetchCatalogos();
     fetchTarjetas();
     fetchCuentas();

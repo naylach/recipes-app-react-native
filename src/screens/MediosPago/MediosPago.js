@@ -343,7 +343,7 @@ export default function MediosPago(props) {
                     onChange={(texto) => {
                       setTipo(texto.label);
                     }}
-                    backdropPressToClose="true"
+                    backdropPressToClose={true}
                   />
                 )}
                 {tipo === "Tarjeta" && (
