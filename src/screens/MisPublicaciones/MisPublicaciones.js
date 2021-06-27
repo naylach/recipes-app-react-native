@@ -24,7 +24,7 @@ export default function MisPublicaciones(props) {
   const [misProductos, setMisProductos] = useState([]);
   const {currentUser,url}= useContext(DataContext);
   const  fetchProductos=()=>{
-    fetch(url+'productos/cliente?idCliente='+currentUser.idCliente)
+    fetch(url+'productos/cliente?idCliente=9000')
       .then ((response)=> response.json())
       .then ((res)=>{
         console.log("productos de cliente:\n"+res.length+"\n---------------")

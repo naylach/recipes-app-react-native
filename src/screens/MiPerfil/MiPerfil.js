@@ -46,15 +46,15 @@ export default function MiPerfil(props) {
         {currentUser && <View>
           <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
           <Text style={styles.title}>Nombre y apellido</Text>
-          <TextInput style={styles.input} onChangeText={text => setNombre(text)} value={nombre} >{currentUser.nombre}</TextInput>
+          <TextInput style={styles.input} onChangeText={text => setNombre(text)} value={nombre} placeholder={currentUser.nombre} placeholderTextColor="black"></TextInput>
           <Text style={styles.title}>Categoría</Text>
-          <TextInput style={styles.input} editable={false} value={categoria} >{currentUser.categoria}</TextInput>
+          <TextInput style={styles.input} editable={false} value={categoria} placeholder={currentUser.categoria}></TextInput>
           <Text style={styles.title}>Dirección</Text>
-          <TextInput style={styles.input} onChangeText={text => setDireccion(text)} value={direccion} >{currentUser.direccion}</TextInput>
+          <TextInput style={styles.input} onChangeText={text => setDireccion(text)} value={direccion} placeholder={currentUser.direccion} placeholderTextColor="black"></TextInput>
           <Text style={styles.title}>Email</Text>
-          <TextInput style={styles.input} onChangeText={text => setEmail(text)} value={email} >{currentUser.email}</TextInput>
+          <TextInput style={styles.input} onChangeText={text => setEmail(text)} value={email} placeholder={currentUser.email} placeholderTextColor="black"></TextInput>
           <Text style={styles.title}>DNI</Text>
-          <TextInput style={styles.input} editable={false} value={documento} >{currentUser.documento}</TextInput>
+          <TextInput style={styles.input} editable={false} value={documento} placeholder={currentUser.documento}></TextInput>
             <Button 
               style={styles.buttonLogin} 
               title='Guardar cambios'
