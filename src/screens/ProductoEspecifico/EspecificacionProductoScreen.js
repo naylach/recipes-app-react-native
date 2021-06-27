@@ -24,11 +24,14 @@ import ModalSelector from "react-native-modal-selector";
 
 export default function EspecificacionProductoScreen(props) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [importe, setImporte] = useState(0);
   const [pujas, setPujas] = useState(pujas1);
   const { currentProducto,catalogoSeleccionado } = useContext(DataContext);
-  const [elegido, setElegido] = useState("");
+  const [elegido, setElegido] = useState();
   const { tarjetas, setTarjetas, url, currentUser } = useContext(DataContext);
   const [data, setData] = useState([]);
+  const [latestPujas, setLatestPuja] = useState([]);
+
   const item =props?.navigation?.state?.params?.producto[0]
   console.log("\n\n\n=======================================================================")
   console.log ("Especificacion de Producto (item)=>"+JSON.stringify(item,null,2))
@@ -55,8 +58,19 @@ export default function EspecificacionProductoScreen(props) {
   //     console.log("ACA DATA", data);
   //   });
   // };
-
+  function  fetchLatestPuja(){
+    console.log("fetch pujas con id: "+currentProducto?.ItemsCatalogo?.identificador)
+    fetch(url+'pujas/latest?itemCatalogo='+currentProducto?.ItemsCatalogo?.identificador)
+      .then ((response)=> response.json())
+      .then ((res)=>{
+        console.log("setLatestPuja:\n"+JSON.stringify(res,null,2)+"\n---------------")
+        setLatestPuja(res)
+      })
+  }
   useEffect(() => {
+    console.log("user effect")
+    fetchLatestPuja();
+  
     setInterval(() => {
       //API DE PUJAS
       for (const puja of pujas) {
@@ -77,7 +91,7 @@ export default function EspecificacionProductoScreen(props) {
 
     setModalVisible(true);
     var auxiliar = [];
-    fetch("http://192.168.1.29:8080/api/tarjetas/?idCliente=1")
+    fetch(url+"tarjetas/?idCliente=1")
       .then((response) => response.json())
       .then((res) => {
         setTarjetas(res);
@@ -95,8 +109,31 @@ export default function EspecificacionProductoScreen(props) {
 
   const handlePuja = () => {
     //api pujas aqui
+    const nuevaPuja = {
+      cliente: currentUser?.idCliente || 9000,
+      subasta: catalogoSeleccionado.subasta?.identificador,
+      importe: pujas,
+      itemCatalogo: currentProducto?.ItemsCatalogo?.identificador,
+      // idMedioDePago: idTarjeta, // Hay que agregar el id del medio de pago correspondientes (no importa si tarjeta o cuenta)
+      
+    };
+    console.log(nuevaPuja,null,2)
+    fetch(url+"pujas/", {
+    
+      method: "POST",
+      headers: {
+        "Content-Type": 'application/json; charset=UTF-8',
+      },
 
-    setModalVisible(false);
+      body: JSON.stringify({...nuevaPuja}),
+    })
+    .then((response) => {
+      //console.log(response.status+": "+JSON.stringify(response))
+      return response.json()})
+    .then(data=>{
+        console.log("Puja Realizada"+JSON.stringify(data))
+        setModalSuccessVisible(true);
+    })
   };
   //const producto = props.navigation.getParam('producto');
   let index = 0;
@@ -114,7 +151,7 @@ export default function EspecificacionProductoScreen(props) {
       <StatusBar style="auto" />
       {pujas.length > 0 && (
         <Text style={styles.titleIngredient}>
-          Última puja: ${pujas[pujas.length - 1].importe}
+          Última puja: ${latestPujas.importe}
         </Text>
       )}
       <Image
@@ -175,7 +212,11 @@ export default function EspecificacionProductoScreen(props) {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>¿Cuánto desea pujar?</Text>
-            <TextInput style={styles.txtInput}>$ </TextInput>
+            <TextInput
+              style={styles.txtInput}
+              value= {importe}
+              //onChange={(i)=>setImporte(i)}
+            >$ </TextInput>
             <Text style={styles.modalText}>Seleccionar medio de pago</Text>
 
             <ModalSelector
@@ -187,7 +228,7 @@ export default function EspecificacionProductoScreen(props) {
               type="solid"
               key={elegido}
               onChange={(texto) => {
-                setElegido(texto.label);
+                setElegido(texto.label)
               }}
               backdropPressToClose={true}
             />
