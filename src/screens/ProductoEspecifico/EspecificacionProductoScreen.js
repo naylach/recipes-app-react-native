@@ -129,13 +129,7 @@ export default function EspecificacionProductoScreen(props) {
     console.log("###Nueva puja###")
     console.log(nuevaPuja)
     if(nuevaPuja.importe >1.01 * currentProducto.ItemsCatalogo.precioBase){
-      console.log(nuevaPuja.categoria)
-      console.log("es oro?"+!(nuevaPuja.categoria ==="oro"))
-      console.log("es platino?"+ !(nuevaPuja.categoria ==="platino"))
-      console.log(!(nuevaPuja.categoria ==="oro") & !(nuevaPuja.categoria === "platino"))
-      console.log(!nuevaPuja.categoria ==="oro" && !nuevaPuja.categoria === "platino")
       if(!(nuevaPuja.categoria ==="oro") && !(nuevaPuja.categoria === "platino")){
-        console.log("es mayor al 1.2 ultimapuja?"+(nuevaPuja.importe > 1.20 *latestPujas.importe))
         if( nuevaPuja.importe > 1.20 *latestPujas.importe){
           alert("El limite de puja actual es de: " + 1.20 *latestPujas.importe)
           return
