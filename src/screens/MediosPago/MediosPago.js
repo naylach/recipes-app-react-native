@@ -37,7 +37,7 @@ export default function MediosPago(props) {
     { key: index++, label: "Cuenta bancaria" },
   ];
   const fetchTarjetas = () => {
-    fetch(url + "tarjetas/?idCliente=" + "1")//
+    fetch(url + "tarjetas/?idCliente=" + currentUser.idCliente)
       .then((response) => response.json())
       .then((res) => {
         console.log(res);
@@ -45,7 +45,7 @@ export default function MediosPago(props) {
       });
   };
   const fetchCuentas = () => {
-    fetch(url + "cuentasBancarias/?idCliente=" + "1")
+    fetch(url + "cuentasBancarias/?idCliente=" + currentUser.idCliente)
       .then((response) => response.json())
       .then((res) => {
         setCuentas(res);
@@ -93,7 +93,9 @@ export default function MediosPago(props) {
     props.navigation.navigate("MediosPago");
   };
   const handleAgregarMedio = () => {
+    console.log("handle agregar medio");
     if (tipo ==="Tarjeta"){
+      console.log("tarjeta - handle agregar medio");
       const tarjetita = {
         numero: numero,
         nombre: nombre,
@@ -101,8 +103,8 @@ export default function MediosPago(props) {
         cvv: cvv,
         estado: "en revision",
         usuario: {
-          usuarioIdCliente: 1, //hardcodeo (?)
-          idCliente: 1, //hardcodeo (?)Z
+          usuarioIdCliente: currentUser.idCliente, //hardcodeo (?)
+          idCliente: currentUser.idCliente, //hardcodeo (?)Z
         },
       };
       const checkTextInput = (e) => {
@@ -125,6 +127,7 @@ export default function MediosPago(props) {
         return true;
       };
       if (checkTextInput) {
+        console.log(tarjetita);
         fetch(url + "tarjetas/", {
           method: "POST",
           headers: {
@@ -142,6 +145,7 @@ export default function MediosPago(props) {
       todoBlanco;
     }
     else if (tipo === "Cuenta bancaria"){
+      console.log("cuenta - handle agregar medio");
       const cuentaBancaria = {
         cbu: CBU,
         tipo: tipoCuenta,
@@ -168,6 +172,7 @@ export default function MediosPago(props) {
         return true;
       };
       if (checkTextInput) {
+        console.log(cuentaBancaria);
         fetch(url + "cuentasBancarias/", {
           method: "POST",
           headers: {

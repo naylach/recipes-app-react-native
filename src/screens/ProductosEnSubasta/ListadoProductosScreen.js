@@ -7,12 +7,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import styles from './styles';
-import {
-  getProductName,
-  getAllProducts,
-} from '../../data/MockDataAPI';
 import { DataContext } from "../../context";
-import { recipes } from '../../data/dataArrays';
 
 export default function ListadoProductosScreen(props) {
   const { productosList,url,setCurrentProducto  } = useContext(DataContext);

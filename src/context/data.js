@@ -14,7 +14,7 @@ const user = {
   imagen: "../../../assets/icons/selfie.jpeg",
 };
 
-const url = "http://192.168.0.16:8080/api/";
+const url = "http://192.168.0.182:8080/api/";
 
 export function DataProvider(props) {
   const [catalogosList, setCatalogosList] = useState([]);
@@ -35,13 +35,8 @@ export function DataProvider(props) {
     fetchCatalogos();
     fetchTarjetas();
     fetchCuentas();
-
-    // fetchMisPublicaciones()
-    // fetchUsuarios();
-    //fetchProductos();
-    // fetchPublicacionesMine();
-    // fetchPaises();
-    // fetchClientes();
+    fetchProductos();
+    fetchPublicacionesMine();
   }, [refresh]);
 
   return (
@@ -101,16 +96,6 @@ export function DataProvider(props) {
         });
     }
   }
-  // function fetchMisPublicaciones(){
-  //   if(currentUser.idCliente){
-  //     fetch(url+'productos/cliente?idCliente='+currentUser.idCliente)
-  //     .then ((response)=> response.json())
-  //     .then ((res)=>{
-  //       console.log("productos de cliente:\n"+res.length+"\n---------------")
-  //       setPublicacionesMineList(res)
-  //     })
-  //   }
-  // }
   function fetchCatalogos() {
     fetch(url + "catalogo/")
       .then((response) => response.json())
@@ -120,26 +105,6 @@ export function DataProvider(props) {
         setCatalogosList(res);
       });
   }
-
-  //Hace falta?
-  function fetchUsuarios() {
-    fetch(url + "publicaciones/list")
-      .then((response) => response.json())
-      .then((res) => setUsuariosList(res));
-  }
-
-  function fetchPaises() {
-    fetch(url + "paises/", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((res) => setPaisesList(res));
-  }
-
   //BUSCAR MANERA DE OBTERER IDENTIFICADOR DE CATALOGO
   function fetchProductos() {
     fetch(url + "catalogo/id?identificador=" + catalogoSeleccionado)
@@ -151,11 +116,5 @@ export function DataProvider(props) {
     fetch(url + "productos/cliente")
       .then((response) => response.json())
       .then((res) => setPublicacionesMineList(res));
-  }
-
-  function fetchClientes() {
-    fetch(url + "clientes/list")
-      .then((response) => response.json())
-      .then((res) => setClientesList(res));
   }
 }
