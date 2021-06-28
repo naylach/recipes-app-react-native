@@ -31,7 +31,9 @@ export default function EspecificacionProductoScreen(props) {
   const [elegido, setElegido] = useState();
   const { tarjetas, setTarjetas, url, currentUser } = useContext(DataContext);
   const [data, setData] = useState();
+  const [pujaFinalizada, setpujaFinalizada] = useState(false);
   const [timer, settimer] = useState(300);
+  const [key, setKey] = useState(0);
   const [latestPujas, setLatestPuja] = useState({
     identificador: 0,
     asistente: 0,
@@ -40,6 +42,7 @@ export default function EspecificacionProductoScreen(props) {
     ganador: "no",
   });
   const item = props?.navigation?.state?.params?.producto[0];
+
   // console.log(
   //   "\n\n\n======================================================================="
   // );
@@ -185,7 +188,8 @@ export default function EspecificacionProductoScreen(props) {
             setModalVisible(false);
           });
         setModalVisible(false);
-        settimer(300);
+        setKey(1);
+        alert("Tienes la puja mas alta"); ///sacar si molesta, el mensaje es posiblemente muy corto
       }
     } else {
       alert(
@@ -199,13 +203,15 @@ export default function EspecificacionProductoScreen(props) {
   //const producto = props.navigation.getParam('producto');
   let index = 0;
   const children = (remainingTime) => {
+    if (remainingTime === 0) {
+      setpujaFinalizada(true);
+      return "Finalizado";
+    }
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
 
     return `${minutes}:${seconds}`;
   };
-
-  const [isPlaying, setIsPlaying] = React.useState(true);
 
   return (
     <View style={{ marginBottom: 10 }}>
@@ -234,7 +240,8 @@ export default function EspecificacionProductoScreen(props) {
 
       <View style={styles.TimeContainer}>
         <CountdownCircleTimer
-          isPlaying={isPlaying}
+          key={key}
+          isPlaying
           duration={timer}
           size={100}
           colors={[
@@ -255,6 +262,7 @@ export default function EspecificacionProductoScreen(props) {
         <Button
           title="Pujar"
           style={styles.buttonLogin}
+          disabled={pujaFinalizada}
           onPress={handlePujaModalActiva}
         />
       )}
