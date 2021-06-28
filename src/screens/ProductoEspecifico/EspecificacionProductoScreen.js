@@ -33,7 +33,7 @@ export default function EspecificacionProductoScreen(props) {
   const [data, setData] = useState();
   const [pujaFinalizada, setpujaFinalizada] = useState(false);
   const [timer, settimer] = useState(300);
-  const [key, setKey] = useState(0);
+  const [keyTimer, setkeyTimer] = useState(0);
   const [latestPujas, setLatestPuja] = useState({
     identificador: 0,
     asistente: 0,
@@ -90,6 +90,9 @@ export default function EspecificacionProductoScreen(props) {
         setLatestPuja(res);
       });
   }
+  useEffect(() => {
+    setkeyTimer(keyTimer + 1);
+  }, [latestPujas]);
 
   useEffect(() => {
     console.log("user effect");
@@ -188,7 +191,7 @@ export default function EspecificacionProductoScreen(props) {
             setModalVisible(false);
           });
         setModalVisible(false);
-        setKey(1);
+        setkeyTimer(keyTimer + 1);
         alert("Tienes la puja mas alta"); ///sacar si molesta, el mensaje es posiblemente muy corto
       }
     } else {
@@ -240,7 +243,7 @@ export default function EspecificacionProductoScreen(props) {
 
       <View style={styles.TimeContainer}>
         <CountdownCircleTimer
-          key={key}
+          key={keyTimer}
           isPlaying
           duration={timer}
           size={100}
