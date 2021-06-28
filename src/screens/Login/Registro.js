@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button } from 'react-native-elements'
 import {
   ScrollView,
@@ -9,6 +9,7 @@ import {
 import { TextInput } from 'react-native-gesture-handler';
 import styles from './styles';
 import Modal from "react-native-simple-modal";
+import { DataContext } from "../../context";
 
 export default function Registro(props) {
   const [ nombre, setNombre ] = useState("");
@@ -19,6 +20,7 @@ export default function Registro(props) {
   const [ telefono, setTelefono ] = useState("");
   const [ direccion, setDireccion ] = useState("");
   const [ visibilityModal, setVisibilityModal ] = useState(false);
+  const { url } = useContext(DataContext);
 
   const openModal = () => setVisibilityModal(true);
 
@@ -37,7 +39,7 @@ export default function Registro(props) {
     };
     console.log("Nuevo usuario: ", JSON.stringify(nuevoUsuario));
 
-    fetch("http://192.168.0.182:8080/api/auth/signUp", {
+    fetch(url + "auth/signUp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
