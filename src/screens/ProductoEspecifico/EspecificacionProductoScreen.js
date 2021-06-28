@@ -90,9 +90,9 @@ export default function EspecificacionProductoScreen(props) {
         setLatestPuja(res);
       });
   }
-  useEffect(() => {
-    setkeyTimer(keyTimer + 1);
-  }, [latestPujas]);
+  // useEffect(() => {
+  //   setkeyTimer(keyTimer + 1);
+  // }, [latestPujas]);
 
   useEffect(() => {
     console.log("user effect");
