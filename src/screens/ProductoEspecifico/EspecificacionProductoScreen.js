@@ -1,7 +1,5 @@
 //Información del producto específico en el catálogo
 
-import { getEspecificacionProductos } from "../../data/MockDataAPI";
-
 import React, { useEffect, useState, useContext } from "react";
 import {
   Modal,
@@ -15,7 +13,6 @@ import {
 } from "react-native";
 import styles from "./styles";
 import { Button } from "react-native-elements";
-import { getProductUrl } from "../../data/MockDataAPI";
 import { DataContext } from "../../context";
 import { pujas1 } from "../../data/dataArrays.js";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
@@ -124,15 +121,15 @@ export default function EspecificacionProductoScreen(props) {
   function getTarjetasAprobadas() {
     var auxiliar = [];
     // fetch(url + "tarjetas/?idCliente=" + currentUser?.idCliente)
-    fetch(url + "tarjetas/?idCliente=3")
-      .then((response) => response.json())
-      .then((res) => {
-        setTarjetas(res);
-      });
+    // fetch(url + "tarjetas/?idCliente=3")
+    //   .then((response) => response.json())
+    //   .then((res) => {
+    //     setTarjetas(res);
+    //   });
     tarjetas.map((tarjeta, i) => {
       if (tarjeta.estado === "Aprobado") {
         auxiliar.push({
-          key: index++,
+          key: idTarjeta,
           label: tarjeta.nombre + " XXXX " + tarjeta.numero.substring(12, 16),
         });
         console.log(auxiliar);
@@ -155,7 +152,7 @@ export default function EspecificacionProductoScreen(props) {
       importe: importe,
       itemCatalogo: currentProducto?.ItemsCatalogo?.identificador,
       categoria: catalogoSeleccionado?.subasta?.categoria,
-      // idMedioDePago: idTarjeta, // Hay que agregar el id del medio de pago correspondientes (no importa si tarjeta o cuenta)
+      idMedioDePago: elegido, // Hay que agregar el id del medio de pago correspondientes (no importa si tarjeta o cuenta)
     };
     // console.log(nuevaPuja);
     console.log(nuevaPuja);
@@ -203,6 +200,7 @@ export default function EspecificacionProductoScreen(props) {
       );
     }
   };
+
   //const producto = props.navigation.getParam('producto');
   let index = 0;
   const children = (remainingTime) => {
@@ -314,7 +312,7 @@ export default function EspecificacionProductoScreen(props) {
               type="solid"
               key={elegido}
               onChange={(texto) => {
-                setElegido(texto.label);
+                setElegido(texto.key);
               }}
               backdropPressToClose={true}
             />
