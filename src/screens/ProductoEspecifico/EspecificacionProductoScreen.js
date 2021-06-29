@@ -261,7 +261,7 @@ export default function EspecificacionProductoScreen(props) {
         </CountdownCircleTimer>
       </View>
 
-      {1 === 1 && (
+      {currentUser && (
         <Button
           title="Pujar"
           style={styles.buttonLogin}

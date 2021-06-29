@@ -23,6 +23,7 @@ export default function MediosPago(props) {
   const [visibilityModalCreado, setVisibilityModalCreado] = useState(false);
   const [visibilityModalEliminado, setVisibilityModalEliminado] = useState(false);
   const [checked, setChecked] = useState(null);
+  const [seleccionado, setSeleccionado] = useState("");
   const [visibilityModalError, setVisibilityModalError] = useState(false);
   const { tarjetas, setTarjetas, url, currentUser, cuentas, setCuentas } = useContext(DataContext);
 
@@ -192,13 +193,13 @@ export default function MediosPago(props) {
     }
   };
   const handleBorrarMedio = () => {
-    //borrar cuentas
-    fetch(url + "tarjetas/" + checked, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    if(seleccionado === "tarjeta"){
+      fetch(url + "tarjetas/" + checked, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((response) => {
         if (response.status === 200) {
           openModalEliminado();
@@ -207,6 +208,23 @@ export default function MediosPago(props) {
       .catch((error) => {
         console.error("Error deleting tarjeta:", error);
       });
+    }
+    else{
+      fetch(url + "cuentasBancarias/" + checked, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          openModalEliminado();
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting cuenta:", error);
+      });
+    }
   };
   return (
     <ScrollView style={styles.mainContainer}>
@@ -219,7 +237,7 @@ export default function MediosPago(props) {
           <Text style={styles.title}>Tarjetas</Text>
         </View>
         <Separator />
-        {tarjetas.map((tarjeta, i) => {
+        {tarjetas?.map((tarjeta, i) => {
           if (tarjeta.estado === "Aprobado") {
             return (
               <CheckBox
@@ -230,8 +248,10 @@ export default function MediosPago(props) {
                   4
                 )}`}
                 style={styles.checkbox}
-                onPress={() =>
-                  setChecked(tarjeta.numero === checked ? null : tarjeta.numero)
+                onPress={() => {
+                    setChecked(tarjeta.numero === checked ? null : tarjeta.numero);
+                    setSeleccionado("tarjeta");
+                  }
                 }
               />
             );
@@ -245,18 +265,21 @@ export default function MediosPago(props) {
           <Text style={styles.title}>Cuentas bancarias</Text>
         </View>
         <Separator />
-        {cuentas.map((cuenta, i) => {
-          return (
-            <CheckBox
-              key={i}
-              checked={cuenta.idCuentaBancaria === checked}
-              title={`${cuenta.tipo}       **** ${cuenta.cbu.substr(-4, 4)}`}
-              style={styles.checkbox}
-              onPress={() =>
-                setChecked(cuenta.idCuentaBancaria === checked ? null : cuenta.idCuentaBancaria)
-              }
-            />
-          );
+        {cuentas?.map((cuenta, i) => {
+          if (cuenta.estado == "Aprobado") {
+            return (
+              <CheckBox
+                key={i}
+                checked={cuenta.idCuentaBancaria === checked}
+                title={`${cuenta.tipo}       **** ${cuenta.cbu.substr(-4, 4)}`}
+                style={styles.checkbox}
+                onPress={() => {
+                  setChecked(cuenta.idCuentaBancaria === checked ? null : cuenta.idCuentaBancaria);
+                  setSeleccionado("cuenta");}
+                }
+              />
+            );
+          }
         })}
         <View style={styles.header}>
           <Image
@@ -266,7 +289,7 @@ export default function MediosPago(props) {
           <Text style={styles.title}>En proceso de verificación</Text>
         </View>
         <Separator />
-        {tarjetas.map((tarjeta, i) => {
+        {tarjetas?.map((tarjeta, i) => {
           if (tarjeta.estado != "Aprobado") {
             return (
               <CheckBox
@@ -277,8 +300,24 @@ export default function MediosPago(props) {
                   4
                 )}`}
                 style={styles.checkbox}
+                onPress={() => {
+                  setChecked(tarjeta.numero === checked ? null : tarjeta.numero);
+                  setSeleccionado("tarjeta");}
+                }
+              />
+            );
+          }
+        })}
+        {cuentas?.map((cuenta, i) => {
+          if (cuenta.estado != "Aprobado") {
+            return (
+              <CheckBox
+                key={i}
+                checked={cuenta.idCuentaBancaria === checked}
+                title={`${cuenta.tipo}       **** ${cuenta.cbu.substr(-4, 4)}`}
+                style={styles.checkbox}
                 onPress={() =>
-                  setChecked(tarjeta.numero === checked ? null : tarjeta.numero)
+                  setChecked(cuenta.idCuentaBancaria === checked ? null : cuenta.idCuentaBancaria)
                 }
               />
             );
@@ -355,7 +394,6 @@ export default function MediosPago(props) {
                   <>
                     <TextInput
                       style={styles.modalInput}
-                      onChangeText={setTipoCuenta(tipo)}
                       value={tipo}
                       editable={false}
                     ></TextInput>

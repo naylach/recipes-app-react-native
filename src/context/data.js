@@ -33,8 +33,6 @@ export function DataProvider(props) {
   useEffect(() => {
     console.log("sesion iniciada con: " + JSON.stringify(currentUser));
     fetchCatalogos();
-    fetchTarjetas();
-    fetchCuentas();
     fetchProductos();
     fetchPublicacionesMine();
   }, [refresh]);
@@ -74,28 +72,6 @@ export function DataProvider(props) {
       {props.children}
     </DataContext.Provider>
   );
-
-  function fetchTarjetas() {
-    if (currentUser.idCliente) {
-      console.log(user.idCliente);
-      fetch(url + "tarjetas/?idCliente=" + currentUser.idCliente)
-        .then((response) => response.json())
-        .then((res) => {
-          console.log(res);
-          setTarjetas(res);
-        });
-    }
-  }
-
-  function fetchCuentas() {
-    if (currentUser.idCliente) {
-      fetch(url + "cuentasBancarias/?idCliente=" + currentUser.idCliente)
-        .then((response) => response.json())
-        .then((res) => {
-          setCuentas(res);
-        });
-    }
-  }
   function fetchCatalogos() {
     fetch(url + "catalogo/")
       .then((response) => response.json())
