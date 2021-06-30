@@ -35,7 +35,7 @@ export default function MiPerfil(props) {
             imagen: imagen || currentUser.imagen
           };
     
-          fetch(url+"api/auth/update", {
+          fetch(url+"auth/update", {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function MiPerfil(props) {
             .then((data) => {
               console.log("=== Se actualizaron los datos correctamente ===\nEl nuevo current user tiene estos datos:");
               console.log(JSON.stringify(data,null,2))
-              setCurrentUser = data.result
+              setCurrentUser(data.result);
             })
             .catch((error) => {
               console.error("Error:", error);
@@ -95,7 +95,7 @@ export default function MiPerfil(props) {
       })
         .then((response) =>response.json())
         .then(data=>{
-            console.log("===>"+JSON.stringify(data))
+            console.log("===>"+JSON.stringify(data,null,2))
             setImagen(data.url)
         })
   
@@ -105,7 +105,7 @@ export default function MiPerfil(props) {
       <ScrollView style={styles.mainContainer}>
         {currentUser && <View>
           <TouchableHighlight onPress={handleProfilePicClick}>
-          <Image style={styles.image}  source={currentUser.imagen ||{ uri:"https://res.cloudinary.com/subastapp/image/upload/v1625020519/emptyprofilepic.jpg"}}/>
+          <Image style={styles.image}  source={{uri: currentUser.imagen ||"https://res.cloudinary.com/subastapp/image/upload/v1625020519/emptyprofilepic.jpg"}}/>
           </TouchableHighlight>
           <Text style={styles.title}>Nombre y apellido</Text>
           <TextInput style={styles.input} onChangeText={text => setNombre(text)} value={nombre} placeholder={currentUser.nombre} placeholderTextColor="black"></TextInput>

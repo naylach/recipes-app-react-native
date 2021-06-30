@@ -20,7 +20,7 @@ export default function DrawerContainer (props){
     <View style={styles.content}>
       {currentUser &&
         <View style={styles.header}>
-          <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
+          <Image style={styles.image} source={{uri: currentUser.imagen}}/>
           <View style={styles.name}>
             <Text>{currentUser.nombre}</Text>
             <Text>{currentUser.email}</Text>

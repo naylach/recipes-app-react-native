@@ -8,7 +8,7 @@ export default function ProfileButton(props) {
   const { currentUser } = useContext(DataContext);
     return (
       <TouchableOpacity style={styles.headerButtonContainer} onPress={props.onPress}>
-        <Image style={styles.image} source={currentUser ? require('../../../assets/icons/selfie.jpeg') : require('../../../assets/icons/user.png')}/>
+        <Image style={styles.image} source={currentUser ? {uri: currentUser.imagen} : require('../../../assets/icons/user.png')}/>
       </TouchableOpacity>
     );
 }
