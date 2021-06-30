@@ -23,19 +23,22 @@ export function DataProvider(props) {
   const [paisesList, setPaisesList] = useState([]);
   const [clientesList, setClientesList] = useState([]);
   const [productosList, setProductosList] = useState([]);
-  const [refresh, setRefresh] = useState(0);
   const [currentUser, setCurrentUser] = useState({});
   const [currentPropiedad, setCurrentPropiedad] = useState({});
   const [currentProducto, setCurrentProducto] = useState([]);
   const [catalogoSeleccionado, setCatalogoSeleccionado] = useState({});
   const [tarjetas, setTarjetas] = useState([]);
   const [cuentas, setCuentas] = useState([]);
+  const [ currentSubasta, setCurrentSubasta ] = useState({});
+  const [ primeraSubasta, setPrimeraSubasta] = useState(1);
+
   useEffect(() => {
+    setCurrentUser(null);
     console.log("sesion iniciada con: " + JSON.stringify(currentUser));
     fetchCatalogos();
     fetchProductos();
     fetchPublicacionesMine();
-  }, [refresh]);
+  }, []);
 
   return (
     <DataContext.Provider
@@ -56,8 +59,6 @@ export function DataProvider(props) {
         setProductosList,
         clientesList,
         setClientesList,
-        refresh,
-        setRefresh,
         catalogoSeleccionado,
         setCatalogoSeleccionado,
         url,
@@ -67,6 +68,10 @@ export function DataProvider(props) {
         setTarjetas,
         cuentas,
         setCuentas,
+        currentSubasta,
+        setCurrentSubasta,
+        primeraSubasta,
+        setPrimeraSubasta
       }}
     >
       {props.children}
@@ -77,7 +82,6 @@ export function DataProvider(props) {
       .then((response) => response.json())
       .then((res) => {
         console.log("catalogos:\n " + res.length + "\n----------------");
-
         setCatalogosList(res);
       });
   }

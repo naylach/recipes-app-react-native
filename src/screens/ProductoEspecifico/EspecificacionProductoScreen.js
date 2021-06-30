@@ -14,28 +14,25 @@ import {
 import styles from "./styles";
 import { Button } from "react-native-elements";
 import { DataContext } from "../../context";
-import { pujas1 } from "../../data/dataArrays.js";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { StatusBar } from "expo-status-bar";
-
 import ModalSelector from "react-native-modal-selector";
 
 export default function EspecificacionProductoScreen(props) {
+  const { url, currentUser, currentProducto, catalogoSeleccionado, primeraSubasta, setPrimeraSubasta, currentSubasta, setCurrentSubasta } = useContext(DataContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [importe, setImporte] = useState(0);
-  const [pujas, setPujas] = useState(pujas1);
-  const { currentProducto, catalogoSeleccionado } = useContext(DataContext);
   const [elegido, setElegido] = useState();
-  const { tarjetas, setTarjetas, url, currentUser } = useContext(DataContext);
   const [data, setData] = useState();
   const [pujaFinalizada, setpujaFinalizada] = useState(false);
-  const [timer, settimer] = useState(300);
+  const [timer, setTimer] = useState(300);
   const [keyTimer, setkeyTimer] = useState(0);
+  const [ tarjetas, setTarjetas ] = useState([]);
   const [latestPujas, setLatestPuja] = useState({
     identificador: 0,
     asistente: 0,
     item: 0,
-    importe: 0,
+    importe: currentProducto?.ItemsCatalogo?.precioBase,
     ganador: "no",
   });
   const item = props?.navigation?.state?.params?.producto[0];
@@ -45,33 +42,12 @@ export default function EspecificacionProductoScreen(props) {
   // );
   // console.log ("Especificacion de Producto (item)=>"+JSON.stringify(item,null,2))
   // console.log("producto (currentProducto)=>"+JSON.stringify(currentProducto,null,2))
-  // console.log("catalogo seleccionado (catalogoSeleccionado)=>"+JSON.stringify(catalogoSeleccionado,null,2))
-  // var data = [
-  //   { key: index++, label: "Tarjeta" },
-  //   { key: index++, label: "Cuenta bancaria" },
-  // ];
-
-  // const TraerActivos = () => {
-  //   //  fetch(url + "tarjetas/?idCliente=" + currentUser.idCliente)
-  //   fetch("http://192.168.1.29:8080/api/tarjetas/?idCliente=1")
-  //     .then((response) => response.json())
-  //     .then((res) => {
-  //       console.log(res);
-  //       setTarjetas(res);
-  //      });
-  //    console.log("NAY - tarjetas en la db", tarjetas);
-  //   tarjetas.map((tarjeta, i) => {
-  //     if (tarjeta.estado === "Aprobado") {
-  //       data.push({ key: index++, label: tarjeta.nombre });
-  //     }
-  //     console.log("ACA DATA", data);
-  //   });
-  // };
 
   function fetchLatestPuja() {
     console.log(
       "fetch pujas con id: " + currentProducto?.ItemsCatalogo?.identificador
     );
+    console.log(primeraSubasta);
     fetch(
       url +
         "pujas/latest?itemCatalogo=" +
@@ -79,18 +55,21 @@ export default function EspecificacionProductoScreen(props) {
     )
       .then((response) => response.json())
       .then((res) => {
+        console.log("type of", typeof res);
+        console.log("res", res);
         console.log(
           "setLatestPuja:\n" +
             JSON.stringify(res, null, 2) +
             "\n---------------"
         );
-        setLatestPuja(res);
-      });
+  
+          setLatestPuja(res);
+      })
+      // .catch((res) => {
+      //   console.log("errorcito", res);
+      //   setLatestPuja(currentProducto?.ItemsCatalogo?.precioBase);
+      // });
   }
-  // useEffect(() => {
-  //   setkeyTimer(keyTimer + 1);
-  // }, [latestPujas]);
-
   useEffect(() => {
     console.log("user effect");
 
@@ -102,34 +81,17 @@ export default function EspecificacionProductoScreen(props) {
     }, 5000);
 
     return () => window.clearInterval(timeout);
-    // setInterval(() => {
-    //   //API DE PUJAS
-    //   for (const puja of pujas) {
-    //     if (
-    //       !pujas.find((p) => {
-    //         if (p.id === puja.id) return true;
-    //         return false;
-    //       })
-    //     ) {
-    //       const p = pujas.concat(puja);
-    //       setPujas(p);
-    //     }
-    //   }
-    // }, 2000);
   }, []);
 
-  function getTarjetasAprobadas() {
+  const getTarjetasAprobadas = () => {
     var auxiliar = [];
-    // fetch(url + "tarjetas/?idCliente=" + currentUser?.idCliente)
-    // fetch(url + "tarjetas/?idCliente=3")
-    //   .then((response) => response.json())
-    //   .then((res) => {
-    //     setTarjetas(res);
-    //   });
+    fetch(url + "tarjetas/?idCliente=" + currentUser?.idCliente)
+      .then((response) => response.json())
+      .then((res) => setTarjetas(res));
     tarjetas.map((tarjeta, i) => {
       if (tarjeta.estado === "Aprobado") {
         auxiliar.push({
-          key: idTarjeta,
+          key: tarjeta.idTarjeta,
           label: tarjeta.nombre + " XXXX " + tarjeta.numero.substring(12, 16),
         });
         console.log(auxiliar);
@@ -137,7 +99,7 @@ export default function EspecificacionProductoScreen(props) {
       setData(auxiliar);
     });
   }
-  function handlePujaModalActiva() {
+  const handlePujaModalActiva = () => {
     getTarjetasAprobadas();
     setImporte(latestPujas.importe);
     setModalVisible(true);
@@ -145,9 +107,9 @@ export default function EspecificacionProductoScreen(props) {
 
   const handlePuja = () => {
     //api pujas aqui
-    console.log("LLLEGA ACA");
+    console.log("LLEGA ACA");
     const nuevaPuja = {
-      cliente: currentUser?.idCliente || 9000,
+      cliente: currentUser?.idCliente,
       subasta: catalogoSeleccionado.subasta?.identificador,
       importe: importe,
       itemCatalogo: currentProducto?.ItemsCatalogo?.identificador,
@@ -189,6 +151,8 @@ export default function EspecificacionProductoScreen(props) {
           });
         setModalVisible(false);
         setkeyTimer(keyTimer + 1);
+        setCurrentSubasta(catalogoSeleccionado.subasta);
+        setPrimeraSubasta(0);
         alert("Tienes la puja mas alta"); ///sacar si molesta, el mensaje es posiblemente muy corto
       }
     } else {
@@ -217,18 +181,17 @@ export default function EspecificacionProductoScreen(props) {
   return (
     <View style={{ marginBottom: 10 }}>
       <StatusBar style="auto" />
-      {pujas.length > 0 && (
+      {catalogoSeleccionado?.subasta?.estado === "abierta" && 
         <Text style={styles.titleIngredient}>
           Última puja: $
           {latestPujas.importe === 0 ? "Loading..." : latestPujas.importe}
         </Text>
-      )}
+      }
       <Image style={styles.photoIngredient} source={{ uri: item.foto[0] }} />
       <Text style={styles.titleIngredient}>Información</Text>
       <Text style={styles.ingredientInfo}>
         Precio base: {currentProducto?.ItemsCatalogo?.precioBase}{" "}
       </Text>
-      {/* <Text style={styles.ingredientInfo}>Tipo de producto:  {producto} </Text> */}
       <Text style={styles.ingredientInfo}>
         Dueño Actual: {currentProducto?.duenio}{" "}
       </Text>
@@ -259,14 +222,18 @@ export default function EspecificacionProductoScreen(props) {
         </CountdownCircleTimer>
       </View>
 
-      {currentUser?.categoria === catalogoSeleccionado?.subasta?.categoria && (
+      { (primeraSubasta === 1 || (currentUser?.categoria === catalogoSeleccionado?.subasta?.categoria 
+      && catalogoSeleccionado?.subasta?.estado === "abierta" 
+      && catalogoSeleccionado?.subasta?.identificador === currentSubasta.identificador 
+      ))
+      && 
         <Button
           title="Pujar"
           style={styles.buttonLogin}
           disabled={pujaFinalizada}
           onPress={handlePujaModalActiva}
         />
-      )}
+      }
 
       <Modal
         animationType="slide"
@@ -280,26 +247,14 @@ export default function EspecificacionProductoScreen(props) {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>¿Cuánto desea pujar?</Text>
-            {/* <TextInput
+            <TextInput
               style={styles.txtInput}
-              value= {importe}
-              //onChange={(i)=>setImporte(i)}
-            >$ </TextInput> */}
-            <View style={styles.container__puja}>
-              {/* BOTON SUBI + */}
-              <TouchableHighlight onPress={() => setImporte(importe + 10)}>
-                <View style={styles.button__puja}>
-                  <Text style={styles.submit__puja}>+</Text>
-                </View>
-              </TouchableHighlight>
-              <Text style={styles.text__puja}>{importe}</Text>
-              {/* BOTON SUBI - */}
-              <TouchableHighlight onPress={() => setImporte(importe - 10)}>
-                <View style={styles.button__puja}>
-                  <Text style={styles.submit__puja}>-</Text>
-                </View>
-              </TouchableHighlight>
-            </View>
+              placeholder="$"
+              onChangeText={text => {
+                console.log(text);
+                setImporte(parseInt(text));
+              }}
+            ></TextInput>
 
             <Text style={styles.modalText}>Seleccionar medio de pago</Text>
 

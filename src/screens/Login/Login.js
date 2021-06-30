@@ -20,7 +20,7 @@ export default function Login (props) {
   const [visibilityModal3, setVisibilityModal3] = useState(false);
   const [visibilityModal4, setVisibilityModal4] = useState(false);
   const [ usuario, setUsuario ] = useState(null);
-  const { currentUser, setCurrentUser,url } = useContext(DataContext);
+  const { currentUser, setCurrentUser, url, setPrimeraSubasta } = useContext(DataContext);
  
   const openModal = () => setVisibilityModal(true);
   const openModal1 = () => setVisibilityModal1(true);
@@ -88,6 +88,7 @@ export default function Login (props) {
       .then(res => {
         if(res){
           setCurrentUser(res.user);
+          setPrimeraSubasta(1);
           props.navigation.navigate('Home');
         }
       })
