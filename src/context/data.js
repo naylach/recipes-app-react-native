@@ -14,7 +14,7 @@ const user = {
   imagen: "../../../assets/icons/selfie.jpeg",
 };
 
-const url = "http://192.168.0.182:8080/api/";
+const url = "http://192.168.0.16:8080/api/";
 
 export function DataProvider(props) {
   const [catalogosList, setCatalogosList] = useState([]);

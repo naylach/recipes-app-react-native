@@ -4,12 +4,15 @@ import {
   Text,
   View,
   Image,
+  TouchableHighlight
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
 import styles from './styles';
 import { users } from '../../data/dataArrays.js'
 import { DataContext } from '../../context';
+import mime from "mime"
+import * as ImagePicker from "expo-image-picker";
 
 export default function MiPerfil(props) {
 
@@ -18,33 +21,90 @@ export default function MiPerfil(props) {
   const [direccion, setDireccion] = useState("");
   const [email, setEmail] = useState("");
   const [documento, setDocumento] = useState("");
+  const [imagen,setImagen]= useState("")
   const { currentUser, setCurrentUser, url } = useContext(DataContext);
-    const handleButtonClick = (e) => {
-      const usuario = {
-        nombre, categoria, direccion, email, documento
-      };
   
-      // fetch("http://localhost:8000/api/cliente/", {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(usuario),
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     console.log("Success:", data);
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error:", error);
-      //   });
-        
-        props.navigation.navigate('MiPerfil');
+    const handleButtonClick = (e) => {
+      if(Object.keys(currentUser).length!=0){
+          const usuario = {
+            idUsuario: currentUser.idUsuario, 
+            nombre: nombre || currentUser.nombre, 
+            direccion: direccion || currentUser.direccion, 
+            email: email || currentUser.email, 
+            documento: documento || currentUser.documento,
+            imagen: imagen || currentUser.imagen
+          };
+    
+          fetch(url+"api/auth/update", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(usuario),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Success:", data);
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+            
+            props.navigation.navigate('MiPerfil');
+        }else{
+          alert("Necesitas loguearte para actualizar tus datos")
+        }
+      
     };
+    const handleProfilePicClick = async () =>{
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 0.5,
+        maxWidth: 800,
+        maxHeight:600,
+      });
+  
+      if (!result.cancelled) {
+        console.log(result.uri)
+        imageUploader(result.uri)
+      }
+    }
+    async function imageUploader(files){
+      const newUri = "file://" + files.split("file:/").join("")
+      console.log(newUri,mime.getType(newUri))
+      let photo ={
+        uri: newUri,
+        type: mime.getType(newUri),
+        name: newUri.split("/").pop()
+      }
+      const formData = new FormData()
+      formData.append("file",photo)
+      formData.append('upload_preset','dhnd6bdt')
+      formData.append('resource_type','image')
+      console.log(formData)
+      fetch("https://api.cloudinary.com/v1_1/subastapp/image/upload",{
+        headers: {
+          'content-type': 'application/form-data'
+        },
+        method:'POST',
+        body: formData
+      })
+        .then((response) =>response.json())
+        .then(data=>{
+            console.log("===>"+JSON.stringify(data))
+            setImagen(data.url)
+        })
+  
+  
+    }
     return (
       <ScrollView style={styles.mainContainer}>
         {currentUser && <View>
-          <Image style={styles.image} source={require('../../../assets/icons/selfie.jpeg')}/>
+          <TouchableHighlight onPress={handleProfilePicClick}>
+          <Image style={styles.image}  source={currentUser.imagen ||{ uri:"https://res.cloudinary.com/subastapp/image/upload/v1625020519/emptyprofilepic.jpg"}}/>
+          </TouchableHighlight>
           <Text style={styles.title}>Nombre y apellido</Text>
           <TextInput style={styles.input} onChangeText={text => setNombre(text)} value={nombre} placeholder={currentUser.nombre} placeholderTextColor="black"></TextInput>
           <Text style={styles.title}>Categoría</Text>
