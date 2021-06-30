@@ -44,7 +44,9 @@ export default function MiPerfil(props) {
           })
             .then((response) => response.json())
             .then((data) => {
-              console.log("Success:", data);
+              console.log("=== Se actualizaron los datos correctamente ===\nEl nuevo current user tiene estos datos:");
+              console.log(JSON.stringify(data,null,2))
+              setCurrentUser = data.result
             })
             .catch((error) => {
               console.error("Error:", error);
