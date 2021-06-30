@@ -259,7 +259,7 @@ export default function EspecificacionProductoScreen(props) {
         </CountdownCircleTimer>
       </View>
 
-      {currentUser && (
+      {currentUser?.categoria === catalogoSeleccionado?.subasta?.categoria && (
         <Button
           title="Pujar"
           style={styles.buttonLogin}
