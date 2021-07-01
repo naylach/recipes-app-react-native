@@ -28,6 +28,7 @@ export default function EspecificacionProductoScreen(props) {
   const [timer, setTimer] = useState(300);
   const [keyTimer, setkeyTimer] = useState(0);
   const [ tarjetas, setTarjetas ] = useState([]);
+  const [ cuentas, setCuentas ] = useState([]);
   const [latestPujas, setLatestPuja] = useState({
     identificador: 0,
     asistente: 0,
@@ -47,7 +48,6 @@ export default function EspecificacionProductoScreen(props) {
     console.log(
       "fetch pujas con id: " + currentProducto?.ItemsCatalogo?.identificador
     );
-    console.log(primeraSubasta);
     fetch(
       url +
         "pujas/latest?itemCatalogo=" +
@@ -55,8 +55,6 @@ export default function EspecificacionProductoScreen(props) {
     )
       .then((response) => response.json())
       .then((res) => {
-        console.log("type of", typeof res);
-        console.log("res", res);
         console.log(
           "setLatestPuja:\n" +
             JSON.stringify(res, null, 2) +
@@ -65,10 +63,6 @@ export default function EspecificacionProductoScreen(props) {
   
           setLatestPuja(res);
       })
-      // .catch((res) => {
-      //   console.log("errorcito", res);
-      //   setLatestPuja(currentProducto?.ItemsCatalogo?.precioBase);
-      // });
   }
   useEffect(() => {
     console.log("user effect");
@@ -92,12 +86,24 @@ export default function EspecificacionProductoScreen(props) {
       if (tarjeta.estado === "Aprobado") {
         auxiliar.push({
           key: tarjeta.idTarjeta,
-          label: tarjeta.nombre + " XXXX " + tarjeta.numero.substring(12, 16),
+          label: tarjeta.nombre + " XXXX " + tarjeta.numero.substring(-4, 4),
         });
         console.log(auxiliar);
       }
-      setData(auxiliar);
     });
+    fetch(url + "cuentasBancarias/?idCliente=" + currentUser?.idCliente)
+      .then((response) => response.json())
+      .then((res) => setCuentas(res));
+    cuentas.map((cuenta, i) => {
+      if (cuenta.estado === "Aprobado") {
+        auxiliar.push({
+          key: cuenta.idCuentaBancaria,
+          label: cuenta.alias + " XXXX " + cuenta.cbu.substring(-4, 4),
+        });
+        console.log("cuentitas", auxiliar);
+      }
+    });
+      setData(auxiliar);
   }
   const handlePujaModalActiva = () => {
     getTarjetasAprobadas();
@@ -164,9 +170,6 @@ export default function EspecificacionProductoScreen(props) {
       );
     }
   };
-
-  //const producto = props.navigation.getParam('producto');
-  let index = 0;
   const children = (remainingTime) => {
     if (remainingTime === 0) {
       setpujaFinalizada(true);
