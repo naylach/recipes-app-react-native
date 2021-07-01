@@ -106,9 +106,13 @@ export default function EspecificacionProductoScreen(props) {
       setData(auxiliar);
   }
   const handlePujaModalActiva = () => {
-    getTarjetasAprobadas();
-    setImporte(latestPujas.importe);
-    setModalVisible(true);
+    if(!currentUser){
+      props.navigation.navigate('Login');}
+    else{
+      getTarjetasAprobadas();
+      setImporte(latestPujas.importe);
+      setModalVisible(true);
+    }
   }
 
   const handlePuja = () => {
@@ -192,9 +196,10 @@ export default function EspecificacionProductoScreen(props) {
       }
       <Image style={styles.photoIngredient} source={{ uri: item.foto[0] }} />
       <Text style={styles.titleIngredient}>Información</Text>
+      {currentUser?.categoria === catalogoSeleccionado?.subasta?.categoria && 
       <Text style={styles.ingredientInfo}>
         Precio base: {currentProducto?.ItemsCatalogo?.precioBase}{" "}
-      </Text>
+      </Text>}
       <Text style={styles.ingredientInfo}>
         Dueño Actual: {currentProducto?.duenio}{" "}
       </Text>
@@ -204,8 +209,12 @@ export default function EspecificacionProductoScreen(props) {
       <Text style={styles.ingredientInfo}>
         Número de pieza: {currentProducto?.identificador}{" "}
       </Text>
-
       <View style={styles.TimeContainer}>
+        { (currentUser?.categoria === catalogoSeleccionado?.subasta?.categoria 
+      && catalogoSeleccionado?.subasta?.estado === "abierta" 
+      && (primeraSubasta === 1 || catalogoSeleccionado?.subasta?.identificador === currentSubasta.identificador 
+      ))
+      && 
         <CountdownCircleTimer
           key={keyTimer}
           isPlaying
@@ -223,12 +232,13 @@ export default function EspecificacionProductoScreen(props) {
             </Animated.Text>
           )}
         </CountdownCircleTimer>
+        }
       </View>
 
-      { (primeraSubasta === 1 || (currentUser?.categoria === catalogoSeleccionado?.subasta?.categoria 
+      { (!currentUser || (currentUser?.categoria === catalogoSeleccionado?.subasta?.categoria 
       && catalogoSeleccionado?.subasta?.estado === "abierta" 
-      && catalogoSeleccionado?.subasta?.identificador === currentSubasta.identificador 
-      ))
+      && (primeraSubasta === 1 || catalogoSeleccionado?.subasta?.identificador === currentSubasta.identificador 
+      )))
       && 
         <Button
           title="Pujar"
