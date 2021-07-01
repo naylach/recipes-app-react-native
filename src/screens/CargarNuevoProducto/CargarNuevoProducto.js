@@ -41,16 +41,9 @@ export default function CargarNuevoProducto (props) {
        alert("Por favor, ingrese descripcion del producto");
        return;
      }
-     /*if (!tipo.trim()) {
-       alert("Por favor, seleciones tipo de producto");
-       return;
-     }*/
-    
     handleButtonClick();
   };
   async function imageUploader(files){
-    
-    
     const newUri = "file://" + files.split("file:/").join("")
     console.log(newUri,mime.getType(newUri))
     let photo ={
@@ -90,23 +83,8 @@ export default function CargarNuevoProducto (props) {
       tipo: tipo,
       descripcionCompleta: descr,
       foto: imagenes,
-      duenio: currentUser?.idCliente || 9000
+      duenio: currentUser?.idCliente
     };
-    const user ={
-      "idCliente": 9000,
-      "idUsuario": "31619",
-      "email": "augusto@a.es",
-      "password": "$2b$05$aQOxju6Pz7l3y5FxsHmjAexJFPLt.WUbvJRUfzFN4q8qEUVsLtoMm",
-      "categoria": "comun",
-      "verificador": null,
-      "documento": "789456126",
-      "nombre": "cris cañizales",
-      "direccion": "santa fe 3000",
-      "estado": 2,
-      "imagen": ""
-    };
-    //console.log(nuevoProducto,currentUser)
-    const data = currentUser? Object.assign(nuevoProducto,user): nuevoProducto 
     fetch(url+"productos", {
     
       method: "POST",
@@ -252,7 +230,7 @@ export default function CargarNuevoProducto (props) {
                 color="#06d755"
                 onPress={() =>  {
                   setModalSuccessVisible(false);
-                  //props.navigation.navigate("Home")
+                  props.navigation.navigate("Home")
                 }}
               ></Button>
             </View>

@@ -7,7 +7,7 @@ import { users } from '../../data/dataArrays.js';
 import { DataContext } from "../../context";
 
 export default function DrawerContainer (props){
-  const {url,setPublicacionesMineList, currentUser, setCurrentUser }= useContext(DataContext);
+  const {url,setPublicacionesMineList, currentUser, setCurrentUser, setCurrentSubasta, setPrimeraSubasta }= useContext(DataContext);
    function getMyPublicaciones(){
     fetch(url+'productos/cliente/?idCliente=16')
                     .then((response) => response.json())
@@ -90,6 +90,8 @@ export default function DrawerContainer (props){
           source={require('../../../assets/icons/out.png')}
           onPress={() => {
             setCurrentUser(null);
+            setCurrentSubasta(null);
+            setPrimeraSubasta(1);
             props.navigation.navigate('CerrarSesion');
             props.navigation.closeDrawer();
           }}

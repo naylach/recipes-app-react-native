@@ -106,7 +106,7 @@ export default function Login (props) {
       })
       .then((response) => response.json())
       .then((res) => {
-        setCurrentUser(res)
+        setCurrentUser(res.result)
         openModal4();
       })
       .catch((error) => {
