@@ -20,14 +20,13 @@ import { StatusBar } from "expo-status-bar";
 
 import { io } from "socket.io-client";
 import ModalSelector from "react-native-modal-selector";
-
 export default function EspecificacionProductoScreen(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [importe, setImporte] = useState(0);
   const [pujas, setPujas] = useState(pujas1);
-  const { currentProducto, catalogoSeleccionado } = useContext(DataContext);
+  const { currentProducto, catalogoSeleccionado, url } = useContext(DataContext);
   const [elegido, setElegido] = useState();
-  const { tarjetas, setTarjetas, url, currentUser } = useContext(DataContext);
+  const { tarjetas, setTarjetas, currentUser } = useContext(DataContext);
   const [data, setData] = useState();
   const [pujaFinalizada, setpujaFinalizada] = useState(false);
   const [timer, settimer] = useState(300);
@@ -39,14 +38,10 @@ export default function EspecificacionProductoScreen(props) {
     importe: 0,
     ganador: "no",
   });
-  const [latestInfoSubasta, setInfoSubasta] = useState({
-    horarioSubasta: "",
-    createdAt: "",
-    lastItem: 0,
-    items: []
-});
+  const [latestInfoSubasta, setInfoSubasta] = useState(props?.navigation?.state?.params?.lastPuja);
   const item = props?.navigation?.state?.params?.producto[0];
-
+  const socket = io(url.slice(0,25));
+  
   // console.log(
   //   "\n\n\n======================================================================="
   // );
@@ -117,39 +112,38 @@ export default function EspecificacionProductoScreen(props) {
   //   setkeyTimer(keyTimer + 1);
   // }, [latestPujas]);
 
-  // useEffect(() => {
-  //   console.log("user effect");
-
-  //   fetchLatestPuja();
-  //   console.log(JSON.stringify(props, null, 2));
-  //   let timeout = window.setInterval(() => {
-  //     fetchLatestPuja();
-  //     fetchLatestPujaSubasta();
-  //     console.log("latestInfoSubasta 5s",latestInfoSubasta);
-  // //   }, 5000);
-
-  //   return () => window.clearInterval(timeout);
-  //   // setInterval(() => {
-  //   //   //API DE PUJAS
-  //   //   for (const puja of pujas) {
-  //   //     if (
-  //   //       !pujas.find((p) => {
-  //   //         if (p.id === puja.id) return true;
-  //   //         return false;
-  //   //       })
-  //   //     ) {
-  //   //       const p = pujas.concat(puja);
-  //   //       setPujas(p);
-  //   //     }
-  //   //   }
-  //   // }, 2000);
-  // }, []);
   useEffect(() => {
-      const socket = io("http://192.168.0.64:8080");
-      socket.on("connect", () => {
-        console.log("======================socket"); // x8WIv7-mJelg7on_ALbx
-      });
-  },[]);
+    // socket.on("connect", () => {
+    //   console.log("conectado a socket");})
+        
+  },[]);  
+    // fetchLatestPuja();
+    // console.log(JSON.stringify(props, null, 2));
+    // let timeout = window.setInterval(() => {
+    //   fetchLatestPuja();
+    //   fetchLatestPujaSubasta();
+    //   console.log("latestInfoSubasta 5s",latestInfoSubasta);
+    // }, 5000);
+    
+    //return () => window.clearInterval(timeout);
+    // setInterval(() => {
+    //   //API DE PUJAS
+    //   for (const puja of pujas) {
+    //     if (
+    //       !pujas.find((p) => {
+    //         if (p.id === puja.id) return true;
+    //         return false;
+    //       })
+    //     ) {
+    //       const p = pujas.concat(puja);
+    //       setPujas(p);
+    //     }
+    //   }
+    // }, 2000);
+  
+  
+    
+  
   function getTarjetasAprobadas() {
     var auxiliar = [];
     // fetch(url + "tarjetas/?idCliente=" + currentUser?.idCliente)
@@ -252,7 +246,7 @@ export default function EspecificacionProductoScreen(props) {
       {pujas.length > 0 && (
         <Text style={styles.titleIngredient}>
           Última puja: $
-          {latestPujas.importe === 0 ? "Loading..." : latestPujas.importe}
+          {latestPujas.importe === 0 ? currentProducto.ItemsCatalogo.precioBase : latestPujas.importe}
         </Text>
       )}
       <Image style={styles.photoIngredient} source={{ uri: item.foto[0] }} />

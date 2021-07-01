@@ -8,20 +8,30 @@ import {
 } from 'react-native';
 import styles from './styles';
 import { DataContext } from "../../context";
+import { io } from "socket.io-client";
 
 export default function ListadoProductosScreen(props) {
   const { productosList,url,setCurrentProducto  } = useContext(DataContext);
+  const socket = io(url.slice(0,25));
+    socket.on("connect", () => {
+      console.log("conectado a socket");
+    }) 
   const onPressProduct = item => {
     // let name = getProductName(item.identificador);
     // let product = item.identificador;
+    let lastPuja = {}
+    socket.emit("ultimaPuja",item.identificador,(args)=>{
+    console.log(JSON.stringify(args))
+    lastPuja=args.status === 'ok' ? args.identificador : {horarioSubasta: "",createdAt: "",lastItem: 0,items: []}
 
+    })
     fetch(url+'productos/producto/?id='+item.identificador)
       .then((response) => response.json())
       .then((producto) => {
           setCurrentProducto(item)
           console.log(item)
           let name = item.descripcionCatalogo;
-          props.navigation.navigate('EspecificacionProducto', { producto, name });
+          props.navigation.navigate('EspecificacionProducto', { producto, name, lastPuja });
         });
     
   };
