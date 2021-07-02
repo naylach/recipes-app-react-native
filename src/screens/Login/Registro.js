@@ -53,24 +53,6 @@ export default function Registro(props) {
       .catch((error) => {
         console.error("Error:", error);
       });
-    // var details = {
-    //   destinatario: email,
-    //   asunto: "Registro en SubastApp para el usuario: " + nombre + " " + apellido,
-    // };
-    // var formBody = [];
-    // for (var property in details) {
-    //   var encodedKey = encodeURIComponent(property);
-    //   var encodedValue = encodeURIComponent(details[property]);
-    //   formBody.push(encodedKey + "=" + encodedValue);
-    // }
-    // formBody = formBody.join("&");
-    // fetch("http://localhost:8080/api/sendEmail", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-    //   },
-    //   body: formBody,
-    // });
     openModal();
   };
     return (

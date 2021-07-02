@@ -25,7 +25,7 @@ export default function EspecificacionProductoScreen(props) {
   const [elegido, setElegido] = useState();
   const [data, setData] = useState();
   const [pujaFinalizada, setpujaFinalizada] = useState(false);
-  const [timer, setTimer] = useState(300);
+  const [timer, setTimer] = useState(60);
   const [keyTimer, setkeyTimer] = useState(0);
   const [ tarjetas, setTarjetas ] = useState([]);
   const [ cuentas, setCuentas ] = useState([]);
@@ -68,11 +68,10 @@ export default function EspecificacionProductoScreen(props) {
     console.log("user effect");
 
     fetchLatestPuja();
-    console.log(JSON.stringify(props, null, 2));
     let timeout = window.setInterval(() => {
       fetchLatestPuja();
-      //  console.log("pasaron 5s");
-    }, 5000);
+      console.log("pasaron 5s");
+    }, 3000);
 
     return () => window.clearInterval(timeout);
   }, []);
@@ -88,7 +87,6 @@ export default function EspecificacionProductoScreen(props) {
           key: tarjeta.idTarjeta,
           label: tarjeta.nombre + " XXXX " + tarjeta.numero.substring(-4, 4),
         });
-        console.log(auxiliar);
       }
     });
     fetch(url + "cuentasBancarias/?idCliente=" + currentUser?.idCliente)
@@ -100,7 +98,6 @@ export default function EspecificacionProductoScreen(props) {
           key: cuenta.idCuentaBancaria,
           label: cuenta.alias + " XXXX " + cuenta.cbu.substring(-4, 4),
         });
-        console.log("cuentitas", auxiliar);
       }
     });
       setData(auxiliar);
@@ -116,22 +113,15 @@ export default function EspecificacionProductoScreen(props) {
   }
 
   const handlePuja = () => {
-    //api pujas aqui
-    console.log("LLEGA ACA");
     const nuevaPuja = {
       cliente: currentUser?.idCliente,
       subasta: catalogoSeleccionado.subasta?.identificador,
       importe: importe,
       itemCatalogo: currentProducto?.ItemsCatalogo?.identificador,
       categoria: catalogoSeleccionado?.subasta?.categoria,
-      idMedioDePago: elegido, // Hay que agregar el id del medio de pago correspondientes (no importa si tarjeta o cuenta)
+      idMedioDePago: elegido,
     };
-    // console.log(nuevaPuja);
-    console.log(nuevaPuja);
-
     if (nuevaPuja.importe > 1.01 * currentProducto.ItemsCatalogo.precioBase) {
-      console.log("###PASA EL PRIMERO###");
-
       if (
         !(nuevaPuja.categoria === "oro") &&
         !(nuevaPuja.categoria === "platino")
@@ -152,18 +142,16 @@ export default function EspecificacionProductoScreen(props) {
           body: JSON.stringify({ ...nuevaPuja }),
         })
           .then((response) => {
-            //console.log(response.status+": "+JSON.stringify(response))
             return response.json();
           })
           .then((res) => {
-            console.log("Puja Realizada" + JSON.stringify(res));
             setModalVisible(false);
           });
         setModalVisible(false);
         setkeyTimer(keyTimer + 1);
         setCurrentSubasta(catalogoSeleccionado.subasta);
         setPrimeraSubasta(0);
-        alert("Tienes la puja mas alta"); ///sacar si molesta, el mensaje es posiblemente muy corto
+        alert("Tienes la puja mas alta");
       }
     } else {
       alert(
@@ -235,7 +223,7 @@ export default function EspecificacionProductoScreen(props) {
         }
       </View>
 
-      { (!currentUser || (currentUser?.categoria === catalogoSeleccionado?.subasta?.categoria 
+      { ((!currentUser && catalogoSeleccionado?.subasta?.estado === "abierta") || (currentUser?.categoria === catalogoSeleccionado?.subasta?.categoria 
       && catalogoSeleccionado?.subasta?.estado === "abierta" 
       && (primeraSubasta === 1 || catalogoSeleccionado?.subasta?.identificador === currentSubasta.identificador 
       )))

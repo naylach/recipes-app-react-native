@@ -69,13 +69,11 @@ export default function MiPerfil(props) {
       });
   
       if (!result.cancelled) {
-        console.log(result.uri)
         imageUploader(result.uri)
       }
     }
     async function imageUploader(files){
       const newUri = "file://" + files.split("file:/").join("")
-      console.log(newUri,mime.getType(newUri))
       let photo ={
         uri: newUri,
         type: mime.getType(newUri),
@@ -85,8 +83,7 @@ export default function MiPerfil(props) {
       formData.append("file",photo)
       formData.append('upload_preset','dhnd6bdt')
       formData.append('resource_type','image')
-      console.log(formData)
-      fetch("https://api.cloudinary.com/v1_1/subastapp/image/upload",{
+     fetch("https://api.cloudinary.com/v1_1/subastapp/image/upload",{
         headers: {
           'content-type': 'application/form-data'
         },
@@ -95,7 +92,6 @@ export default function MiPerfil(props) {
       })
         .then((response) =>response.json())
         .then(data=>{
-            console.log("===>"+JSON.stringify(data,null,2))
             setImagen(data.url)
         })
   

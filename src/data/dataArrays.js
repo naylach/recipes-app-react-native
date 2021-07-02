@@ -620,7 +620,7 @@ export const historial = [
   },
   {
     id: 3,
-    producto: "Cuadro Claude Monet",
+    producto: "315",
     monto: 200000,
     tipo: "venta"
   },
